@@ -1,0 +1,16 @@
+Rooms:
+
+Tiny - 8x8 -> welcoming room + special rooms (chests)
+Small - 12x8 -> 15%
+Medium - 16x8 -> 30%
+Large - 16x12 or 12x16 -> 30% (15% each) 
+{
+	LargeH - 16x12 -> 15%
+	LargeV - 12x16 -> 15%
+}
+Huge - 16x16 -> 15%
+Gigantic - 24x24 -> 10%
+
+Amount Of Rooms Per World:
+
+World 1: 4-6
