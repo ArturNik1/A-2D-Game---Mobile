@@ -30,6 +30,10 @@ public class DoorLogic : MonoBehaviour
                 fromRoom.SetActive(false);
                 toRoom.SetActive(true);
                 toRoom.transform.localPosition = new Vector3(0, 0, toRoom.transform.localPosition.z);
+
+                // Spawn enemies here....
+                GameObject.Find("Enemies").GetComponent<EnemyManager>().SpawnEnemies(toRoom);
+
             }
             // Change currentRoomType and current room info.
             LevelManager.currentRoomType = toRoom.GetComponent<RoomLogic>().roomType;

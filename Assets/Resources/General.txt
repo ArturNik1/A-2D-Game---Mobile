@@ -14,3 +14,9 @@ Gigantic - 24x24 -> 10%
 Amount Of Rooms Per World:
 
 World 1: 4-6
+
+
+
+Room Patterns: 
+
+LargeH - 4/5/6

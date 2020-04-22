@@ -552,12 +552,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e97ed495de9dd4d8cd837e3837f60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 1054638298448434, guid: aed40cee58f6f08459e48bfe65d201b9, type: 3}
+  enemyHolder: {fileID: 3056354437561244028, guid: b15dd0a479411de4092e102673808575,
+    type: 3}
   roomAction: 0
-  hasHallway: 0
-  hallwayIsLeft: 0
   width: 0
   height: 0
   roomType: 0
+  hasHallway: 0
+  hallwayIsLeft: 0
   wall: {fileID: 8326036848452705799, guid: 60081bbe8466bd74bb35ef5e6bf00040, type: 3}
   player: {fileID: 0}
 --- !u!1 &8803243827468487157

@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class RoomLogic : MonoBehaviour
 {
-
-    public enum RoomAction { Welcome, Forward, Hallway, Special, Boss }
+    [Header("Room Info")]
     public RoomAction roomAction;
-
+    [HideInInspector]
+    public enum RoomAction { Welcome, Forward, Hallway, Special, Boss }
+    public float width;
+    public float height;
+    public RoomType roomType;
     public bool hasHallway;
     public bool hallwayIsLeft;
 
     private float screenRatio;
     private static float width_16, width_12;
-    public float width;
-    public float height;
-    public RoomType roomType;
 
     public GameObject wall;
     public GameObject player;
+
+    public bool cleared = false;
 
     private int currentWorld = LevelManager.currentWorld;
     private int currentRoom = LevelManager.currentRoomGenerated;
@@ -115,28 +117,33 @@ public class RoomLogic : MonoBehaviour
         int rand = Random.Range(1, 100);
         switch (currentWorld) {
             case 0:
-                if (rand <= 30) { // 30
+                if (rand <= 100) { // 30
                     width = width_16;
                     height = 12;
+
                     return RoomType.LargeH;
                 }
                 else if (rand <= 60) { // 60
                     width = width_12;
                     height = 16;
+
                     return RoomType.LargeV;
                 }
                 else if (rand <= 90) { // 90
                     width = width_16;
                     height = 16;
+
                     return RoomType.Huge;
                 } 
                 else {
                     width = 24;
                     height = 24;
+
                     return RoomType.Gigantic;
                 }
         }
         return RoomType.LargeH;
+
     }
 
     RoomType DetermineHallwayRoomType() {

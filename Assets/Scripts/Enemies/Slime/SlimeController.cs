@@ -22,7 +22,7 @@ public class SlimeController : MonoBehaviour
     void Update()
     {
         var inputVector = direction;
-        var movementSpeed = 0.2f;
+        var movementSpeed = 0.3f;
         var movementOffset = inputVector.normalized * movementSpeed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
 
@@ -48,12 +48,12 @@ public class SlimeController : MonoBehaviour
     void ChangeDirectionOnHit(float normalX, float normalY) {
         float randX, randY;
 
-        if (normalX > 0) randX = Random.Range(0, 1f);
-        else if (normalX < 0) randX = Random.Range(-1f, 0);
+        if (normalX > 0) randX = Random.Range(0.25f, 0.75f); // was Random.Range(0, 1f); Made the change so enemies will not hug the wall.
+        else if (normalX < 0) randX = Random.Range(-0.75f, -0.25f); // was Random.Range(-1f, 0);
         else randX = Random.Range(-1f, 1f);
 
-        if (normalY > 0) randY = Random.Range(0, 1f);
-        else if (normalY < 0) randY = Random.Range(-1f, 0);
+        if (normalY > 0) randY = Random.Range(0.25f, 0.75f); // was Random.Range(0, 1f);
+        else if (normalY < 0) randY = Random.Range(-0.75f, -0.25f); // was Random.Range(-1f, 0);
         else randY = Random.Range(-1f, 1f);
 
         direction = new Vector2(randX, randY);
