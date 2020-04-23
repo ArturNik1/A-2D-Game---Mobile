@@ -26,6 +26,7 @@ public class EnemyInfo : MonoBehaviour
     }
 
     public void UpdateRoomInfo(GameObject room) {
+        if (room.name.StartsWith("Hall") || room.name.StartsWith("Special")) return;
         string[] s = room.name.Split('_');
         this.worldNumber = int.Parse(s[0].Substring(s[0].Length - 1, 1));
         this.roomNumber = int.Parse(s[1]);

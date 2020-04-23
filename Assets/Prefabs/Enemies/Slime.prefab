@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   isIdle: 0
-  startDelaySeconds: 10
+  startDelaySeconds: 0.5
 --- !u!114 &-5535982922552310804
 MonoBehaviour:
   m_ObjectHideFlags: 0
