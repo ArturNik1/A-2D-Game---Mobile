@@ -117,7 +117,7 @@ public class RoomLogic : MonoBehaviour
         int rand = Random.Range(1, 100);
         switch (currentWorld) {
             case 0:
-                if (rand <= 100) { // 30
+                if (rand <= 30) { // 30
                     width = width_16;
                     height = 12;
 

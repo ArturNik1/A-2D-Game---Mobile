@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   speed: 0
+  worldNumber: 0
   roomNumber: 0
   subRoomNumber: 0
 --- !u!114 &3362244540256629558
@@ -86,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   isIdle: 0
+  startDelaySeconds: 10
 --- !u!114 &-5535982922552310804
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public enum EnemySpawnPattern { LargeH_4, LargeH_5, LargeH_6, Nothing}
+    public enum EnemySpawnPattern { LargeH_4, LargeH_5, LargeH_6, LargeV_4, LargeV_5, LargeV_6, LargeV_7, Huge_5, Huge_6, Huge_7, Huge_8, Gigantic_8, Gigantic_10, Gigantic_12, Nothing}
 
     [Header("Enemies")]
     public GameObject[] enemyPrefabs; // 0 - slime ; 1 - snail ;
@@ -40,10 +40,38 @@ public class EnemyManager : MonoBehaviour
 
                 if (type == RoomType.LargeH) {
 
-                    rand = Random.Range(1, 3);
+                    rand = Random.Range(1, 4); // max is exclusive
                     if (rand == 1) return EnemySpawnPattern.LargeH_4;
                     else if (rand == 2) return EnemySpawnPattern.LargeH_5;
                     else if (rand == 3) return EnemySpawnPattern.LargeH_6;
+
+                }
+                
+                else if (type == RoomType.LargeV) {
+
+                    rand = Random.Range(1, 5); 
+                    if (rand == 1) return EnemySpawnPattern.LargeV_4;
+                    else if (rand == 2) return EnemySpawnPattern.LargeV_5;
+                    else if (rand == 3) return EnemySpawnPattern.LargeV_6;
+                    else if (rand == 4) return EnemySpawnPattern.LargeV_7; // should be rare.
+
+                }
+
+                else if (type == RoomType.Huge) {
+
+                    rand = Random.Range(1, 5);
+                    if (rand == 1) return EnemySpawnPattern.Huge_5;
+                    else if (rand == 2) return EnemySpawnPattern.Huge_6;
+                    else if (rand == 3) return EnemySpawnPattern.Huge_7;
+                    else if (rand == 4) return EnemySpawnPattern.Huge_8; // should be rare.
+                }
+
+                else if (type == RoomType.Gigantic) {
+
+                    rand = Random.Range(1, 4);
+                    if (rand == 1) return EnemySpawnPattern.Gigantic_8;
+                    else if (rand == 2) return EnemySpawnPattern.Gigantic_10;
+                    else if (rand == 3) return EnemySpawnPattern.Gigantic_12;
 
                 }
 
@@ -60,23 +88,30 @@ public class EnemyManager : MonoBehaviour
         Transform wall_L = room.transform.Find("Wall_L");
         Transform wall_U = room.transform.Find("Wall_U");
         Transform wall_B = room.transform.Find("Wall_B");
+        float middle_X = (wall_R.position.x + wall_L.position.x) / 2f;
+        float maxPerHalf_X = wall_R.position.x - middle_X - wall_R.GetComponent<BoxCollider2D>().size.x;
+        float middle_Y = (wall_U.position.y + wall_B.position.y) / 2f;
+        float maxPerHalf_Y = wall_U.position.y - middle_Y - wall_U.GetComponent<BoxCollider2D>().size.y;
+
         switch (pattern) {
+
             #region LargeH_4
             case EnemySpawnPattern.LargeH_4:
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_R.position.x - 0.56f, wall_U.position.y - 0.56f, 0), transform.rotation);
+                //enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_R.position.x - 0.56f, wall_U.position.y - 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_L.position.x + 0.56f, wall_U.position.y - 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_R.position.x - 0.56f, wall_B.position.y + 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_L.position.x + 0.56f, wall_B.position.y + 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
@@ -85,23 +120,23 @@ public class EnemyManager : MonoBehaviour
             #region LargeH_5
             case EnemySpawnPattern.LargeH_5:
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_R.position.x - 0.56f, wall_U.position.y - 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_L.position.x + 0.56f, wall_U.position.y - 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_R.position.x - 0.56f, wall_B.position.y + 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_L.position.x + 0.56f, wall_B.position.y + 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3((wall_R.position.x + wall_L.position.x) / 2, (wall_U.position.y + wall_B.position.y) / 2, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
@@ -110,32 +145,400 @@ public class EnemyManager : MonoBehaviour
             #region LargeH_6
             case EnemySpawnPattern.LargeH_6:
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_R.position.x - 0.56f, wall_U.position.y - 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_L.position.x + 0.56f, wall_U.position.y - 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_R.position.x - 0.56f, wall_B.position.y + 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3(wall_L.position.x + 0.56f, wall_B.position.y + 0.56f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3((wall_R.position.x + wall_L.position.x) / 2, wall_U.position.y - 0.26f, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
-                enemy = Instantiate(enemyPrefabs[0], new Vector3((wall_R.position.x + wall_L.position.x) / 2, (wall_U.position.y + wall_B.position.y) / 2, 0), transform.rotation);
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 90, true), 0), transform.rotation);
                 enemy.transform.SetParent(enemyParent.transform);
                 enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 break;
-                #endregion
+            #endregion
+            #region LargeV_4
+            case EnemySpawnPattern.LargeV_4:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region LargeV_5
+            case EnemySpawnPattern.LargeV_5:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region LargeV_6
+            case EnemySpawnPattern.LargeV_6:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region LargeV_7
+            case EnemySpawnPattern.LargeV_7:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 30, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region Huge_5
+            case EnemySpawnPattern.Huge_5:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region Huge_6
+            case EnemySpawnPattern.Huge_6:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region Huge_7
+            case EnemySpawnPattern.Huge_7:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region Huge_8
+            case EnemySpawnPattern.Huge_8:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region Gigantic_8
+            case EnemySpawnPattern.Gigantic_8:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region Gigantic_10
+            case EnemySpawnPattern.Gigantic_10:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+            #region Gigantic_12
+            case EnemySpawnPattern.Gigantic_12:
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
+                enemy.transform.SetParent(enemyParent.transform);
+                enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
+
+                break;
+            #endregion
+
         }
     }
 
@@ -143,6 +546,23 @@ public class EnemyManager : MonoBehaviour
         // Technically should not be called, a place holder for now.
         for (int i = 0; i < enemyParent.transform.childCount; i++) {
             Destroy(enemyParent.transform.GetChild(i).gameObject);
+        }
+    }
+
+    float CalculateByPercentOffMiddle_X(float middle, float maxPerHalf, float percent, bool isRight) { 
+        if (isRight) {
+            return middle + (percent * maxPerHalf / 100f);
+        }
+        else {
+            return middle - (percent * maxPerHalf / 100f);
+        }
+    }
+    float CalculateByPercentOffMiddle_Y(float middle, float maxPerHalf, float percent, bool isUp) {
+        if (isUp) {
+            return middle + (percent * maxPerHalf / 100f);
+        }
+        else {
+            return middle - (percent * maxPerHalf / 100f);
         }
     }
 

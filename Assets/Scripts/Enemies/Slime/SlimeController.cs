@@ -10,7 +10,10 @@ public class SlimeController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 direction;
-    
+
+    public float startDelaySeconds;
+    private float startDelayCounter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +38,15 @@ public class SlimeController : MonoBehaviour
             isIdle = true;
         }
 
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.deltaTime, Vector3.back), 0.05f);
+
+        if (startDelayCounter <= startDelaySeconds) { // Don't move if X seconds had not passed.
+            startDelayCounter += Time.deltaTime;
+            return;
+        }
+
         rb.MovePosition(newPosition);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.deltaTime, Vector3.back), 0.05f);
     }
 
     void ChangeDirecionOnStart() {
