@@ -79,6 +79,7 @@ public class RoomLogic : MonoBehaviour
         if (isLeft) transform.parent.GetComponent<RoomLogic>().MakeDoorsVisible(left: true);
         else transform.parent.GetComponent<RoomLogic>().MakeDoorsVisible(right: true);
         transform.parent.GetComponent<RoomLogic>().SetHallwayParentInfo(isLeft);
+        SetHallwayParentInfo(isLeft);
     }
 
     public void GenerateItemRoom(bool isLeft) {
@@ -147,7 +148,7 @@ public class RoomLogic : MonoBehaviour
     }
 
     RoomType DetermineHallwayRoomType() {
-        RoomType type = Random.Range(1, 2) == 0 ? RoomType.Small : RoomType.Medium; // 0 2 
+        RoomType type = Random.Range(0, 2) == 0 ? RoomType.Small : RoomType.Medium; // 0 2 
         float parentX = transform.parent.localScale.x, parentY = transform.parent.localScale.y;
         RoomType parentRoomType = transform.parent.GetComponent<RoomLogic>().roomType;
         if (type == RoomType.Small) {
