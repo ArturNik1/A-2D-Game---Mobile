@@ -57,7 +57,7 @@ public class SnailController : MonoBehaviour
         direction = new Vector2(randX, randY);
     }
 
-    void ChangeDirectionOnHit(float normalX, float normalY) {
+    void ChangeDirectionOnHitToPlayer() {
         // going to player's general location.
         float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
         posX = Random.Range(posX - 0.3f, posX + 0.3f);
@@ -65,9 +65,26 @@ public class SnailController : MonoBehaviour
 
         direction = new Vector2(posX, posY);
     }
+    void ChangeDirectionOnHit(float normalX, float normalY) {
+        float randX, randY;
+
+        if (normalX > 0) randX = Random.Range(0.25f, 0.75f); // was Random.Range(0, 1f); Made the change so enemies will not hug the wall.
+        else if (normalX < 0) randX = Random.Range(-0.75f, -0.25f); // was Random.Range(-1f, 0);
+        else randX = Random.Range(-1f, 1f);
+
+        if (normalY > 0) randY = Random.Range(0.25f, 0.75f); // was Random.Range(0, 1f);
+        else if (normalY < 0) randY = Random.Range(-0.75f, -0.25f); // was Random.Range(-1f, 0);
+        else randY = Random.Range(-1f, 1f);
+
+        direction = new Vector2(randX, randY);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Collider") {
-            ChangeDirectionOnHit(collision.GetContact(0).normal.x, collision.GetContact(0).normal.y);
+            if (collision.transform.name == "Player")
+                ChangeDirectionOnHit(collision.GetContact(0).normal.x, collision.GetContact(0).normal.y);
+            else 
+                ChangeDirectionOnHitToPlayer();
         }
     }
 

@@ -118,19 +118,19 @@ public class RoomLogic : MonoBehaviour
         int rand = Random.Range(1, 100);
         switch (currentWorld) {
             case 0:
-                if (rand <= 30) { // 30
+                if (rand <= 32) { // 30
                     width = width_16;
                     height = 12;
 
                     return RoomType.LargeH;
                 }
-                else if (rand <= 60) { // 60
+                else if (rand <= 64) { // 60
                     width = width_12;
                     height = 16;
 
                     return RoomType.LargeV;
                 }
-                else if (rand <= 90) { // 90
+                else if (rand <= 95) { // 90
                     width = width_16;
                     height = 16;
 

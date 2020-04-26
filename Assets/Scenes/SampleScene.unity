@@ -133,11 +133,12 @@ GameObject:
   - component: {fileID: 187244950}
   - component: {fileID: 187244954}
   - component: {fileID: 187244952}
+  - component: {fileID: 187244956}
   - component: {fileID: 187244951}
   - component: {fileID: 187244955}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +179,7 @@ MonoBehaviour:
   joystick: {fileID: 481208227}
   currentRoomObject: {fileID: 0}
   currentRoomMain: {fileID: 0}
-  movementSpeed: 0.85
+  movementSpeed: 0
 --- !u!114 &187244952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +290,21 @@ MonoBehaviour:
   isMoving: 0
   isIdle: 0
   rigid: {fileID: 0}
+--- !u!114 &187244956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187244949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f051ab2aaee08104c94a7e502eb85a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  attackSpeed: 0
+  movementSpeed: 0.85
 --- !u!1001 &445300513
 PrefabInstance:
   m_ObjectHideFlags: 0

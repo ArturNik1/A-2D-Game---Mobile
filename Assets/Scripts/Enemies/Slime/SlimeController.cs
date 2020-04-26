@@ -56,8 +56,15 @@ public class SlimeController : MonoBehaviour
         float randY = Random.Range(-1f, 1f);
         direction = new Vector2(randX, randY);
     }
+    void ChangeDirectionOnHitToPlayer() {
+        // going to player's general location.
+        float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
+        posX = Random.Range(posX - 0.3f, posX + 0.3f);
+        posY = Random.Range(posY - 0.3f, posY + 0.3f);
+
+        direction = new Vector2(posX, posY);
+    }
     void ChangeDirectionOnHit(float normalX, float normalY) {
-        /*
         float randX, randY;
 
         if (normalX > 0) randX = Random.Range(0.25f, 0.75f); // was Random.Range(0, 1f); Made the change so enemies will not hug the wall.
@@ -69,22 +76,13 @@ public class SlimeController : MonoBehaviour
         else randY = Random.Range(-1f, 1f);
 
         direction = new Vector2(randX, randY);
-        */
-
-        // going to player's general location.
-        float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
-        posX = Random.Range(posX - 0.3f, posX + 0.3f);
-        posY = Random.Range(posY - 0.3f, posY + 0.3f);
-
-        direction = new Vector2(posX, posY);
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.transform.tag == "Collider") { 
-            //print("HIT: " + collision.GetContact(0).normal);
-            ChangeDirectionOnHit(collision.GetContact(0).normal.x, collision.GetContact(0).normal.y);
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.transform.tag == "Collider") {
+            if (collision.transform.name == "Player")
+                ChangeDirectionOnHit(collision.GetContact(0).normal.x, collision.GetContact(0).normal.y);
+            else 
+                ChangeDirectionOnHitToPlayer();
         }
     }
 

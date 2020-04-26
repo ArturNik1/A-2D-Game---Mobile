@@ -13,10 +13,13 @@ public class PlayerController : MonoBehaviour
     public FixedJoystick joystick;
     private bool isOnMobile;
 
+    [HideInInspector]
     public GameObject currentRoomObject;
+    [HideInInspector]
     public RoomLogic currentRoomMain;
 
-    public float movementSpeed = 1.0f;
+    [HideInInspector]
+    public float movementSpeed;
     private float value;
 
     #region lifeCycle
