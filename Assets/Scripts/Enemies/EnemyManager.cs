@@ -10,6 +10,8 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] enemyPrefabs; // 0 - slime ; 1 - snail ;
 
     GameObject enemyParent;
+    public GameObject playerGameObject;
+    PlayerController pController;
 
     private int chanceForOneType;
 
@@ -19,6 +21,7 @@ public class EnemyManager : MonoBehaviour
         if (enemyPrefabs.Length == 0) Debug.LogError("EnemyPrefab array is empty!");
 
         enemyParent = GameObject.Find("Enemies");
+        pController = playerGameObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,7 @@ public class EnemyManager : MonoBehaviour
     public void SpawnEnemies(GameObject room) {
         if (room.GetComponent<RoomLogic>().cleared) return;
         RemoveAllEnemies();
+        pController.ResetAllProjectiles();
 
         SpawnEnemiesAfterPatternRoll(RollForSpawnPattern(room), room);
     }

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private AnimatorManager playerAnim;
 
     public FixedJoystick joystick;
+    private Vector2 lastMovedJoystickDirection;
     private bool isOnMobile;
 
     [HideInInspector]
@@ -22,14 +23,19 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     private float value;
 
+    public float attackDelay = 0.5f;
+    private float attackDelayCounter = 0;
+    private bool canAttack = true;
+
     [Header("GameObjects")]
     public GameObject projectileGameObject;
     public GameObject projectileHolder;
+    public GameObject generalCollider;
 
     private Dictionary<int, ProjectileController> projectiles_all = new Dictionary<int, ProjectileController>();
     private Dictionary<int, ProjectileController> projectiles_free = new Dictionary<int, ProjectileController>();
     private Dictionary<int, ProjectileController> projectiles_inUse = new Dictionary<int, ProjectileController>();
-    private int lastProjectile = -1;
+    private GameObject fireLocation;
 
 
     #region lifeCycle
@@ -38,6 +44,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         rb = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<AnimatorManager>();
+        fireLocation = transform.Find("FireLocation").gameObject;
 
         isOnMobile = Application.isMobilePlatform;
     }
@@ -60,6 +67,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attackDelayCounter += Time.deltaTime;
+        if (attackDelayCounter >= attackDelay) {
+            canAttack = true;
+        }
+        
         PollInput();
     }
 
@@ -75,6 +87,7 @@ public class PlayerController : MonoBehaviour
                 value = (Mathf.Atan2(joystick.Direction.x, joystick.Direction.y) / Mathf.PI) * 180f;
                 if (value < 0) value += 360f;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, 0, -value)), Time.deltaTime * 1000f);
+                lastMovedJoystickDirection = movementInputVector;
             }
         }
         else {
@@ -84,6 +97,7 @@ public class PlayerController : MonoBehaviour
                 value = (Mathf.Atan2(movementInputVector.x, movementInputVector.y) / Mathf.PI) * 180f;
                 if (value < 0) value += 360f;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, 0, -value)), Time.deltaTime * 1000f);
+                lastMovedJoystickDirection = movementInputVector;
             }
         }
         Move(movementInputVector);
@@ -134,7 +148,11 @@ public class PlayerController : MonoBehaviour
 
     private void Attack() {
 
-        UseProjectile(0, 0);
+        if (canAttack) { 
+            UseProjectile();
+            attackDelayCounter = 0;
+            canAttack = false;
+        }
 
     }
 
@@ -171,17 +189,33 @@ public class PlayerController : MonoBehaviour
         prj.gameObject.SetActive(false);
     }
 
-    private void UseProjectile(int posX, int posY) {
+    public void ResetAllProjectiles() {
+        if (projectiles_inUse.Count == 0) return;
+
+        List<int> keyList = new List<int>(projectiles_inUse.Keys);
+        keyList.Sort();
+
+        for (int i = 0; i < keyList.Count; i++) {
+            if (projectiles_inUse.ContainsKey(keyList[i]))
+                ResetProjectile(keyList[i]);
+        }
+    }
+
+    private void UseProjectile() {
         if (projectiles_free.Count == 0) GenerateProjectileBatch();
 
         List<int> keyList = new List<int>(projectiles_free.Keys);
         keyList.Sort();
         ProjectileController prj = projectiles_free[keyList[0]];
 
+        prj.transform.position = fireLocation.transform.position;
+        prj.transform.rotation = transform.rotation;
+        prj.direction = lastMovedJoystickDirection;
+
         prj.isFree = false;
-        prj.transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, 0);
         projectiles_free.Remove(keyList[0]);
         projectiles_inUse.Add(keyList[0], prj);
+        Physics2D.IgnoreCollision(generalCollider.GetComponent<BoxCollider2D>(), prj.GetComponent<CircleCollider2D>());
         prj.gameObject.SetActive(true);
     }
 
