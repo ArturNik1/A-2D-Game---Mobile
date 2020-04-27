@@ -6,7 +6,7 @@ public class PlayerInfo : MonoBehaviour
 {
     [Header("Variables")]
     public int health;
-    public float attackSpeed;
+    public float attackDelay;
     public float movementSpeed;
 
     private PlayerController pController;
@@ -26,6 +26,7 @@ public class PlayerInfo : MonoBehaviour
     }
 
     void UpdateControllerValues() {
+        pController.attackDelay = this.attackDelay;
         pController.movementSpeed = this.movementSpeed;
     }
 

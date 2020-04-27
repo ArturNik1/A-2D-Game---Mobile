@@ -6,7 +6,7 @@ public class EnemyInfo : MonoBehaviour
 {
     [Header("General Info")]
     public int health;
-    public int speed;
+    public float speed;
 
     [Header("Room Info")]
     public int worldNumber;
@@ -23,6 +23,11 @@ public class EnemyInfo : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ReceiveDamage(int amount) {
+        health -= amount;
+        if (health <= 0) Destroy(gameObject);
     }
 
     public void UpdateRoomInfo(GameObject room) {

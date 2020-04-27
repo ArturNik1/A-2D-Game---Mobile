@@ -22,8 +22,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float movementSpeed;
     private float value;
-
-    public float attackDelay = 0.5f;
+    
+    [HideInInspector]
+    public float attackDelay;
     private float attackDelayCounter = 0;
     private bool canAttack = true;
 
@@ -180,6 +181,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ResetProjectile(int prjID) {
+        if (!projectiles_inUse.ContainsKey(prjID)) return;
         ProjectileController prj = projectiles_inUse[prjID];
 
         prj.isFree = true;

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SlimeController : MonoBehaviour
 {
-    [Header ("States")]
+    [Header("States")]
     public bool isMoving;
     public bool isIdle;
+
+    private float movementSpeed;
 
     private Rigidbody2D rb;
     private Vector2 direction;
@@ -21,13 +23,14 @@ public class SlimeController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
         ChangeDirecionOnStart();
+
+        movementSpeed = GetComponent<EnemyInfo>().speed;
     }
 
     // Update is called once per frame
     void Update()
     {
         var inputVector = direction;
-        var movementSpeed = 0.3f;
         var movementOffset = inputVector.normalized * movementSpeed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
 

@@ -180,6 +180,7 @@ MonoBehaviour:
   currentRoomObject: {fileID: 0}
   currentRoomMain: {fileID: 0}
   movementSpeed: 0
+  attackDelay: 0.5
   projectileGameObject: {fileID: 4626490770767398331, guid: 206fbdddc98de5844aef11ca0d3f6099,
     type: 3}
   projectileHolder: {fileID: 460832488}
@@ -307,8 +308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f051ab2aaee08104c94a7e502eb85a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  attackSpeed: 0
+  health: 20
+  attackDelay: 0.25
   movementSpeed: 0.85
 --- !u!1 &423063296 stripped
 GameObject:

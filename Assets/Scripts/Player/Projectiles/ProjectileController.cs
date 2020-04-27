@@ -37,4 +37,17 @@ public class ProjectileController : MonoBehaviour
 
         rb.MovePosition(newPosition);
     }
+
+    void DoDamage(int amount, GameObject target) { 
+        target.GetComponent<EnemyInfo>().ReceiveDamage(amount);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.transform.tag == "Collider") {
+            if (!collision.transform.name.StartsWith("Wall")) DoDamage(5, collision.gameObject);
+            pController.ResetProjectile(id);
+        }
+    }
+
 }
