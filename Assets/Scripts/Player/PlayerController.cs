@@ -22,6 +22,16 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     private float value;
 
+    [Header("GameObjects")]
+    public GameObject projectileGameObject;
+    public GameObject projectileHolder;
+
+    private Dictionary<int, ProjectileController> projectiles_all = new Dictionary<int, ProjectileController>();
+    private Dictionary<int, ProjectileController> projectiles_free = new Dictionary<int, ProjectileController>();
+    private Dictionary<int, ProjectileController> projectiles_inUse = new Dictionary<int, ProjectileController>();
+    private int lastProjectile = -1;
+
+
     #region lifeCycle
 
     private void Awake() {
@@ -43,7 +53,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (IsMoreProjectilesNeeded()) 
+            GenerateProjectileBatch();
     }
 
     // Update is called once per frame
@@ -81,6 +92,11 @@ public class PlayerController : MonoBehaviour
             // Player presses E, check if there is a door / chest in front.
             AttemptInteraction();
         }
+
+        if (playerInputActions.Player.Attack.triggered) {
+            // Player presses F, attack.
+            Attack();
+        }
     }
 
 #endregion
@@ -111,9 +127,65 @@ public class PlayerController : MonoBehaviour
             if (raycastHit2Ds[i].transform.name == "Player") continue;
             if (raycastHit2Ds[i].transform.tag == "Door") {
                 raycastHit2Ds[i].transform.gameObject.GetComponent<DoorLogic>().HandleDoorAction();
+                break;
             }
         }
     }
+
+    private void Attack() {
+
+        UseProjectile(0, 0);
+
+    }
+
+    #region Projectile Caching
+
+
+    private bool IsMoreProjectilesNeeded() {
+        if (projectiles_free.Count == 0 || projectiles_all.Count == 0) // if list in empty or last one in list is not free, return true.
+            return true;
+        return false;
+    }
+
+    private void GenerateProjectileBatch() {
+        int sum = projectiles_all.Count;
+        for (int i = sum; i < sum + 20; i++) {
+            ProjectileController prj = Instantiate(projectileGameObject, projectileHolder.transform).GetComponent<ProjectileController>();
+            prj.transform.position = new Vector3(-100, -100, -100);
+            prj.id = i;
+            prj.isFree = true;
+            prj.pController = this;
+            projectiles_all.Add(i, prj);
+            projectiles_free.Add(i, prj);
+            prj.gameObject.SetActive(false);
+        }
+    }
+
+    public void ResetProjectile(int prjID) {
+        ProjectileController prj = projectiles_inUse[prjID];
+
+        prj.isFree = true;
+        prj.transform.position = new Vector3(-100, -100, -100);
+        projectiles_inUse.Remove(prjID);
+        projectiles_free.Add(prjID, prj);
+        prj.gameObject.SetActive(false);
+    }
+
+    private void UseProjectile(int posX, int posY) {
+        if (projectiles_free.Count == 0) GenerateProjectileBatch();
+
+        List<int> keyList = new List<int>(projectiles_free.Keys);
+        keyList.Sort();
+        ProjectileController prj = projectiles_free[keyList[0]];
+
+        prj.isFree = false;
+        prj.transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, 0);
+        projectiles_free.Remove(keyList[0]);
+        projectiles_inUse.Add(keyList[0], prj);
+        prj.gameObject.SetActive(true);
+    }
+
+    #endregion
 
     private void OnDrawGizmosSelected()
     {
