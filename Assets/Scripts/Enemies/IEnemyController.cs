@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeController : EnemyController
+public interface IEnemyController
 {
+
+
 
 }

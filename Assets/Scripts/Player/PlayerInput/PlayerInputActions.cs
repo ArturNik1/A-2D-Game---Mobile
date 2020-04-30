@@ -180,7 +180,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e907e7ba-a817-4e7f-b612-e2315c3010ea"",
                     ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": ""MultiTap(tapCount=3)"",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",

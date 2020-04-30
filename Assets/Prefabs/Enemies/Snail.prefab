@@ -379,10 +379,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4185619969915650}
-  - component: {fileID: 95748894189643270}
   - component: {fileID: 6972369135807691558}
-  - component: {fileID: -6840188652665709492}
-  - component: {fileID: -3020165587750269709}
+  - component: {fileID: 95748894189643270}
   - component: {fileID: 2085969867663540735}
   m_Layer: 0
   m_Name: Snail
@@ -407,6 +405,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -110, y: 0, z: 0}
+--- !u!114 &6972369135807691558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228834762862560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55872b9d1a963d489c0256fbedcb75b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeModel: {fileID: 0}
+  health: 20
+  speed: 0.25
+  isMoving: 0
+  isIdle: 0
+  isHit: 0
+  anim: {fileID: 0}
+  startDelay: 0.5
 --- !u!95 &95748894189643270
 Animator:
   serializedVersion: 3
@@ -426,51 +444,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6972369135807691558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228834762862560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d55872b9d1a963d489c0256fbedcb75b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMoving: 0
-  isIdle: 0
-  startDelaySeconds: 0.5
---- !u!114 &-6840188652665709492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228834762862560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f352e1202526538458f8620b8879f8fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeModel: {fileID: 1228834762862560}
---- !u!114 &-3020165587750269709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228834762862560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ba23b836596f124d843cba9b198861f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 20
-  speed: 0.25
-  worldNumber: 0
-  roomNumber: 0
-  subRoomNumber: 0
 --- !u!50 &2085969867663540735
 Rigidbody2D:
   serializedVersion: 4

@@ -126,19 +126,15 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -146,19 +142,15 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -174,23 +166,18 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -198,23 +185,18 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 55, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -229,27 +211,21 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 90, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -257,27 +233,21 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 50, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 90, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -292,19 +262,15 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -312,19 +278,15 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -339,23 +301,18 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -363,23 +320,18 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -394,27 +346,21 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -422,27 +368,21 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -457,31 +397,24 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 30, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -489,31 +422,24 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 20, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 30, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -528,23 +454,18 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -552,23 +473,18 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -583,27 +499,21 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -611,27 +521,21 @@ public class EnemyManager : MonoBehaviour
                 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 10, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 60, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                 
                 }
 
@@ -646,31 +550,24 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -678,31 +575,24 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                 
                 }
 
@@ -717,35 +607,27 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -753,35 +635,27 @@ public class EnemyManager : MonoBehaviour
                 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -796,35 +670,27 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -832,35 +698,27 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -875,43 +733,33 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -919,43 +767,33 @@ public class EnemyManager : MonoBehaviour
                 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -970,51 +808,39 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -1022,51 +848,39 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 70, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -1083,29 +897,23 @@ public class EnemyManager : MonoBehaviour
                     if (room.GetComponent<RoomLogic>().hallwayIsLeft) {
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                     else {
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                 }
@@ -1115,29 +923,23 @@ public class EnemyManager : MonoBehaviour
                     if (room.GetComponent<RoomLogic>().hallwayIsLeft) { 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                     else {
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                 }
@@ -1155,45 +957,35 @@ public class EnemyManager : MonoBehaviour
                     if (room.GetComponent<RoomLogic>().hallwayIsLeft) {
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                     else {
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                 }
@@ -1203,45 +995,35 @@ public class EnemyManager : MonoBehaviour
                     if (room.GetComponent<RoomLogic>().hallwayIsLeft) { 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                     else {
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 40, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 70, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 35, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                 }
@@ -1258,19 +1040,15 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -1278,19 +1056,15 @@ public class EnemyManager : MonoBehaviour
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                     enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                     enemy.transform.SetParent(enemyParent.transform);
-                    enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                 }
 
@@ -1306,53 +1080,41 @@ public class EnemyManager : MonoBehaviour
                     if (room.GetComponent<RoomLogic>().hallwayIsLeft) {
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                     else {
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[1], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[0], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                 }
@@ -1362,53 +1124,41 @@ public class EnemyManager : MonoBehaviour
                     if (room.GetComponent<RoomLogic>().hallwayIsLeft) {
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                     else {
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 50, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 10, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 40, false), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
 
                         enemy = Instantiate(enemyPrefabs[chanceForOneType], new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 30, false), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0), transform.rotation);
                         enemy.transform.SetParent(enemyParent.transform);
-                        enemy.GetComponent<EnemyInfo>().UpdateRoomInfo(room);
                     }
 
                 }
