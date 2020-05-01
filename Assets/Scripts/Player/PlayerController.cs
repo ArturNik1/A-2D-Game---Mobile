@@ -6,9 +6,11 @@ using UnityEditor;
 public class PlayerController : MonoBehaviour
 {
 
-    private PlayerInputActions playerInputActions;
-    private Rigidbody2D rb;
-    private AnimatorManager playerAnim;
+    PlayerInputActions playerInputActions;
+    Rigidbody2D rb;
+    AnimatorManager playerAnim;
+    PlayerInfo pInfo;
+    bool isAlive = true;
 
     public FixedJoystick joystick;
     private Vector2 lastMovedJoystickDirection;
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         rb = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<AnimatorManager>();
+        pInfo = GetComponent<PlayerInfo>();
         fireLocation = transform.Find("FireLocation").gameObject;
 
         isOnMobile = Application.isMobilePlatform;
@@ -68,6 +71,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) return;
+
         attackDelayCounter += Time.deltaTime;
         if (attackDelayCounter >= attackDelay) {
             canAttack = true;
@@ -77,7 +82,8 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
-    #region input
+
+    #region Movement
 
     private void PollInput() {
         Vector2 movementInputVector;
@@ -114,8 +120,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-#endregion
-
     private void Move(Vector2 inputVector) {
         // Simply move player.
         var movementOffset = inputVector * movementSpeed * Time.fixedDeltaTime;
@@ -134,7 +138,9 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
-    private void AttemptInteraction() {
+    #endregion
+
+    void AttemptInteraction() {
         // Attempt to interact with different interactables.
         RaycastHit2D[] raycastHit2Ds = Physics2D.CircleCastAll(new Vector2(transform.position.x, transform.position.y), 
             0.15f, new Vector2(transform.position.x, transform.position.y), 0.15f);
@@ -147,15 +153,45 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Attack() {
+    #region Damage
 
+    void Attack() {
         if (canAttack) { 
             UseProjectile();
             attackDelayCounter = 0;
             canAttack = false;
         }
-
     }
+
+    public void ReceiveDamage(int amount) {
+        if (IsBeingHit()) return;
+
+        pInfo.health -= amount;
+        if (pInfo.health <= 0) {
+            playerAnim.anim.CrossFade("Die", 0.1f);
+            isAlive = false;
+            rb.simulated = false;
+            StartCoroutine(HidePlayer());
+        }
+        else {
+            playerAnim.anim.CrossFade("GetHit", 0.1f, 1);
+        }
+    }
+
+    bool IsBeingHit() {
+        if (playerAnim.anim.GetCurrentAnimatorStateInfo(1).IsName("GetHit")) return true;
+        return false;
+    }
+
+    IEnumerator HidePlayer() { 
+        while (true) {
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.001f);
+            if (transform.localPosition.z >= 0f) break;
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    #endregion
 
     #region Projectile Caching
 

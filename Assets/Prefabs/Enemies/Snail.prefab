@@ -420,6 +420,7 @@ MonoBehaviour:
   activeModel: {fileID: 0}
   health: 20
   speed: 0.25
+  damage: 5
   isMoving: 0
   isIdle: 0
   isHit: 0

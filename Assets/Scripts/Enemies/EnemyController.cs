@@ -10,6 +10,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     [Header("General Info")]
     public int health;
     public float speed;
+    public int damage;
 
     [Header("States")]
     public bool isMoving;
@@ -166,10 +167,14 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     }
     public virtual void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Collider") {
-            if (collision.transform.name == "Player")
+            if (collision.transform.name == "Player") {
+                // Damage Player 
+                collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
                 ChangeDirectionOnHit(collision.GetContact(0).normal.x, collision.GetContact(0).normal.y);
-            else
+            }
+            else { 
                 ChangeDirectionOnHitToPlayer();
+            }
         }
     }
     #endregion

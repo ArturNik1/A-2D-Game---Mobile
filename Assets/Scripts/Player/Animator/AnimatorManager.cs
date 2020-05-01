@@ -19,7 +19,7 @@ public class AnimatorManager : MonoBehaviour
     public bool isIdle;
 
     PlayerController pController;
-    Animator anim;
+    public Animator anim;
     [HideInInspector]
     public Rigidbody2D rigid;
 
