@@ -139,13 +139,19 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         anim.CrossFade("Die", 0.1f);
         isHit = true;
         isMoving = false;
+        rb.simulated = false;
         StartCoroutine(Die());
     }
     public virtual IEnumerator Die() {
-        print("in : " + anim.GetCurrentAnimatorStateInfo(0).IsName("Die") + " : " + anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") &&
-            anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f) Destroy(gameObject);
-        else yield return new WaitForEndOfFrame();
+        while (true) {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f) {
+                Destroy(gameObject);
+                break;
+            }
+            else { 
+                yield return new WaitForEndOfFrame();
+            }
+        }
     }
     public virtual bool IsBeingHit() {
         if (isHit) { 
