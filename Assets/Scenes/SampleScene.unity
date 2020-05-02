@@ -180,7 +180,6 @@ MonoBehaviour:
   currentRoomObject: {fileID: 0}
   currentRoomMain: {fileID: 0}
   movementSpeed: 0
-  attackDelay: 0.5
   projectileGameObject: {fileID: 4626490770767398331, guid: 206fbdddc98de5844aef11ca0d3f6099,
     type: 3}
   projectileHolder: {fileID: 460832488}
@@ -295,6 +294,7 @@ MonoBehaviour:
   canMove: 1
   isMoving: 0
   isIdle: 0
+  anim: {fileID: 0}
   rigid: {fileID: 0}
 --- !u!114 &187244956
 MonoBehaviour:
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  attackDelay: 0.25
+  attackSpeed: 0
   movementSpeed: 0.85
 --- !u!1 &423063296 stripped
 GameObject:
@@ -2756,7 +2756,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477549938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0.04, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 187244953}

@@ -26,8 +26,6 @@ public class PlayerController : MonoBehaviour
     private float value;
     
     [HideInInspector]
-    public float attackDelay;
-    private float attackDelayCounter = 0;
     private bool canAttack = true;
 
     [Header("GameObjects")]
@@ -73,10 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAlive) return;
 
-        attackDelayCounter += Time.deltaTime;
-        if (attackDelayCounter >= attackDelay) {
-            canAttack = true;
-        }
+        if (!IsThrowing()) canAttack = true;
         
         PollInput();
     }
@@ -156,11 +151,16 @@ public class PlayerController : MonoBehaviour
     #region Damage
 
     void Attack() {
-        if (canAttack) { 
+        if (canAttack) {
+            playerAnim.anim.CrossFade("Throw", 0f, 1);
             UseProjectile();
-            attackDelayCounter = 0;
             canAttack = false;
         }
+    }
+
+    bool IsThrowing() {
+        if (playerAnim.anim.GetCurrentAnimatorStateInfo(1).IsName("Throw") && playerAnim.anim.GetCurrentAnimatorStateInfo(1).normalizedTime < 1) return true;
+        return false;
     }
 
     public void ReceiveDamage(int amount) {
