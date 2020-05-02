@@ -20,9 +20,10 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     [HideInInspector]
     public Animator anim;
 
-    Rigidbody2D rb;
-    Vector2 direction;
-    GameObject player;
+    protected Rigidbody2D rb;
+    protected Vector2 direction;
+    protected GameObject player;
+    protected PlayerController pController;
 
     public float startDelay;
     float startDelayCounter;
@@ -33,6 +34,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         Init();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+        pController = player.GetComponent<PlayerController>();
         ChangeDirectionOnStart();
     }
 

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     AnimatorManager playerAnim;
     PlayerInfo pInfo;
-    bool isAlive = true;
+    public bool isAlive = true;
 
     public FixedJoystick joystick;
     private Vector2 lastMovedJoystickDirection;
