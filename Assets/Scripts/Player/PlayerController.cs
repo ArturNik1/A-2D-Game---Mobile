@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator HidePlayer() { 
         while (true) {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.001f);
-            if (transform.localPosition.z >= 0f) break;
+            if (transform.localPosition.z >= 0.01f) break;
             yield return new WaitForFixedUpdate();
         }
     }

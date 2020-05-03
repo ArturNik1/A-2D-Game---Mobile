@@ -27,6 +27,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     public float startDelay;
     float startDelayCounter;
+    bool isWinning;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -60,6 +61,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
         if (IsBeingHit()) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction * Time.deltaTime, Vector3.back), 0.05f);
+            return;
+        }
+
+        if (!pController.isAlive) {
+            if (!isWinning) PlayVictoryAnimation();
             return;
         }
 
@@ -132,13 +138,13 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             PlayHitAnimation();
         }
     }
-    public virtual void PlayHitAnimation() {
+    public void PlayHitAnimation() {
         anim.CrossFade("GetHit", 0.1f);
         isHit = true;
         isMoving = false;
         ChangeDirectionOnHitToPlayerNoRandom();
     }
-    public virtual void PlayDeathAnimation() {
+    public void PlayDeathAnimation() {
         anim.CrossFade("Die", 0.1f);
         isHit = true;
         isMoving = false;
@@ -180,6 +186,12 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
     }
     #endregion
+
+    public void PlayVictoryAnimation() {
+        anim.CrossFade("Victory", 1f);
+        isMoving = false;
+        isWinning = true;
+    }
 
     public virtual void UpdateStates() {
         anim.SetBool("isMoving", isMoving);
