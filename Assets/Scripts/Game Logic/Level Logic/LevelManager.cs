@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum RoomType { Tiny, Small, Medium, LargeH, LargeV, Huge, Gigantic }
 
@@ -15,6 +16,10 @@ public class LevelManager : MonoBehaviour
     public GameObject roomsHolder;
 
     private Dictionary<int, GameObject> worldRooms;
+
+    private void Awake() {
+        SceneManager.sceneLoaded += OnSceneWasSwitched;
+    }
 
     private void OnEnable() {
         worldRooms = new Dictionary<int, GameObject>();
@@ -140,6 +145,15 @@ public class LevelManager : MonoBehaviour
             case 2:
                 break;
         }
+    }
+
+    void OnSceneWasSwitched(Scene scene, LoadSceneMode mode) {
+        currentWorld = 0;
+        currentRoomGenerated = 0;
+    }
+
+    private void OnDestroy() {
+        SceneManager.sceneLoaded -= OnSceneWasSwitched;
     }
 
 }

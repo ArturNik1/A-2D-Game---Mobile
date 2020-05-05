@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!isAlive) return;
 
         if (!IsThrowing()) canAttack = true;
@@ -174,7 +175,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(HidePlayer());
         }
         else {
-            playerAnim.anim.CrossFade("GetHit", 0.1f, 1);
+            playerAnim.anim.CrossFade("GetHit", 0f, 1);
         }
     }
 
@@ -186,7 +187,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator HidePlayer() { 
         while (true) {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.001f);
-            if (transform.localPosition.z >= 0.01f) break;
+            if (transform.localPosition.z >= 0.05f) {
+                GameObject.Find("Scene Transition").GetComponent<MenuLogic>().LoadScene();
+                break;
+            } 
             yield return new WaitForFixedUpdate();
         }
     }

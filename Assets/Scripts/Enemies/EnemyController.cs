@@ -65,6 +65,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
 
         if (!pController.isAlive) {
+            direction = Vector2.zero;
             if (!isWinning) PlayVictoryAnimation();
             return;
         }
