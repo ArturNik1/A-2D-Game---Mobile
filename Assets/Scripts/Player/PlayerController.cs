@@ -12,7 +12,12 @@ public class PlayerController : MonoBehaviour
     PlayerInfo pInfo;
     public bool isAlive = true;
 
-    public FixedJoystick joystick;
+    [Header("Joystick")]
+    public Joystick fixedJoystick;
+    public Joystick floatingJoystick;
+    [HideInInspector]
+    public Joystick joystick;
+
     private Vector2 lastMovedJoystickDirection;
     private bool isOnMobile;
 
