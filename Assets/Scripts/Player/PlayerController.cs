@@ -74,12 +74,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!isAlive) return;
 
-        if (!IsThrowing()) canAttack = true;
-        
         PollInput();
+    }
+
+    private void LateUpdate()
+    {
+        if (!IsThrowing()) canAttack = true; // moved from Update()
     }
 
     #endregion
@@ -110,15 +112,15 @@ public class PlayerController : MonoBehaviour
         }
         Move(movementInputVector);
 
-        if (playerInputActions.Player.Interact.triggered) {
-            // Player presses E, check if there is a door / chest in front.
-            AttemptInteraction();
-        }
+        //if (playerInputActions.Player.Interact.triggered) {
+        //    // Player presses E, check if there is a door / chest in front.
+        //    AttemptInteraction();
+        //}
 
-        if (playerInputActions.Player.Attack.triggered) {
-            // Player presses F, attack.
-            Attack();
-        }
+        //if (playerInputActions.Player.Attack.triggered) {
+        //    // Player presses F, attack.
+        //    Attack();
+        //}
     }
 
     private void Move(Vector2 inputVector) {
@@ -141,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    void AttemptInteraction() {
+    public void AttemptInteraction() {
         // Attempt to interact with different interactables.
         RaycastHit2D[] raycastHit2Ds = Physics2D.CircleCastAll(new Vector2(transform.position.x, transform.position.y), 
             0.15f, new Vector2(transform.position.x, transform.position.y), 0.15f);
@@ -156,8 +158,8 @@ public class PlayerController : MonoBehaviour
 
     #region Damage
 
-    void Attack() {
-        if (canAttack) {
+    public void Attack() {
+        if (canAttack) { // add !isThrowing() if there is the button issue.
             playerAnim.anim.CrossFade("Throw", 0f, 1);
             UseProjectile();
             canAttack = false;

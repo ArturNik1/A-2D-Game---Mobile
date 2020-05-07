@@ -22,6 +22,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     protected Rigidbody2D rb;
     protected Vector2 direction;
+    protected Vector2 directionRotate;
     protected GameObject player;
     protected PlayerController pController;
 
@@ -65,7 +66,6 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
 
         if (!pController.isAlive) {
-            direction = Vector2.zero;
             if (!isWinning) PlayVictoryAnimation();
             return;
         }
@@ -94,6 +94,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             return;
         }
 
+        if (isHit) return;
         rb.MovePosition(newPosition);
     }
 
