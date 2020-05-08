@@ -120,6 +120,11 @@ public class MenuLogic : MonoBehaviour
         } 
     }
 
+    public void ReturnToMenu() {
+        Time.timeScale = 1;
+        StartCoroutine(LoadLevel(0));
+    }
+
     #endregion
 
 }
