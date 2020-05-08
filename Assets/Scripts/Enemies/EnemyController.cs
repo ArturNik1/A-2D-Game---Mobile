@@ -58,10 +58,13 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     // Update is called once per frame
     public virtual void Update()
     {
+        if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
+
         UpdateStates();
 
         if (IsBeingHit()) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction * Time.deltaTime, Vector3.back), 0.05f);
+            rb.velocity = Vector2.zero; // Makes sure enemies are not flying away if there is contact.
             return;
         }
 
