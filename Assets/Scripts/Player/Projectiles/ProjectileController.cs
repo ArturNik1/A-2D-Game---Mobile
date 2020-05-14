@@ -44,8 +44,8 @@ public class ProjectileController : MonoBehaviour
 
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.transform.tag == "Collider") {
-            if (!collision.transform.name.StartsWith("Wall")) DoDamage(5, collision.gameObject, collision);
+        if (collision.transform.tag == "Collider" || collision.transform.tag == "Item") {
+            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item") DoDamage(5, collision.gameObject, collision);
             pController.ResetProjectile(id);
         }
     }

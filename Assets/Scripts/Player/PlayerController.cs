@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     
     [HideInInspector]
     private bool canAttack = true;
+    [HideInInspector]
+    private bool canMove = true;
 
     [Header("GameObjects")]
     public GameObject projectileGameObject;
@@ -89,6 +91,8 @@ public class PlayerController : MonoBehaviour
     #region Movement
 
     private void PollInput() {
+        if (!canMove) return;
+
         Vector2 movementInputVector;
         if (isOnMobile) {
             movementInputVector = joystick.Direction;
@@ -112,15 +116,6 @@ public class PlayerController : MonoBehaviour
         }
         Move(movementInputVector);
 
-        //if (playerInputActions.Player.Interact.triggered) {
-        //    // Player presses E, check if there is a door / chest in front.
-        //    AttemptInteraction();
-        //}
-
-        //if (playerInputActions.Player.Attack.triggered) {
-        //    // Player presses F, attack.
-        //    Attack();
-        //}
     }
 
     private void Move(Vector2 inputVector) {
@@ -141,6 +136,18 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
+    public void BlockMovement() {
+        canMove = false;
+    }
+
+    public void UnBlockMovement(float time) {
+        StartCoroutine(UnBlockMovementCoro(time));
+    }
+    IEnumerator UnBlockMovementCoro(float time) {
+        yield return new WaitForSeconds(time);
+        canMove = true;
+    }
+
     #endregion
 
     public void AttemptInteraction() {
@@ -153,13 +160,16 @@ public class PlayerController : MonoBehaviour
                 raycastHit2Ds[i].transform.gameObject.GetComponent<DoorLogic>().HandleDoorAction();
                 break;
             }
+            else if (raycastHit2Ds[i].transform.tag == "Item") {
+                raycastHit2Ds[i].transform.gameObject.GetComponent<Item>().PickUPItem();
+            }
         }
     }
 
     #region Damage
 
     public void Attack() {
-        if (canAttack) { // add !isThrowing() if there is the button issue.
+        if (canAttack && canMove) { // add !isThrowing() if there is the button issue.
             playerAnim.anim.CrossFade("Throw", 0f, 1);
             UseProjectile();
             canAttack = false;

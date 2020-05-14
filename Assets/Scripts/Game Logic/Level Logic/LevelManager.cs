@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public enum RoomType { Tiny, Small, Medium, LargeH, LargeV, Huge, Gigantic }
 
-
 public class LevelManager : MonoBehaviour
 {
     public static int currentWorld = 0;

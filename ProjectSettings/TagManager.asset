@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Collider
+  - Item
   layers:
   - Default
   - TransparentFX

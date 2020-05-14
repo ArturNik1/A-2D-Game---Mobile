@@ -9,11 +9,16 @@ public class PlayerInfo : MonoBehaviour
     public float attackSpeed;
     public float movementSpeed;
 
+    [HideInInspector]
+    public int maxHealth;
+
     private PlayerController pController;
 
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = health;
+
         pController = GetComponent<PlayerController>();
 
         UpdateControllerValues();

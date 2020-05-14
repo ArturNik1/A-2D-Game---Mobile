@@ -94,7 +94,6 @@ public class RoomLogic : MonoBehaviour
 
         if (isLeft)  MakeDoorsVisible(right: true);
         else  MakeDoorsVisible(left: true);
-        
     }
 
     #endregion
