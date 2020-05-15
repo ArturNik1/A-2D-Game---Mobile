@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     protected GameObject player;
+    AnimatorManager animManager;
+    PlayerController pController;
 
     [HideInInspector]
     public GameObject room;
@@ -14,6 +16,8 @@ public abstract class Item : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        animManager = player.GetComponent<AnimatorManager>();
+        pController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -25,9 +29,11 @@ public abstract class Item : MonoBehaviour
     public virtual void PickUPItem() {
         if (pickedUp) return;
 
-        player.GetComponent<AnimatorManager>().anim.SetTrigger("PickUp");
-        player.GetComponent<PlayerController>().BlockMovement();
-        player.GetComponent<PlayerController>().UnBlockMovement(2.5f);
+        animManager.anim.SetTrigger("PickUp");
+        animManager.vertical = 0;
+        animManager.horizontal = 0;
+        pController.BlockMovement();
+        pController.UnBlockMovement(2.5f);
         ChangeValues();
         pickedUp = true;
         room.GetComponent<RoomLogic>().cleared = true;
