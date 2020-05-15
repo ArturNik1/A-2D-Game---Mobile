@@ -6,6 +6,8 @@ public abstract class Item : MonoBehaviour
 {
     protected GameObject player;
 
+    [HideInInspector]
+    public GameObject room;
     bool pickedUp = false;
 
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public abstract class Item : MonoBehaviour
         player.GetComponent<PlayerController>().UnBlockMovement(2.5f);
         ChangeValues();
         pickedUp = true;
+        room.GetComponent<RoomLogic>().cleared = true;
         Destroy(gameObject, 0.5f);
     }
 

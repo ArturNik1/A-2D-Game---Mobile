@@ -39,6 +39,7 @@ public class DoorLogic : MonoBehaviour
                 GameObject obj = Instantiate(ItemManager.instance.DetermineItem());
                 obj.transform.position = toRoom.transform.position;
                 obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
+                obj.GetComponent<Item>().room = toRoom;
             }
 
             // Change currentRoomType and current room info.

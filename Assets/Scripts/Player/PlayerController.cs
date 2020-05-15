@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,6 +40,9 @@ public class PlayerController : MonoBehaviour
     public GameObject projectileGameObject;
     public GameObject projectileHolder;
     public GameObject generalCollider;
+    public Slider healthBar;
+
+    Text healthText;
 
     private Dictionary<int, ProjectileController> projectiles_all = new Dictionary<int, ProjectileController>();
     private Dictionary<int, ProjectileController> projectiles_free = new Dictionary<int, ProjectileController>();
@@ -54,6 +58,8 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<AnimatorManager>();
         pInfo = GetComponent<PlayerInfo>();
         fireLocation = transform.Find("FireLocation").gameObject;
+
+        healthText = healthBar.transform.Find("Health Text").GetComponent<Text>();
 
         isOnMobile = Application.isMobilePlatform;
     }
@@ -194,6 +200,12 @@ public class PlayerController : MonoBehaviour
         else {
             playerAnim.anim.CrossFade("GetHit", 0f, 1);
         }
+        UpdateHealthBar();
+    }
+
+    public void UpdateHealthBar() {
+        healthBar.value = ((float)pInfo.health / pInfo.maxHealth) + 0.046f;
+        healthText.text = pInfo.health + "/" + pInfo.maxHealth;
     }
 
     bool IsBeingHit() {
