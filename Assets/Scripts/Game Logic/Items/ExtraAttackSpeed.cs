@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ExtraAttackSpeed : Item
 {
+    public override void Start() {
+        base.Start();
+        itemType = ItemInformation.ItemType.ExtraAttackSpeed;
+    }
+
     public override void ChangeValues()
     {
         // limit to 5.0f and then disable spawn for item...

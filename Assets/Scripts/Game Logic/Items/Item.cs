@@ -9,11 +9,15 @@ public abstract class Item : MonoBehaviour
     PlayerController pController;
 
     [HideInInspector]
+    public ItemInformation.ItemType itemType;
+    public int maxAmount;
+
+    [HideInInspector]
     public GameObject room;
     bool pickedUp = false;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         player = GameObject.Find("Player");
         animManager = player.GetComponent<AnimatorManager>();

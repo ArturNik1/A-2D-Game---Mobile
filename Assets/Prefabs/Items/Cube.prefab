@@ -119,3 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6092f1dc09fd964eb3f9eb576473e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemType: 0
+  maxAmount: -1
+  room: {fileID: 0}

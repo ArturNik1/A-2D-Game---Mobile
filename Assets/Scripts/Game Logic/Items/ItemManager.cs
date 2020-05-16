@@ -11,16 +11,68 @@ public class ItemManager : MonoBehaviour
     public GameObject itemsHolder;
     public List<GameObject> items;
 
+    [HideInInspector]
+    public List<GameObject> availableItems;
+    [HideInInspector]
+    public List<ItemInformation> pickedItems;
+
     private void Awake() {
         if (_instance != null && _instance != this) Destroy(this.gameObject);
         else _instance = this;
 
         itemsHolder = gameObject;
+
+        availableItems = items;
+        pickedItems = new List<ItemInformation>();
     }
 
     public GameObject DetermineItem() {
-        // Determine type - base on items you have or completely random?
-        return items[Random.Range(0, items.Count)];
+
+        int rand = Random.Range(0, availableItems.Count);
+        GameObject item = availableItems[rand];
+
+        if (IsInPickedItems(item)) {
+            int index = FindItemInPicked(item);
+            pickedItems[index].itemAmount++;
+            if (pickedItems[index].itemAmount >= pickedItems[index].maxItemAmount && pickedItems[index].maxItemAmount != -1) { 
+                availableItems.RemoveAt(rand);
+            }
+        }
+        else {
+            pickedItems.Add(new ItemInformation(item, item.GetComponent<Item>().itemType, 1, item.GetComponent<Item>().maxAmount));
+        }
+
+        return item;
+    }
+
+    bool IsInPickedItems(GameObject item) {
+        foreach (ItemInformation picked in pickedItems) {
+            if (picked.item == item) return true;
+        }
+        return false;
+    }
+
+    int FindItemInPicked(GameObject item) { 
+        for (int i = 0; i < pickedItems.Count; i++) {
+            if (item == pickedItems[i].item) return i;
+        }
+        return 0;
+    }
+
+}
+
+public class ItemInformation {
+
+    public enum ItemType { ExtraHealth, ExtraAttackSpeed }
+    public GameObject item;
+    public ItemType itemType;
+    public int itemAmount;
+    public int maxItemAmount;
+
+    public ItemInformation(GameObject item, ItemType type, int amount, int max) {
+        this.itemType = type;
+        this.itemAmount = amount;
+        this.maxItemAmount = max;
     }
 
 }
