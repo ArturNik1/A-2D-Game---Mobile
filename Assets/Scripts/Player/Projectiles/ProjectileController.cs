@@ -7,6 +7,7 @@ public class ProjectileController : MonoBehaviour
     public int id;
     public bool isFree;
 
+    public static int damageAmount = 5;
     public float shotSpeed = 1.25f;
     public float lifeTime = 5.0f;
     private float currentTime = 0;
@@ -38,14 +39,14 @@ public class ProjectileController : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
-    void DoDamage(int amount, GameObject target, Collision2D collision) { 
-        target.GetComponent<EnemyController>().ReceiveDamage(amount);
+    void DoDamage(GameObject target, Collision2D collision) { 
+        target.GetComponent<EnemyController>().ReceiveDamage(damageAmount);
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Collider" || collision.transform.tag == "Item") {
-            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item") DoDamage(5, collision.gameObject, collision);
+            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item") DoDamage(collision.gameObject, collision);
             pController.ResetProjectile(id);
         }
     }

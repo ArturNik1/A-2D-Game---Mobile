@@ -149,6 +149,7 @@ public class LevelManager : MonoBehaviour
     void OnSceneWasSwitched(Scene scene, LoadSceneMode mode) {
         currentWorld = 0;
         currentRoomGenerated = 0;
+        ProjectileController.damageAmount = 5;
     }
 
     private void OnDestroy() {
