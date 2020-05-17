@@ -27,10 +27,10 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
-    void UpdateControllerValues() {
+    public void UpdateControllerValues() {
         pController.movementSpeed = this.movementSpeed;
     }
 

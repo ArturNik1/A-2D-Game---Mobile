@@ -21,5 +21,6 @@ public class PlayerPointHandler : MonoBehaviour
     {
         // Always follow player.
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        speed = playerController.movementSpeed;
     }
 }
