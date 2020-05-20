@@ -162,6 +162,10 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public virtual IEnumerator Die() {
         while (true) {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f) {
+
+                if (Random.Range(1, 101) <= 5) 
+                    ItemManager.instance.SpawnItemDropped(transform.position);
+                
                 Destroy(gameObject);
                 break;
             }

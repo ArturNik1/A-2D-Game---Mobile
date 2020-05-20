@@ -17,6 +17,8 @@ public abstract class Item : MonoBehaviour
     [HideInInspector]
     public GameObject room;
     bool pickedUp = false;
+    [HideInInspector]
+    public bool fromItemRoom;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -43,7 +45,13 @@ public abstract class Item : MonoBehaviour
         ChangeValues();
         ItemManager.instance.callDoFade(GameObject.Find("Item Popup").GetComponent<CanvasGroup>(), 0.5f, 3f, message);
         pickedUp = true;
-        room.GetComponent<RoomLogic>().cleared = true;
+        if (fromItemRoom) {
+            room.GetComponent<RoomLogic>().cleared = true;
+            ItemManager.instance.HandlePickUpItemRoom(gameObject);
+        }
+        else { 
+            ItemManager.instance.HandlePickUp(gameObject);
+        }
         Destroy(gameObject, 0.5f);
     }
 

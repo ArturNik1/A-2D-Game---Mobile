@@ -168,6 +168,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (raycastHit2Ds[i].transform.tag == "Item") {
                 raycastHit2Ds[i].transform.gameObject.GetComponent<Item>().PickUPItem();
+                break;
             }
         }
     }

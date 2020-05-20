@@ -15,6 +15,8 @@ public class ItemManager : MonoBehaviour
     [HideInInspector]
     public List<GameObject> availableItems;
     [HideInInspector]
+    public List<GameObject> droppedItems;
+    [HideInInspector]
     public List<ItemInformation> pickedItems;
 
     private void Awake() {
@@ -22,28 +24,48 @@ public class ItemManager : MonoBehaviour
         else _instance = this;
 
         itemsHolder = gameObject;
-
-        availableItems = items;
+        
+        availableItems = new List<GameObject>(items);
         pickedItems = new List<ItemInformation>();
+        droppedItems = new List<GameObject>();
     }
 
     public GameObject DetermineItem() {
-
         int rand = Random.Range(0, availableItems.Count);
         GameObject item = availableItems[rand];
 
-        if (IsInPickedItems(item)) {
-            int index = FindItemInPicked(item);
-            pickedItems[index].itemAmount++;
-            if (pickedItems[index].itemAmount >= pickedItems[index].maxItemAmount && pickedItems[index].maxItemAmount != -1) { 
-                availableItems.RemoveAt(rand);
-            }
+        return item;
+    }
+    public void HandlePickUpItemRoom(GameObject item) {
+        GameObject itemFromList = ReturnItemFromItems(item);
+        if (!IsInPickedItems(itemFromList)) {
+            pickedItems.Add(new ItemInformation(itemFromList, item.GetComponent<Item>().itemType, 1, item.GetComponent<Item>().maxAmount));
+            droppedItems.Add(itemFromList);
+            availableItems.Remove(itemFromList);
         }
-        else {
-            pickedItems.Add(new ItemInformation(item, item.GetComponent<Item>().itemType, 1, item.GetComponent<Item>().maxAmount));
-        }
+    }
+
+
+    public GameObject DetermineItemDropped() {
+        int rand = Random.Range(0, droppedItems.Count);
+        GameObject item = droppedItems[rand];
 
         return item;
+    }
+    public void HandlePickUp(GameObject item) {
+        GameObject itemFromList = ReturnItemFromItems(item);
+        int index = FindItemInPicked(itemFromList);
+        pickedItems[index].itemAmount++;
+        if (pickedItems[index].itemAmount >= pickedItems[index].maxItemAmount && pickedItems[index].maxItemAmount != -1) {
+            droppedItems.Remove(itemFromList);
+        }
+    }
+
+    public void SpawnItemDropped(Vector3 pos) {
+        if (droppedItems.Count == 0) return;
+        GameObject obj = Instantiate(DetermineItemDropped());
+        obj.transform.position = pos;
+        obj.transform.SetParent(itemsHolder.transform);
     }
 
     bool IsInPickedItems(GameObject item) {
@@ -51,6 +73,14 @@ public class ItemManager : MonoBehaviour
             if (picked.item == item) return true;
         }
         return false;
+    }
+
+    GameObject ReturnItemFromItems(GameObject itemDeleted) {
+        foreach (GameObject item in items)
+        {
+            if (item.name == itemDeleted.name.Substring(0, itemDeleted.name.Length-7)) return item;
+        }
+        return itemDeleted;
     }
 
     int FindItemInPicked(GameObject item) { 
@@ -100,6 +130,7 @@ public class ItemInformation {
     public int maxItemAmount;
 
     public ItemInformation(GameObject item, ItemType type, int amount, int max) {
+        this.item = item;
         this.itemType = type;
         this.itemAmount = amount;
         this.maxItemAmount = max;
