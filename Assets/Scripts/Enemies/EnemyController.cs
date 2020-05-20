@@ -8,7 +8,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public GameObject activeModel;
 
     [Header("General Info")]
-    public int health;
+    public float health;
     public float speed;
     public int damage;
 
@@ -19,6 +19,8 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     [HideInInspector]
     public Animator anim;
+    [HideInInspector]
+    public ParticleSystem particle_crit;
 
     protected Rigidbody2D rb;
     protected Vector2 direction;
@@ -38,6 +40,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
         ChangeDirectionOnStart();
+        particle_crit = transform.Find("Particle_Crit").GetComponent<ParticleSystem>();
     }
 
     void Init() { 
@@ -134,7 +137,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     #endregion
 
     #region Damage
-    public virtual void ReceiveDamage(int amount) {
+    public virtual void ReceiveDamage(float amount) {
         health -= amount;
         if (health <= 0) {
             PlayDeathAnimation();

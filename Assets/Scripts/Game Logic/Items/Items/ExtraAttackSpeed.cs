@@ -7,6 +7,7 @@ public class ExtraAttackSpeed : Item
     public override void Start() {
         base.Start();
         itemType = ItemInformation.ItemType.ExtraAttackSpeed;
+        message = "+50% Base Attack Speed";
     }
 
     public override void ChangeValues()

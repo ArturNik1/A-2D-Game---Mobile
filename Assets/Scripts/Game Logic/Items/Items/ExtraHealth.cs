@@ -7,6 +7,7 @@ public class ExtraHealth : Item
     public override void Start() {
         base.Start();
         itemType = ItemInformation.ItemType.ExtraHealth;
+        message = "+5 Health";
     }
 
     public override void ChangeValues() {

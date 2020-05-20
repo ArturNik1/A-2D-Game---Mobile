@@ -11,6 +11,8 @@ public abstract class Item : MonoBehaviour
     [HideInInspector]
     public ItemInformation.ItemType itemType;
     public int maxAmount;
+    [HideInInspector]
+    public string message;
 
     [HideInInspector]
     public GameObject room;
@@ -39,6 +41,7 @@ public abstract class Item : MonoBehaviour
         pController.BlockMovement();
         pController.UnBlockMovement(2.5f);
         ChangeValues();
+        ItemManager.instance.callDoFade(GameObject.Find("Item Popup").GetComponent<CanvasGroup>(), 0.5f, 3f, message);
         pickedUp = true;
         room.GetComponent<RoomLogic>().cleared = true;
         Destroy(gameObject, 0.5f);

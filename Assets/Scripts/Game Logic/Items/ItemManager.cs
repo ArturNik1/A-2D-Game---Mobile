@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemManager : MonoBehaviour
 {
@@ -59,6 +60,35 @@ public class ItemManager : MonoBehaviour
         return 0;
     }
 
+    #region Item Popup Fading
+    public void callDoFade(CanvasGroup group, float duration, float idleDuration, string message) {
+        group.transform.GetChild(0).GetComponent<Text>().text = message;
+        StartCoroutine(DoFade(group, duration, idleDuration));
+    }
+
+    IEnumerator DoFade(CanvasGroup group, float duration, float idleDuration) {
+        float counter = 0f;
+        while (counter < duration) {
+            counter += Time.deltaTime;
+            group.alpha = Mathf.Lerp(0, 1, counter / duration);
+            yield return null;
+        }
+
+        counter = 0f;
+        while (counter < idleDuration) {
+            counter += Time.deltaTime;
+            yield return null;
+        }
+
+        counter = 0f;
+        while (counter < duration) {
+            counter += Time.deltaTime;
+            group.alpha = Mathf.Lerp(1, 0, counter / duration);
+            yield return null;
+        }
+    }
+
+    #endregion
 }
 
 public class ItemInformation {

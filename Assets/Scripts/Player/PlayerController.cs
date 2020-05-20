@@ -205,6 +205,7 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateHealthBar() {
         healthBar.value = ((float)pInfo.health / pInfo.maxHealth) + 0.046f;
+        if (pInfo.health < 0) pInfo.health = 0;
         healthText.text = pInfo.health + "/" + pInfo.maxHealth;
     }
 
