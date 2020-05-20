@@ -93,7 +93,7 @@ public class ItemManager : MonoBehaviour
 
 public class ItemInformation {
 
-    public enum ItemType { ExtraHealth, ExtraAttackSpeed, ExtraDamage, ExtraMovementSpeed }
+    public enum ItemType { ExtraHealth, ExtraAttackSpeed, ExtraDamage, ExtraMovementSpeed, ExtraCritChance, ExtraCritDamage }
     public GameObject item;
     public ItemType itemType;
     public int itemAmount;

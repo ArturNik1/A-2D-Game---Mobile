@@ -8,8 +8,8 @@ public class ProjectileController : MonoBehaviour
     public bool isFree;
 
     public static float damageAmount = 5.0f;
-    public static float critProcChance = 5f; // 5f
-    public static float critMultiplier = 1.1f; // 1.1f
+    public static float critProcChance = 10f; // 10 percent at base...
+    public static float critMultiplier = 1.1f; // 10 percent at base...
     public float shotSpeed = 1.25f;
     public float lifeTime = 5.0f;
     private float currentTime = 0;
@@ -42,7 +42,7 @@ public class ProjectileController : MonoBehaviour
     }
 
     void DoDamage(GameObject target, Collision2D collision) {
-        if (Random.Range(1, 101) <= critProcChance) // Crit attack... 5% at base...
+        if (Random.Range(1, 101) <= critProcChance) // Crit attack... 0% at base...
         { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount * critMultiplier);
             target.GetComponent<EnemyController>().particle_crit.Play();

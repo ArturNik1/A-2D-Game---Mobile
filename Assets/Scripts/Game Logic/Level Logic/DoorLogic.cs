@@ -34,6 +34,8 @@ public class DoorLogic : MonoBehaviour
             // Spawn enemies here....
             GameObject.Find("Enemies").GetComponent<EnemyManager>().SpawnEnemies(toRoom);
 
+            if (ItemManager.instance.itemsHolder.transform.childCount != 0) Destroy(ItemManager.instance.itemsHolder.transform.GetChild(0).gameObject);
+
             if (toRoom.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Special && !toRoom.GetComponent<RoomLogic>().cleared) {
                 // Spawn item....
                 GameObject obj = Instantiate(ItemManager.instance.DetermineItem());
