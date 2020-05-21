@@ -50,6 +50,6 @@ TagManager:
   - name: Room
     uniqueID: 2638156677
     locked: 0
-  - name: Projectile
+  - name: Particle
     uniqueID: 2075951403
     locked: 0

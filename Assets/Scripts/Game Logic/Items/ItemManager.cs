@@ -19,6 +19,8 @@ public class ItemManager : MonoBehaviour
     [HideInInspector]
     public List<ItemInformation> pickedItems;
 
+    [HideInInspector]
+    public float dropRate = 5.0f;
     bool isCoroutineRunning = false;
 
     private void Awake() {
@@ -157,7 +159,7 @@ public class ItemManager : MonoBehaviour
 
 public class ItemInformation {
 
-    public enum ItemType { ExtraHealth, ExtraAttackSpeed, ExtraDamage, ExtraMovementSpeed, ExtraCritChance, ExtraCritDamage }
+    public enum ItemType { ExtraHealth, ExtraAttackSpeed, ExtraDamage, ExtraMovementSpeed, ExtraCritChance, ExtraCritDamage, ExtraItemDropRate }
     public GameObject item;
     public ItemType itemType;
     public int itemAmount;

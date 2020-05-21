@@ -164,7 +164,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         while (true) {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f) {
 
-                if (Random.Range(1, 101) <= 5) 
+                if (Random.Range(1, 101) <= ItemManager.instance.dropRate) 
                     ItemManager.instance.SpawnItemDropped(transform.position);
                 
                 Destroy(gameObject);
