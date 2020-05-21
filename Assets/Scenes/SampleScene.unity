@@ -4510,6 +4510,7 @@ MonoBehaviour:
   - {fileID: 562517078794623220, guid: bdf4e64a711863044ab7939cffa89fa0, type: 3}
   - {fileID: 562517078794623220, guid: 557038e55bfec5e4caeeb69cb192e71b, type: 3}
   availableItems: []
+  droppedItems: []
 --- !u!1 &1695627426
 GameObject:
   m_ObjectHideFlags: 0

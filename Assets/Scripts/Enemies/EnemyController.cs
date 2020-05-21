@@ -44,6 +44,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     }
 
     void Init() { 
+        // Setup active model and animator.
         if (activeModel == null) {
             anim = GetComponentInChildren<Animator>();
             if (anim == null) {

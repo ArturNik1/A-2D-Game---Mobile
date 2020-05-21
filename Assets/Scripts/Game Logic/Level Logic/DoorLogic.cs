@@ -34,7 +34,9 @@ public class DoorLogic : MonoBehaviour
             // Spawn enemies here....
             GameObject.Find("Enemies").GetComponent<EnemyManager>().SpawnEnemies(toRoom);
 
-            for (int i = 0; i < ItemManager.instance.itemsHolder.transform.childCount; i++) { 
+            for (int i = 0; i < ItemManager.instance.itemsHolder.transform.childCount; i++) {
+                int index = ItemManager.instance.FindItemInPicked(ItemManager.instance.ReturnItemFromItems(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject));
+                if (index != -1) ItemManager.instance.pickedItems[index].canBeDroppedAmount = ItemManager.instance.pickedItems[index].maxItemAmount - ItemManager.instance.pickedItems[index].itemAmount;
                 Destroy(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject);
             }
 

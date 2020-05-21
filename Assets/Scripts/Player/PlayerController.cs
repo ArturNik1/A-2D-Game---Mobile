@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     public void AttemptInteraction() {
+        if (!canMove) return;
         // Attempt to interact with different interactables.
         RaycastHit2D[] raycastHit2Ds = Physics2D.CircleCastAll(new Vector2(transform.position.x, transform.position.y), 
             0.15f, new Vector2(transform.position.x, transform.position.y), 0.15f);
@@ -195,6 +196,7 @@ public class PlayerController : MonoBehaviour
         if (pInfo.health <= 0) {
             playerAnim.anim.CrossFade("Die", 0.1f);
             isAlive = false;
+            canMove = false;
             rb.simulated = false;
             StartCoroutine(HidePlayer());
         }

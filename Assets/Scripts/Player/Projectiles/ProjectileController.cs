@@ -42,7 +42,7 @@ public class ProjectileController : MonoBehaviour
     }
 
     void DoDamage(GameObject target, Collision2D collision) {
-        if (Random.Range(1, 101) <= critProcChance) // Crit attack... 0% at base...
+        if (Random.Range(1, 101) <= critProcChance) 
         { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount * critMultiplier);
             target.GetComponent<EnemyController>().particle_crit.Play();
