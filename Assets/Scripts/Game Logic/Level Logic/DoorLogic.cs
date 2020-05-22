@@ -19,6 +19,8 @@ public class DoorLogic : MonoBehaviour
     }
 
     public void HandleDoorAction() {
+        AudioManager.instance.Play("DoorClose0" + Random.Range(1, 4));
+
         if (nextWorld) {
             // head to next world. 
             print("NEXT WORLD");

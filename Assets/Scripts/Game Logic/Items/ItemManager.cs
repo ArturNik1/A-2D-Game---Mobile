@@ -50,6 +50,8 @@ public class ItemManager : MonoBehaviour
             pickedItems.Add(new ItemInformation(itemFromList, item.GetComponent<Item>().itemType, 1, item.GetComponent<Item>().maxAmount));
             droppedItems.Add(itemFromList);
             availableItems.Remove(itemFromList);
+
+            AudioManager.instance.Play("ItemPickup01");
         }
     }
 
@@ -86,6 +88,7 @@ public class ItemManager : MonoBehaviour
         if (pickedItems[index].itemAmount >= pickedItems[index].maxItemAmount && pickedItems[index].maxItemAmount != -1) {
             droppedItems.Remove(itemFromList);
         }
+        AudioManager.instance.Play("ItemPickup02");
     }
 
     public void SpawnItemDropped(Vector3 pos) {

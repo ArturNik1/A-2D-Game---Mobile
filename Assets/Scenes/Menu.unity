@@ -3071,7 +3071,7 @@ PrefabInstance:
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
@@ -3212,6 +3212,106 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[6].pitch
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[7].name
+      value: DoorClose01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b83ca5cb2551764f93c251f5c8c8f28, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[7].volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[7].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: DoorClose02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ec19fb49b265d8499a64dd260760bd0, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[8].volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[8].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[9].name
+      value: DoorClose03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f77e1302b1df3ec469aefb8660fda5a6, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[9].volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[9].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[10].name
+      value: ItemPickup01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 77665d9a568441c45a1a94eb5a6ed1a8, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[10].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[10].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[11].name
+      value: ItemPickup02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: da785477da41b1140809e9a4e18ba680, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[11].volume
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[11].pitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752643167481886035, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
