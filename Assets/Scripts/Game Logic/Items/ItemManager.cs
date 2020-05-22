@@ -39,6 +39,8 @@ public class ItemManager : MonoBehaviour
         int rand = Random.Range(0, availableItems.Count);
         GameObject item = availableItems[rand];
 
+        AudioManager.instance.Play("ItemSpawn0" + Random.Range(1, 3));
+
         return item;
     }
     public void HandlePickUpItemRoom(GameObject item) {
@@ -96,6 +98,8 @@ public class ItemManager : MonoBehaviour
         GameObject obj = Instantiate(determined);
         obj.transform.position = pos;
         obj.transform.SetParent(itemsHolder.transform);
+
+        AudioManager.instance.Play("ItemSpawn0" + Random.Range(1, 3));
     }
 
     bool IsInPickedItems(GameObject item) {

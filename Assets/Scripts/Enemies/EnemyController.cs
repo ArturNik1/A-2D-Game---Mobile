@@ -17,6 +17,8 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public bool isIdle;
     public bool isHit;
 
+    bool firstUpdate = true;
+
     [HideInInspector]
     public Animator anim;
     [HideInInspector]
@@ -94,7 +96,13 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             isIdle = true;
         }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.deltaTime, Vector3.back), 0.05f);
+        if (firstUpdate) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.deltaTime, Vector3.back), 1);
+            firstUpdate = false;
+        }
+        else { 
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.deltaTime, Vector3.back), 0.05f);
+        }
 
         if (startDelayCounter <= startDelay) { // Don't move if X seconds had not passed.
             startDelayCounter += Time.deltaTime;

@@ -192,6 +192,8 @@ public class PlayerController : MonoBehaviour
     public void ReceiveDamage(int amount) {
         if (IsBeingHit()) return;
 
+        AudioManager.instance.Play("PlayerHit0" + Random.Range(1, 4));
+
         pInfo.health -= amount;
         if (pInfo.health <= 0) {
             playerAnim.anim.CrossFade("Die", 0.1f);
