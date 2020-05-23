@@ -294,6 +294,8 @@ public class PlayerController : MonoBehaviour
         projectiles_inUse.Add(keyList[0], prj);
         Physics2D.IgnoreCollision(generalCollider.GetComponent<BoxCollider2D>(), prj.GetComponent<CircleCollider2D>());
         prj.gameObject.SetActive(true);
+
+        AudioManager.instance.Play("PlayerShoot01");
     }
 
     #endregion

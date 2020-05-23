@@ -43,4 +43,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5b61b3723242a458bff69e6cb5b3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: ButtonClick01
+    clip: {fileID: 8300000, guid: 013e7c73818e3704b8ac75a3bcbd075e, type: 3}
+    volume: 0.2
+    pitch: 1.75
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ButtonClick02
+    clip: {fileID: 8300000, guid: 60375383be687304dacfd6d0960b6b62, type: 3}
+    volume: 0.5
+    pitch: 0.75
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PlayerHit01
+    clip: {fileID: 8300000, guid: 8e573e7702663df45aa7673103aad128, type: 3}
+    volume: 0.2
+    pitch: 2
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PlayerHit02
+    clip: {fileID: 8300000, guid: 8e2ed4e663ed9624ba906db03bdc7d6c, type: 3}
+    volume: 0.2
+    pitch: 1.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PlayerHit03
+    clip: {fileID: 8300000, guid: 053c4ba6b952e124f81222e637cf69d9, type: 3}
+    volume: 0.2
+    pitch: 1.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ItemSpawn01
+    clip: {fileID: 8300000, guid: fbbdbf7f3599d9c4a915f3404a117aac, type: 3}
+    volume: 0.2
+    pitch: 1.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ItemSpawn02
+    clip: {fileID: 8300000, guid: d31f0a2381b132b49bde8f7bc43d8068, type: 3}
+    volume: 0.2
+    pitch: 1.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: DoorClose01
+    clip: {fileID: 8300000, guid: 8b83ca5cb2551764f93c251f5c8c8f28, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: DoorClose02
+    clip: {fileID: 8300000, guid: 1ec19fb49b265d8499a64dd260760bd0, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: DoorClose03
+    clip: {fileID: 8300000, guid: f77e1302b1df3ec469aefb8660fda5a6, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ItemPickup01
+    clip: {fileID: 8300000, guid: 77665d9a568441c45a1a94eb5a6ed1a8, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ItemPickup02
+    clip: {fileID: 8300000, guid: da785477da41b1140809e9a4e18ba680, type: 3}
+    volume: 0.125
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Theme
+    clip: {fileID: 8300000, guid: 5427e029df398f84a85e57091c2fa6d6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    playOnAwake: 1
+    source: {fileID: 0}

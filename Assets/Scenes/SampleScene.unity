@@ -3494,6 +3494,8 @@ MonoBehaviour:
   transitionTime: 1
   joyFloating: {fileID: 0}
   joyFixed: {fileID: 0}
+  musicSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
   settingsPanel: {fileID: 0}
   mainCanvas: {fileID: 869500121}
   infoReturnButton: {fileID: 526473893}

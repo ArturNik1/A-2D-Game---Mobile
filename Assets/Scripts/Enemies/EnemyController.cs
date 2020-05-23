@@ -154,6 +154,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         else {
             PlayHitAnimation();
         }
+        AudioManager.instance.Play("EnemyHit0" + Random.Range(1, 4));
     }
     public void PlayHitAnimation() {
         anim.CrossFade("GetHit", 0.1f);

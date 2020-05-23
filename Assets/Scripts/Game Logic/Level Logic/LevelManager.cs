@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum RoomType { Tiny, Small, Medium, LargeH, LargeV, Huge, Gigantic }
 
@@ -156,6 +157,8 @@ public class LevelManager : MonoBehaviour
     }
 
     private void OnDestroy() {
+        AudioManager.instance.UnMuteSound();
+        AudioManager.instance.UnMuteMusic();
         SceneManager.sceneLoaded -= OnSceneWasSwitched;
     }
 

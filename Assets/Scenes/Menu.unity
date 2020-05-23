@@ -1045,6 +1045,8 @@ MonoBehaviour:
   transitionTime: 1
   joyFloating: {fileID: 502244885}
   joyFixed: {fileID: 1543455971}
+  musicSlider: {fileID: 557293966}
+  soundSlider: {fileID: 1488249746}
   settingsPanel: {fileID: 168098982}
   mainCanvas: {fileID: 0}
   infoReturnButton: {fileID: 0}
@@ -1133,7 +1135,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2102,7 +2104,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3071,247 +3073,127 @@ PrefabInstance:
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 12
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[0].name
-      value: ButtonClick01
+      propertyPath: sounds.Array.data[13].name
+      value: PlayerShoot01
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[0].clip
+      propertyPath: sounds.Array.data[13].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 013e7c73818e3704b8ac75a3bcbd075e, type: 3}
+      objectReference: {fileID: 8300000, guid: 62dc1b8a84b262c4cb5ce53df9678064, type: 3}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[0].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[0].pitch
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[1].name
-      value: ButtonClick02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 60375383be687304dacfd6d0960b6b62, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[1].volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[1].pitch
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[2].name
-      value: PlayerHit01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8e573e7702663df45aa7673103aad128, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[2].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[2].pitch
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[3].name
-      value: PlayerHit02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8e2ed4e663ed9624ba906db03bdc7d6c, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[3].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[3].pitch
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[4].name
-      value: PlayerHit03
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 053c4ba6b952e124f81222e637cf69d9, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[4].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[4].pitch
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[5].name
-      value: ItemSpawn01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[5].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: fbbdbf7f3599d9c4a915f3404a117aac, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[5].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[5].pitch
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[6].name
-      value: ItemSpawn02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[6].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: d31f0a2381b132b49bde8f7bc43d8068, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[6].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[6].pitch
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[7].name
-      value: DoorClose01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[7].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8b83ca5cb2551764f93c251f5c8c8f28, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[7].volume
+      propertyPath: sounds.Array.data[13].volume
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[7].pitch
+      propertyPath: sounds.Array.data[13].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[8].name
-      value: DoorClose02
+      propertyPath: sounds.Array.data[13].loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[8].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1ec19fb49b265d8499a64dd260760bd0, type: 3}
+      propertyPath: sounds.Array.data[13].playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[8].volume
+      propertyPath: sounds.Array.data[14].name
+      value: EnemyHit01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[14].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 19145bae6089542429527a4934232fb5, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[14].volume
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[8].pitch
+      propertyPath: sounds.Array.data[14].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[9].name
-      value: DoorClose03
+      propertyPath: sounds.Array.data[14].loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[9].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f77e1302b1df3ec469aefb8660fda5a6, type: 3}
+      propertyPath: sounds.Array.data[14].playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[9].volume
+      propertyPath: sounds.Array.data[15].name
+      value: EnemyHit02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[15].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ae0c4d80bd45af44bb07f1edebe42091, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[15].volume
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[9].pitch
+      propertyPath: sounds.Array.data[15].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[10].name
-      value: ItemPickup01
+      propertyPath: sounds.Array.data[15].loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[10].clip
+      propertyPath: sounds.Array.data[15].playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[16].name
+      value: EnemyHit03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[16].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 77665d9a568441c45a1a94eb5a6ed1a8, type: 3}
+      objectReference: {fileID: 8300000, guid: d9e352dcbe6091045a92a2bf97556779, type: 3}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[10].volume
-      value: 0.2
+      propertyPath: sounds.Array.data[16].volume
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[10].pitch
+      propertyPath: sounds.Array.data[16].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[11].name
-      value: ItemPickup02
+      propertyPath: sounds.Array.data[16].loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
-      propertyPath: sounds.Array.data[11].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: da785477da41b1140809e9a4e18ba680, type: 3}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[11].volume
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
-        type: 3}
-      propertyPath: sounds.Array.data[11].pitch
-      value: 1
+      propertyPath: sounds.Array.data[16].playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4752643167481886035, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}

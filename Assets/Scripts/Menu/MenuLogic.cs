@@ -11,6 +11,8 @@ public class MenuLogic : MonoBehaviour
 
     public Toggle joyFloating;
     public Toggle joyFixed;
+    public Slider musicSlider;
+    public Slider soundSlider;
 
     [Header("GameObjects_Scene0")]
     public GameObject settingsPanel;
@@ -56,6 +58,12 @@ public class MenuLogic : MonoBehaviour
             joyFixed.isOn = true;
         }
         GameObject.Find("Canvas").transform.Find("Settings Panel").gameObject.SetActive(false);
+
+        // Sound...
+        musicSlider.value = PlayerPrefs.GetFloat("music");
+        soundSlider.value = PlayerPrefs.GetFloat("sound");
+        AudioManager.instance.GetAudioSource("Theme").volume = musicSlider.value;
+        AudioListener.volume = soundSlider.value;
     }
 
     public void SavePrefs() {
@@ -63,6 +71,10 @@ public class MenuLogic : MonoBehaviour
         if (joyFloating == null) return;
         if (joyFloating.isOn) PlayerPrefs.SetInt("joystick", 0);
         else PlayerPrefs.SetInt("joystick", 1);
+
+        // Sound...
+        PlayerPrefs.SetFloat("music", musicSlider.value);
+        PlayerPrefs.SetFloat("sound", soundSlider.value);
     }
 
     public void TimeToDefault() {
@@ -70,6 +82,12 @@ public class MenuLogic : MonoBehaviour
     }
 
     private void OnEnable() {
+
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
+            musicSlider.onValueChanged.AddListener(delegate { AudioManager.instance.ChangeMusicVolume(musicSlider); });
+            soundSlider.onValueChanged.AddListener(delegate { AudioManager.instance.ChangeSoundVolume(soundSlider); });
+        }
+        
         LoadPrefs();
     }
 
@@ -105,18 +123,22 @@ public class MenuLogic : MonoBehaviour
     public void ClickSound(Image button) {
         if (button.sprite.name.Contains("no")) {
             button.sprite = Resources.Load<Sprite>("Sprites/settings sound icon");
+            AudioManager.instance.UnMuteSound();
         }
         else { 
             button.sprite = Resources.Load<Sprite>("Sprites/settings no sound icon");
+            AudioManager.instance.MuteSound();
         }
     }
     public void ClickMusic(Image button) {
         if (button.sprite.name.Contains("no")) {
             button.sprite = Resources.Load<Sprite>("Sprites/settings music icon");
+            AudioManager.instance.UnMuteMusic();
         }
         else {
             button.sprite = Resources.Load<Sprite>("Sprites/settings no music icon");
-        } 
+            AudioManager.instance.MuteMusic();
+        }
     }
 
     public void ReturnToMenu() {

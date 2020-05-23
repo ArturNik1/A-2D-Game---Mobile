@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Boo.Lang;
+using System;
+using System.Linq;
 using UnityEditor.Audio;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +30,9 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+
             s.source.playOnAwake = s.playOnAwake;
+            if (s.source.playOnAwake) s.source.Play();
         }
 
     }
@@ -50,6 +54,46 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+
+    #region Mute/Change Audio
+
+    public void ChangeSoundVolume(Slider slider) {
+        AudioListener.volume = slider.value;
+    }
+    public void MuteSound() {
+        Sound[] s = ExcludeFromSounds("Theme");
+        for (int i = 0; i < s.Length; i++) {
+            s[i].source.Stop();
+            s[i].source.volume = 0;
+        }
+    }
+    public void UnMuteSound() {
+        Sound[] s = ExcludeFromSounds("Theme");
+        for (int i = 0; i < s.Length; i++) {
+            if (s[i].source == null) continue; 
+            s[i].source.volume = s[i].volume;
+        }
+    }
+
+    public void ChangeMusicVolume(Slider slider) {
+        GetAudioSource("Theme").volume = slider.value;
+    }
+    public void MuteMusic() {
+        GetAudioSource("Theme").Pause();
+    }
+    public void UnMuteMusic() {
+        GetAudioSource("Theme").UnPause();
+    }
+
+    public Sound[] ExcludeFromSounds(string startName) {
+        Sound[] newSounds = sounds;
+        Sound[] withoutName = newSounds.Where((sound, index) => !sound.name.StartsWith(startName)).ToArray();
+
+        return withoutName;
+    }
+
+
+    #endregion
 
     public AudioSource GetAudioSource(string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
