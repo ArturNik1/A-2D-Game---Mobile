@@ -135,3 +135,31 @@ MonoBehaviour:
     loop: 1
     playOnAwake: 1
     source: {fileID: 0}
+  - name: PlayerShoot01
+    clip: {fileID: 8300000, guid: 62dc1b8a84b262c4cb5ce53df9678064, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EnemyHit01
+    clip: {fileID: 8300000, guid: 19145bae6089542429527a4934232fb5, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EnemyHit02
+    clip: {fileID: 8300000, guid: ae0c4d80bd45af44bb07f1edebe42091, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EnemyHit03
+    clip: {fileID: 8300000, guid: d9e352dcbe6091045a92a2bf97556779, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}

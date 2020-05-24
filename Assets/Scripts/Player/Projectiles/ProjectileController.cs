@@ -10,6 +10,7 @@ public class ProjectileController : MonoBehaviour
     public static float damageAmount = 5.0f;
     public static float critProcChance = 10f; // 10 percent at base...
     public static float critMultiplier = 1.1f; // 10 percent at base...
+    public static float damageCounter = 0;
     public float shotSpeed = 1.25f;
     public float lifeTime = 5.0f;
     private float currentTime = 0;
@@ -47,8 +48,10 @@ public class ProjectileController : MonoBehaviour
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount * critMultiplier);
             target.GetComponent<EnemyController>().particle_crit.Play();
         }
-        else
+        else { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount);
+        }
+
     }
 
 

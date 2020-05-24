@@ -154,6 +154,7 @@ public class LevelManager : MonoBehaviour
         ProjectileController.damageAmount = 5f;
         ProjectileController.critMultiplier = 1.1f;
         ProjectileController.critProcChance = 5f;
+        ProjectileController.damageCounter = 0;
     }
 
     private void OnDestroy() {

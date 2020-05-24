@@ -149,9 +149,12 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public virtual void ReceiveDamage(float amount) {
         health -= amount;
         if (health <= 0) {
+            ProjectileController.damageCounter += (amount + health); 
+            pController.enemiesKilled++;
             PlayDeathAnimation();
         }
         else {
+            ProjectileController.damageCounter += amount;
             PlayHitAnimation();
         }
         AudioManager.instance.Play("EnemyHit0" + Random.Range(1, 4));

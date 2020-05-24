@@ -23,6 +23,9 @@ public class ItemManager : MonoBehaviour
     public float dropRate = 5.0f;
     bool isCoroutineRunning = false;
 
+    [HideInInspector]
+    public int itemsPicked = 0;
+
     private void Awake() {
         if (_instance != null && _instance != this) Destroy(this.gameObject);
         else _instance = this;
@@ -52,6 +55,7 @@ public class ItemManager : MonoBehaviour
             availableItems.Remove(itemFromList);
 
             AudioManager.instance.Play("ItemPickup01");
+            itemsPicked++;
         }
     }
 
@@ -89,6 +93,7 @@ public class ItemManager : MonoBehaviour
             droppedItems.Remove(itemFromList);
         }
         AudioManager.instance.Play("ItemPickup02");
+        itemsPicked++;
     }
 
     public void SpawnItemDropped(Vector3 pos) {

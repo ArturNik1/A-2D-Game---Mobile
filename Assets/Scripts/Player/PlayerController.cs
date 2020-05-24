@@ -41,6 +41,12 @@ public class PlayerController : MonoBehaviour
     public GameObject projectileHolder;
     public GameObject generalCollider;
     public Slider healthBar;
+    public GameObject canvasStats;
+
+    float runTime = 0f;
+    float damageTaken = 0f;
+    public int enemiesKilled = 0;
+    bool inCoro = false; // makes sure the coro does not happen twice (pretty rare)
 
     Text healthText;
 
@@ -83,6 +89,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!isAlive) return;
+
+        runTime += Time.deltaTime;
 
         PollInput();
     }
@@ -196,6 +204,7 @@ public class PlayerController : MonoBehaviour
 
         pInfo.health -= amount;
         if (pInfo.health <= 0) {
+            damageTaken += (amount + pInfo.health);
             playerAnim.anim.CrossFade("Die", 0.1f);
             isAlive = false;
             canMove = false;
@@ -203,6 +212,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(HidePlayer());
         }
         else {
+            damageTaken += amount;
             playerAnim.anim.CrossFade("GetHit", 0f, 1);
         }
         UpdateHealthBar();
@@ -223,11 +233,80 @@ public class PlayerController : MonoBehaviour
         while (true) {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.001f);
             if (transform.localPosition.z >= 0.05f) {
-                GameObject.Find("Scene Transition").GetComponent<MenuLogic>().LoadScene();
+
+                canvasStats.GetComponent<CanvasGroup>().alpha = 0;
+                canvasStats.gameObject.SetActive(true);
+                canvasStats.transform.Find("Post Death Stats Panel").gameObject.SetActive(true);
+
+                StartCoroutine(FadeInCanvasGroupAndHandlePostDeath());
+
                 break;
             } 
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    #endregion
+
+    #region Post Death
+
+    IEnumerator FadeInCanvasGroupAndHandlePostDeath() {
+        CanvasGroup group = canvasStats.GetComponent<CanvasGroup>();
+        canvasStats.transform.Find("Info Panel").gameObject.SetActive(false);
+        for (float i = 0f; i <= 1f; i += Time.deltaTime) {
+            group.alpha = i;
+            yield return null;
+        }
+        canvasStats.transform.Find("Info Panel").gameObject.SetActive(true);
+        group.alpha = 1;
+
+        SetPostDeathStats();
+
+    }
+
+    void SetPostDeathStats() {
+        Text left = canvasStats.transform.Find("Post Death Stats Panel").Find("Left Text").GetComponent<Text>();
+        Text right = canvasStats.transform.Find("Post Death Stats Panel").Find("Right Text").GetComponent<Text>();
+
+        // Get Run Time..
+        int minutes = (int)runTime / 60;
+        int seconds = (int)runTime % 60;
+        string min = "00", sec = "00";
+        if (minutes < 10) min = "0" + minutes;
+        else min = minutes + "";
+        if (seconds < 10) sec = "0" + seconds;
+        else sec = seconds + "";
+
+        string lefty = "RUN LENGTH:\n\n#DAMAGE DEALT:\n\n#DAMAGE TAKEN:\n\n#ENEMIES KILLED:\n\n#ITEMS PICKED:\n\n#WORLD:\n\n#STAGE:\n\n";
+        string righty = min + ":" + sec + "\n\n#" + (int)ProjectileController.damageCounter + "\n\n#" + (int)damageTaken + "\n\n#" + enemiesKilled + "\n\n#" + ItemManager.instance.itemsPicked + "\n\n#" + LevelManager.currentWorld + "\n\n#" + LevelManager.currentWorld + "\n\n#";
+
+        // Type Writer...
+        if (inCoro) return;
+        StartCoroutine(TypeWriter(left, right, lefty, righty, 0.05f));
+
+    }
+
+    IEnumerator TypeWriter(Text leftText, Text rightText, string left, string right, float waitBetweenCharacters) {
+        string[] leftSplit = left.Split('#');
+        string[] rightSplit = right.Split('#');
+
+        inCoro = true;
+
+        for (int i = 0; i < leftSplit.Length; i++) {
+            char[] leftArray = leftSplit[i].ToCharArray();
+            for (int j = 0; j < leftArray.Length; j++) {
+                leftText.text += leftArray[j];
+                yield return new WaitForSeconds(waitBetweenCharacters);
+            }
+            char[] rightArray = rightSplit[i].ToCharArray();
+            for (int j = 0; j < rightArray.Length; j++) {
+                rightText.text += rightArray[j];
+                yield return new WaitForSeconds(waitBetweenCharacters);
+            }
+        }
+
+        Time.timeScale = 0f;
+        yield return null;
     }
 
     #endregion

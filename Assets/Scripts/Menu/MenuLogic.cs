@@ -20,6 +20,7 @@ public class MenuLogic : MonoBehaviour
     [Header("GameObjects_Scene1")]
     public GameObject mainCanvas;
     public Button infoReturnButton;
+    public PlayerController player;
 
     public void LoadScene() {
         if (SceneManager.GetActiveScene().buildIndex == 0) StartCoroutine(LoadLevel(1));
@@ -105,7 +106,7 @@ public class MenuLogic : MonoBehaviour
                     settingsPanel.SetActive(false);
                 }
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 1) {
+            else if (SceneManager.GetActiveScene().buildIndex == 1 && player.isAlive) {
                 if (infoReturnButton.transform.root.gameObject.activeSelf) {
                     infoReturnButton.onClick.Invoke();
                 } 
