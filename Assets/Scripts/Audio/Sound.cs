@@ -15,6 +15,7 @@ public class Sound
     public float pitch;
 
     public bool loop;
+    public bool ignoreMasterVolume;
     public bool playOnAwake;
 
     [HideInInspector]

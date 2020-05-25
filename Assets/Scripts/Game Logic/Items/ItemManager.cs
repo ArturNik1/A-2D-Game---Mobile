@@ -37,6 +37,8 @@ public class ItemManager : MonoBehaviour
         droppedItems = new List<GameObject>();
     }
 
+    #region Item Room
+
     public GameObject DetermineItem() {
         // Determine item spawned in item rooms.
         int rand = Random.Range(0, availableItems.Count);
@@ -59,6 +61,9 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Dropped Item
 
     public GameObject DetermineItemDropped() {
         // Determine item dropped.
@@ -84,6 +89,7 @@ public class ItemManager : MonoBehaviour
 
         return item;
     }
+
     public void HandlePickUp(GameObject item) {
         // Handling picking up of dropped items.
         GameObject itemFromList = ReturnItemFromItems(item);
@@ -97,7 +103,7 @@ public class ItemManager : MonoBehaviour
     }
 
     public void SpawnItemDropped(Vector3 pos) {
-        // Spawn the droppde item.
+        // Spawn the dropped item.
         if (droppedItems.Count == 0) return;
 
         GameObject determined = DetermineItemDropped();
@@ -108,6 +114,15 @@ public class ItemManager : MonoBehaviour
         obj.transform.SetParent(itemsHolder.transform);
 
         AudioManager.instance.Play("ItemSpawn0" + Random.Range(1, 3));
+    }
+
+    #endregion
+
+    public int AmountInList(ItemInformation.ItemType itemType) {
+        foreach (ItemInformation item in pickedItems) {
+            if (item.itemType == itemType) return item.itemAmount;
+        }
+        return -1;
     }
 
     bool IsInPickedItems(GameObject item) {

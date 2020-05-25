@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.ignoreListenerVolume = s.ignoreMasterVolume;
 
             s.source.playOnAwake = s.playOnAwake;
             if (s.source.playOnAwake) s.source.Play();
@@ -51,6 +52,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Stop();
+    }
+
+    public bool IsPlaying (string name) {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return false;
+        }
+        return s.source.isPlaying;
     }
 
     #region Mute/Change Audio

@@ -113,10 +113,30 @@ public class MenuLogic : MonoBehaviour
                 else {
                     infoReturnButton.transform.root.gameObject.SetActive(true);
                     mainCanvas.SetActive(false);
+
+                    Text leftText = infoReturnButton.transform.parent.transform.Find("Left Text").GetComponent<Text>();
+                    SetGamePauseText(leftText);
+
                     Time.timeScale = 0;
                 }
             }
         }
+    }
+
+    void SetGamePauseText(Text leftText) {
+        leftText.text = "HEALTH: " + player.gameObject.GetComponent<PlayerInfo>().health + "/" + player.gameObject.GetComponent<PlayerInfo>().maxHealth + "\n\n";
+
+        leftText.text += "DAMAGE: " + (int)ProjectileController.damageAmount + "\n\n";
+
+        if (ItemManager.instance.AmountInList(ItemInformation.ItemType.ExtraAttackSpeed) == -1)
+            leftText.text += "ATTACK SPEED: %100\n\n";
+        else
+            leftText.text += "ATTACK SPEED: %" + (100 + 50 * ItemManager.instance.AmountInList(ItemInformation.ItemType.ExtraAttackSpeed)) + "\n\n";
+
+        if (ItemManager.instance.AmountInList(ItemInformation.ItemType.ExtraMovementSpeed) == -1)
+            leftText.text += "SPEED: %100\n\n";
+        else
+            leftText.text += "SPEED: %" + (100 + 7.5 * ItemManager.instance.AmountInList(ItemInformation.ItemType.ExtraMovementSpeed)) + "\n\n";
     }
 
     #region Scene_One
@@ -144,6 +164,7 @@ public class MenuLogic : MonoBehaviour
 
     public void ReturnToMenu() {
         Time.timeScale = 1;
+        if (AudioManager.instance.IsPlaying("TypeWriter01")) AudioManager.instance.StopPlaying("TypeWriter01");
         StartCoroutine(LoadLevel(0));
     }
 

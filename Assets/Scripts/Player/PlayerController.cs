@@ -292,6 +292,8 @@ public class PlayerController : MonoBehaviour
 
         inCoro = true;
 
+        AudioManager.instance.Play("TypeWriter01");
+
         for (int i = 0; i < leftSplit.Length; i++) {
             char[] leftArray = leftSplit[i].ToCharArray();
             for (int j = 0; j < leftArray.Length; j++) {
@@ -304,6 +306,8 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(waitBetweenCharacters);
             }
         }
+
+        AudioManager.instance.StopPlaying("TypeWriter01");
 
         Time.timeScale = 0f;
         yield return null;
