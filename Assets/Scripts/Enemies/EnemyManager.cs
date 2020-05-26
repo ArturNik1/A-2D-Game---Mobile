@@ -24,16 +24,16 @@ public class EnemyManager : MonoBehaviour
         pController = playerGameObject.GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SpawnEnemies(GameObject room) {
         if (room.GetComponent<RoomLogic>().cleared) return;
+
         RemoveAllEnemies();
         pController.ResetAllProjectiles();
+
+        if (room.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Boss) {
+            gameObject.GetComponent<BossManager>().SpawnBoss(room);
+            return;
+        }
 
         SpawnEnemiesAfterPatternRoll(RollForSpawnPattern(room), room);
     }

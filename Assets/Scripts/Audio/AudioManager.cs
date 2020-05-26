@@ -90,6 +90,7 @@ public class AudioManager : MonoBehaviour
         GetAudioSource("Theme").Pause();
     }
     public void UnMuteMusic() {
+        if (GetAudioSource("Theme") == null) return; // Added due a stupid bug that happens when you force close the game.
         GetAudioSource("Theme").UnPause();
     }
 

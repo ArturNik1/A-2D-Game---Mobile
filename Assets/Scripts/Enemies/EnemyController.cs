@@ -67,15 +67,17 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
 
         UpdateStates();
+        
+        if (!pController.isAlive) {
+            if (!isWinning) {
+                PlayVictoryAnimation();
+            }
+            return;
+        }
 
         if (IsBeingHit()) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction * Time.deltaTime, Vector3.back), 0.05f);
             rb.velocity = Vector2.zero; // Makes sure enemies are not flying away if there is contact.
-            return;
-        }
-
-        if (!pController.isAlive) {
-            if (!isWinning) PlayVictoryAnimation();
             return;
         }
 
@@ -213,8 +215,9 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     #endregion
 
     public void PlayVictoryAnimation() {
-        anim.CrossFade("Victory", 1f);
+        anim.CrossFade("Victory", 0.25f);
         isMoving = false;
+        rb.simulated = false;
         isWinning = true;
     }
 

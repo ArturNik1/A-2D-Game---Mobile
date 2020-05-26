@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 lastMovedJoystickDirection;
     private bool isOnMobile;
+    Vector2 movementInputVector;
 
     [HideInInspector]
     public GameObject currentRoomObject;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
     float damageTaken = 0f;
     public int enemiesKilled = 0;
     bool inCoro = false; // makes sure the coro does not happen twice (pretty rare)
+    bool inCoroShooting = false;
 
     Text healthText;
 
@@ -107,7 +109,6 @@ public class PlayerController : MonoBehaviour
     private void PollInput() {
         if (!canMove) return;
 
-        Vector2 movementInputVector;
         if (isOnMobile) {
             movementInputVector = joystick.Direction;
             // Any time movementInputVector is not zero, rotate the player's transform.
@@ -189,7 +190,21 @@ public class PlayerController : MonoBehaviour
             playerAnim.anim.CrossFade("Throw", 0f, 1);
             UseProjectile();
             canAttack = false;
+
+            if (Vector2.Angle(lastMovedJoystickDirection, transform.rotation * Vector2.one) > 60 && !inCoroShooting) {
+                StartCoroutine(QuickRotateAfterAttack());
+            }
         }
+    }
+
+    IEnumerator QuickRotateAfterAttack() {
+        inCoroShooting = true;
+        while (!Mathf.Approximately(Vector2.Angle(lastMovedJoystickDirection, transform.rotation * Vector2.one), 45f)) { 
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, 0, -value)), Time.deltaTime * 1000f);
+            yield return new WaitForEndOfFrame();
+        }
+        inCoroShooting = false;
+        yield return null;
     }
 
     bool IsThrowing() {

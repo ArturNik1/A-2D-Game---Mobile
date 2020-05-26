@@ -2640,6 +2640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492698528}
   - component: {fileID: 492698529}
+  - component: {fileID: 492698530}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -2676,6 +2677,21 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1054638298448434, guid: aed40cee58f6f08459e48bfe65d201b9, type: 3}
   - {fileID: 1228834762862560, guid: 58ac5cacec107144e80e52a116059471, type: 3}
+  playerGameObject: {fileID: 187244949}
+--- !u!114 &492698530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492698527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a8f96b1ac127445a5f31f692178361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossPrefabs:
+  - {fileID: 1606282618913942, guid: a4d3b4130576b224d92ddd0674d37b1c, type: 3}
   playerGameObject: {fileID: 187244949}
 --- !u!1001 &492946247
 PrefabInstance:
