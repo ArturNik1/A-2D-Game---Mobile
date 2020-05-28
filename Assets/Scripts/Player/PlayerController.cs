@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
 
     PlayerInputActions playerInputActions;
-    Rigidbody2D rb;
+    Rigidbody rb;
     AnimatorManager playerAnim;
     PlayerInfo pInfo;
     public bool isAlive = true;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake() {
         playerInputActions = new PlayerInputActions();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<AnimatorManager>();
         pInfo = GetComponent<PlayerInfo>();
         fireLocation = transform.Find("FireLocation").gameObject;
@@ -87,12 +87,15 @@ public class PlayerController : MonoBehaviour
             GenerateProjectileBatch();
     }
 
+    private void Update()
+    {
+        runTime += Time.deltaTime;
+    }
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!isAlive) return;
-
-        runTime += Time.deltaTime;
 
         PollInput();
     }
@@ -135,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move(Vector2 inputVector) {
         // Simply move player.
-        var movementOffset = inputVector * movementSpeed * Time.fixedDeltaTime;
+        var movementOffset = new Vector3 (inputVector.x, inputVector.y, 0) * movementSpeed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
 
         if (inputVector != Vector2.zero) {
@@ -223,7 +226,8 @@ public class PlayerController : MonoBehaviour
             playerAnim.anim.CrossFade("Die", 0.1f);
             isAlive = false;
             canMove = false;
-            rb.simulated = false;
+            rb.detectCollisions = false;
+            rb.Sleep();
             StartCoroutine(HidePlayer());
         }
         else {
@@ -390,7 +394,7 @@ public class PlayerController : MonoBehaviour
         prj.isFree = false;
         projectiles_free.Remove(keyList[0]);
         projectiles_inUse.Add(keyList[0], prj);
-        Physics2D.IgnoreCollision(generalCollider.GetComponent<BoxCollider2D>(), prj.GetComponent<CircleCollider2D>());
+        Physics.IgnoreCollision(generalCollider.GetComponent<BoxCollider>(), prj.GetComponent<SphereCollider>());
         prj.gameObject.SetActive(true);
 
         AudioManager.instance.Play("PlayerShoot01");

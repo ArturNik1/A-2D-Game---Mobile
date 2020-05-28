@@ -27,7 +27,7 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        UpdateControllerValues();
     }
 
     public void UpdateControllerValues() {

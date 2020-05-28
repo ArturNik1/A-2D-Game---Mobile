@@ -24,7 +24,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     [HideInInspector]
     public ParticleSystem particle_crit;
 
-    protected Rigidbody2D rb;
+    protected Rigidbody rb;
     protected Vector2 direction;
     protected Vector2 directionRotate;
     protected GameObject player;
@@ -33,12 +33,13 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public float startDelay;
     float startDelayCounter;
     bool isWinning;
+    bool isAlive = true;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         Init();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
         ChangeDirectionOnStart();
@@ -66,6 +67,8 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     {
         if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
 
+        if (!isAlive) rb.velocity = Vector3.zero;
+
         UpdateStates();
         
         if (!pController.isAlive) {
@@ -77,16 +80,22 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
         if (IsBeingHit()) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction * Time.deltaTime, Vector3.back), 0.05f);
-            rb.velocity = Vector2.zero; // Makes sure enemies are not flying away if there is contact.
+            rb.velocity = Vector3.zero; // Makes sure enemies are not flying away if there is contact.
             return;
         }
+    }
+
+    public virtual void FixedUpdate() {
+        if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
+
+        if (!pController.isAlive || IsBeingHit() || !isAlive) return;
 
         Move();
     }
 
     public virtual void Move() {
         var inputVector = direction;
-        var movementOffset = inputVector.normalized * speed * Time.fixedDeltaTime;
+        var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * speed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
 
         if (inputVector != Vector2.zero) {
@@ -99,11 +108,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
 
         if (firstUpdate) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.deltaTime, Vector3.back), 1);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 1);
             firstUpdate = false;
         }
         else { 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.deltaTime, Vector3.back), 0.05f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.1f);
         }
 
         if (startDelayCounter <= startDelay) { // Don't move if X seconds had not passed.
@@ -153,6 +162,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         if (health <= 0) {
             ProjectileController.damageCounter += (amount + health); 
             pController.enemiesKilled++;
+            isAlive = false;
             PlayDeathAnimation();
         }
         else {
@@ -171,7 +181,9 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         anim.CrossFade("Die", 0.1f);
         isHit = true;
         isMoving = false;
-        rb.simulated = false;
+        // rb.simulated = false; kino
+        rb.detectCollisions = false;
+        rb.Sleep();
         StartCoroutine(Die());
     }
     public virtual IEnumerator Die() {
@@ -200,7 +212,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
         return false;
     }
-    public virtual void OnCollisionEnter2D(Collision2D collision) {
+    public virtual void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider") {
             if (collision.transform.name == "Player") {
                 // Damage Player 
@@ -212,12 +224,21 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             }
         }
     }
+
+    public void OnCollisionExit(Collision collision) {
+        rb.velocity = Vector3.zero;
+        if (collision.transform.name == "Player") {
+            collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
+
     #endregion
 
     public void PlayVictoryAnimation() {
         anim.CrossFade("Victory", 0.25f);
         isMoving = false;
-        rb.simulated = false;
+        rb.detectCollisions = false;
+        rb.Sleep();
         isWinning = true;
     }
 

@@ -17,13 +17,13 @@ public class ProjectileController : MonoBehaviour
 
     [HideInInspector]
     public PlayerController pController;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     [HideInInspector]
     public Vector2 direction;
 
     // Start is called before the first frame update
     void OnEnable() {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         currentTime = 0;
     }
 
@@ -33,16 +33,18 @@ public class ProjectileController : MonoBehaviour
         if (currentTime >= lifeTime) {
             pController.ResetProjectile(id);
         }
+    }
 
+    void FixedUpdate() {
         var inputVector = direction;
         if (inputVector == Vector2.zero) inputVector = Vector2.up;
-        var movementOffSet = inputVector.normalized * shotSpeed * Time.fixedDeltaTime;
+        var movementOffSet = new Vector3(inputVector.x, inputVector.y, 0).normalized * shotSpeed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffSet;
 
         rb.MovePosition(newPosition);
     }
 
-    void DoDamage(GameObject target, Collision2D collision) {
+    void DoDamage(GameObject target, Collision collision) {
         if (Random.Range(1, 101) <= critProcChance) 
         { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount * critMultiplier);
@@ -55,7 +57,7 @@ public class ProjectileController : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider" || collision.transform.tag == "Item") {
             if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item") DoDamage(collision.gameObject, collision);
             pController.ResetProjectile(id);

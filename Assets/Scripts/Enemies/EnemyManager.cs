@@ -111,9 +111,9 @@ public class EnemyManager : MonoBehaviour
         Transform wall_U = room.transform.Find("Wall_U");
         Transform wall_B = room.transform.Find("Wall_B");
         float middle_X = (wall_R.position.x + wall_L.position.x) / 2f;
-        float maxPerHalf_X = wall_R.position.x - middle_X - wall_R.GetComponent<BoxCollider2D>().size.x;
+        float maxPerHalf_X = wall_R.position.x - middle_X - wall_R.GetComponentInChildren<BoxCollider>().size.z; // z instead of x for some reason.
         float middle_Y = (wall_U.position.y + wall_B.position.y) / 2f;
-        float maxPerHalf_Y = wall_U.position.y - middle_Y - wall_U.GetComponent<BoxCollider2D>().size.y;
+        float maxPerHalf_Y = wall_U.position.y - middle_Y - wall_U.GetComponentInChildren<BoxCollider>().size.y;
 
         switch (pattern) {
 

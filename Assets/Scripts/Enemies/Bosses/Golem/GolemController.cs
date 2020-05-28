@@ -26,7 +26,7 @@ public class GolemController : MonoBehaviour
         currentState = GolemStates.Idle;
     }
 
-    void Init() { 
+    void Init() {
         // Setup active model and animator.
         if (activeModel == null) {
             anim = GetComponentInChildren<Animator>();

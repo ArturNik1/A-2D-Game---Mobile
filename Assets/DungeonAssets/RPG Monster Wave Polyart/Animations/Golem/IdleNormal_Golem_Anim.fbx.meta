@@ -356,13 +356,16 @@ ModelImporter:
     second: Golem
   - first:
       74: 7400000
-    second: IdleNormal
+    second: MyIdleNormal2
   - first:
       95: 9500000
     second: //RootNode
   - first:
       137: 13700000
     second: Golem
+  - first:
+      74: -8617848983029313616
+    second: IdleNormal
   externalObjects: {}
   materials:
     materialImportMode: 0
