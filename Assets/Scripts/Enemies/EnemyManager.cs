@@ -34,6 +34,7 @@ public class EnemyManager : MonoBehaviour
 
         if (room.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Boss) {
             gameObject.GetComponent<BossManager>().SpawnBoss(room);
+            LevelManager.inBossRoom = true;
             return;
         }
 

@@ -33,6 +33,20 @@ public class ProjectileController : MonoBehaviour
         if (currentTime >= lifeTime) {
             pController.ResetProjectile(id);
         }
+
+        if (LevelManager.inBossRoom) {
+            // check for raycast above...
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, -Vector3.forward, out hit, 10)) {
+                if (hit.collider.tag == "BossUnHittable") {
+                    pController.ResetProjectile(id);
+                } 
+                else if (hit.collider.tag == "BossHittable") {
+                    DoDamageBoss(hit.transform.gameObject);
+                    pController.ResetProjectile(id);
+                }
+            }
+        }
     }
 
     void FixedUpdate() {
@@ -44,22 +58,33 @@ public class ProjectileController : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
-    void DoDamage(GameObject target, Collision collision) {
-        if (Random.Range(1, 101) <= critProcChance) 
-        { 
+    void DoDamage(GameObject target) {
+        if (Random.Range(1, 101) <= critProcChance)  { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount * critMultiplier);
             target.GetComponent<EnemyController>().particle_crit.Play();
         }
         else { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount);
         }
-
     }
 
+    void DoDamageBoss(GameObject target) {
+        if (Random.Range(1, 101) <= critProcChance) {
+            target.GetComponent<BossController>().ReceiveDamage(damageAmount * critMultiplier);
+            //target.GetComponent<EnemyController>().particle_crit.Play();
+        } 
+        else {
+            target.GetComponent<BossController>().ReceiveDamage(damageAmount);
+        }
+    }
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider" || collision.transform.tag == "Item") {
-            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item") DoDamage(collision.gameObject, collision);
+            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item") DoDamage(collision.gameObject);
+            pController.ResetProjectile(id);
+        }
+        else if (collision.transform.tag == "BossCollider") {
+            if (collision.contacts[0].otherCollider.transform.tag == "BossHittable") DoDamageBoss(collision.gameObject);
             pController.ResetProjectile(id);
         }
     }

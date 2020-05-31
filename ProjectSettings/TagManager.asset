@@ -9,6 +9,7 @@ TagManager:
   - Item
   - BossHittable
   - BossUnHittable
+  - BossCollider
   layers:
   - Default
   - TransparentFX
