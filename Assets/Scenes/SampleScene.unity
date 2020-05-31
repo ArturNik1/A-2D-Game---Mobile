@@ -497,7 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   attackSpeed: 0
-  movementSpeed: 0.7
+  movementSpeed: 0.6
   maxHealth: 0
 --- !u!1 &243951350
 GameObject:

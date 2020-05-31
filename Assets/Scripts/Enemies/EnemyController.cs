@@ -218,6 +218,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
                 // Damage Player 
                 collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
                 ChangeDirectionOnHit(collision.GetContact(0).normal.x, collision.GetContact(0).normal.y);
+                EnemyManager.enemiesTouching.Add(gameObject);
             }
             else { 
                 ChangeDirectionOnHitToPlayer();
@@ -229,6 +230,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         rb.velocity = Vector3.zero;
         if (collision.transform.name == "Player") {
             collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            EnemyManager.enemiesTouching.Remove(gameObject);
         }
     }
 
@@ -244,6 +246,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     public virtual void UpdateStates() {
         anim.SetBool("isMoving", isMoving);
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManager.enemiesTouching.Remove(gameObject);
     }
 
 }

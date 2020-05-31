@@ -13,6 +13,7 @@ public class ChangeTransfromStart : MonoBehaviour
     {
         transform.localPosition = position;
         transform.localRotation = Quaternion.Euler(rotation);
+        transform.root.position = new Vector3(transform.root.position.x, 0, transform.root.position.z);
     }
 
     // Update is called once per frame

@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour
     public GameObject playerGameObject;
     PlayerController pController;
 
+    public static List<GameObject> enemiesTouching = new List<GameObject>();
+
     private int chanceForOneType;
 
     // Start is called before the first frame update
@@ -111,9 +113,9 @@ public class EnemyManager : MonoBehaviour
         Transform wall_U = room.transform.Find("Wall_U");
         Transform wall_B = room.transform.Find("Wall_B");
         float middle_X = (wall_R.position.x + wall_L.position.x) / 2f;
-        float maxPerHalf_X = wall_R.position.x - middle_X - wall_R.GetComponentInChildren<BoxCollider>().size.z; // z instead of x for some reason.
+        float maxPerHalf_X = wall_R.position.x - middle_X - wall_R.GetComponentInChildren<BoxCollider>().size.z; // z instead of x
         float middle_Y = (wall_U.position.y + wall_B.position.y) / 2f;
-        float maxPerHalf_Y = wall_U.position.y - middle_Y - wall_U.GetComponentInChildren<BoxCollider>().size.y;
+        float maxPerHalf_Y = wall_U.position.y - middle_Y - wall_U.GetComponentInChildren<BoxCollider>().size.x; // x instead of y
 
         switch (pattern) {
 

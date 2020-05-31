@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     float runTime = 0f;
     float damageTaken = 0f;
+    [HideInInspector]
     public int enemiesKilled = 0;
     bool inCoro = false; // makes sure the coro does not happen twice (pretty rare)
     bool inCoroShooting = false;
@@ -96,6 +98,9 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (!isAlive) return;
+
+        EnemyManager.enemiesTouching = EnemyManager.enemiesTouching.OrderByDescending(x => x.GetComponent<EnemyController>().damage).ToList();
+        if (EnemyManager.enemiesTouching.Count > 0) ReceiveDamage(EnemyManager.enemiesTouching[0].GetComponent<EnemyController>().damage);
 
         PollInput();
     }

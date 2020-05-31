@@ -21,15 +21,12 @@ public class SlimeController : EnemyController
                 // Damage Player 
                 collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
                 collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                EnemyManager.enemiesTouching.Add(gameObject);
             }
             else {
                 ChangeDirectionOnHitToPlayer();
             }
         }
-    }
-
-    private void OnCollisionStay(Collision collision) {
-        OnCollisionEnter(collision);
     }
 
 }

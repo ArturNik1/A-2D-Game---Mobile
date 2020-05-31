@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  maxAmount: 10
+  maxAmount: 8
   message: 
   room: {fileID: 0}
   fromItemRoom: 0
