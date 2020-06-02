@@ -99,8 +99,20 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAlive) return;
 
-        EnemyManager.enemiesTouching = EnemyManager.enemiesTouching.OrderByDescending(x => x.GetComponent<EnemyController>().damage).ToList();
-        if (EnemyManager.enemiesTouching.Count > 0) ReceiveDamage(EnemyManager.enemiesTouching[0].GetComponent<EnemyController>().damage);
+        EnemyManager.enemiesTouching = EnemyManager.enemiesTouching
+            .OrderByDescending(x => x.GetComponent<BossController>() == null ? -1 : x.GetComponent<BossController>().damage)
+            .ThenByDescending(y => y.GetComponent<EnemyController>() == null ? -1 : y.GetComponent<EnemyController>().damage).ToList();
+
+        foreach (GameObject touching in EnemyManager.enemiesTouching) { 
+            if (touching.GetComponent<BossController>() != null) { 
+                ReceiveDamage(touching.GetComponent<BossController>().damage);
+                break;
+            }
+            else if (touching.GetComponent<EnemyController>() != null) {
+                ReceiveDamage(touching.GetComponent<EnemyController>().damage);
+                break;
+            }
+        }
 
         PollInput();
     }

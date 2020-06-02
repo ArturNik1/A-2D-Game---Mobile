@@ -22,8 +22,14 @@ public class GolemController : BossController
         
     }
 
+    void HandleStates() { 
+        
+    }
+
     public override void KillBoss()
     {
-        //print("DEAD?");
+        previousState = currentState;
+        currentState = GolemStates.Dying;
+        PlayDeathAnimation();
     }
 }

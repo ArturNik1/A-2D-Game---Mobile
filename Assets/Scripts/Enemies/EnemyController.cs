@@ -181,7 +181,6 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         anim.CrossFade("Die", 0.1f);
         isHit = true;
         isMoving = false;
-        // rb.simulated = false; kino
         rb.detectCollisions = false;
         rb.Sleep();
         StartCoroutine(Die());

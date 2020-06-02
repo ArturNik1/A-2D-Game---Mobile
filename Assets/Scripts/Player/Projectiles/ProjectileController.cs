@@ -71,7 +71,7 @@ public class ProjectileController : MonoBehaviour
     void DoDamageBoss(GameObject target) {
         if (Random.Range(1, 101) <= critProcChance) {
             target.GetComponent<BossController>().ReceiveDamage(damageAmount * critMultiplier);
-            //target.GetComponent<EnemyController>().particle_crit.Play();
+            target.GetComponent<BossController>().particle_crit.Play();
         } 
         else {
             target.GetComponent<BossController>().ReceiveDamage(damageAmount);
