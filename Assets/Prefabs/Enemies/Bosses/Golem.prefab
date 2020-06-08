@@ -1446,10 +1446,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeModel: {fileID: 0}
   health: 200
-  speed: 0
+  speed: 0.3
   damage: 5
   anim: {fileID: 0}
   particle_crit: {fileID: 0}
+  movement: 0
+  smashAttackCooldown: 10
+  dizzyCouterMax: 10
+  dizzyCouterMaxShort: 2
+  dizzyHitMax: 10
+  chaseTimeMax: 10
 --- !u!95 &95429706837762770
 Animator:
   serializedVersion: 3

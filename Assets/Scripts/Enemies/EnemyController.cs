@@ -215,7 +215,6 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         if (collision.transform.tag == "Collider") {
             if (collision.transform.name == "Player") {
                 // Damage Player 
-                collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
                 ChangeDirectionOnHit(collision.GetContact(0).normal.x, collision.GetContact(0).normal.y);
                 EnemyManager.enemiesTouching.Add(gameObject);
             }

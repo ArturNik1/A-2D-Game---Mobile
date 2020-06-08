@@ -18,6 +18,10 @@ public abstract class BossController : MonoBehaviour
     protected Rigidbody rb;
     protected GameObject player;
     protected PlayerController pController;
+    protected float _speed;
+    protected bool isHit = false;
+    protected bool isAttacking = false;
+
 
     [HideInInspector] public ParticleSystem particle_crit;
 
@@ -29,12 +33,17 @@ public abstract class BossController : MonoBehaviour
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
         particle_crit = transform.Find("Body").Find("Particle_Crit").GetComponent<ParticleSystem>();
+        _speed = speed;
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        
+        if (Time.timeScale == 0 || Time.deltaTime == 0) return; // Skip if game is paused.
+    }
+
+    public virtual void FixedUpdate() { 
+        if (Time.timeScale == 0 || Time.deltaTime == 0) return; // Skip if game is paused.
     }
 
     void Init()
@@ -71,23 +80,39 @@ public abstract class BossController : MonoBehaviour
         AudioManager.instance.Play("EnemyHit0" + Random.Range(1, 4));
     }
 
+    public virtual bool IsBeingHit() {
+        if (isHit) {
+            if (anim.GetCurrentAnimatorStateInfo(1).IsName("GetHit") &&
+                anim.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.9f) {
+                isHit = false;
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public abstract void KillBoss();
 
     public virtual void PlayHitAnimation() {
+        if (isAttacking) return;
         anim.CrossFade("GetHit", 0.05f, 1);
+        isHit = true;
     }
 
     public virtual void PlayDeathAnimation() {
         anim.CrossFade("Die", 0.1f);
+        isHit = true;
         rb.detectCollisions = false;
         rb.Sleep();
     }
+
+    public abstract void UpdateAnimator();
 
     public virtual void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider") { 
             if (collision.transform.name == "Player") {
                 // Damage player...
-                collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
                 EnemyManager.enemiesTouching.Add(gameObject);
             }
         }

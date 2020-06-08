@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     private Dictionary<int, ProjectileController> projectiles_inUse = new Dictionary<int, ProjectileController>();
     private GameObject fireLocation;
 
+    public event Action playerDeath;
 
     #region lifeCycle
 
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour
             .ThenByDescending(y => y.GetComponent<EnemyController>() == null ? -1 : y.GetComponent<EnemyController>().damage).ToList();
 
         foreach (GameObject touching in EnemyManager.enemiesTouching) { 
-            if (touching.GetComponent<BossController>() != null) { 
+            if (touching.GetComponent<BossController>() != null) {
                 ReceiveDamage(touching.GetComponent<BossController>().damage);
                 break;
             }
@@ -235,7 +237,7 @@ public class PlayerController : MonoBehaviour
     public void ReceiveDamage(int amount) {
         if (IsBeingHit()) return;
 
-        AudioManager.instance.Play("PlayerHit0" + Random.Range(1, 4));
+        AudioManager.instance.Play("PlayerHit0" + UnityEngine.Random.Range(1, 4));
 
         pInfo.health -= amount;
         if (pInfo.health <= 0) {
@@ -265,7 +267,15 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    IEnumerator HidePlayer() { 
+    void DeathEvent() {
+        if (playerDeath != null)
+        {
+            playerDeath();
+        }
+    }
+
+    IEnumerator HidePlayer() {
+        DeathEvent();
         while (true) {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.001f);
             if (transform.localPosition.z >= 0.05f) {
