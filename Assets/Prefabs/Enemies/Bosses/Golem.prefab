@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4860812763856648075}
   m_Layer: 0
   m_Name: Index03_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4341655923278286}
   m_Layer: 0
   m_Name: Thumb03_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 5450288973687543393}
   m_Layer: 0
   m_Name: Mid02_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 4117431076008630562}
   m_Layer: 0
   m_Name: Mid01_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 7310530865222291489}
   m_Layer: 0
   m_Name: Index02_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 7910616832400192104}
   m_Layer: 0
   m_Name: Thumb02_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 4621223440320674}
   m_Layer: 0
   m_Name: Thumb01_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 4800414666971164}
   m_Layer: 0
   m_Name: Pinky01_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 7385080462102391722}
   m_Layer: 0
   m_Name: Hand_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1449,6 +1449,7 @@ MonoBehaviour:
   speed: 0.3
   damage: 5
   anim: {fileID: 0}
+  isAttacking: 0
   particle_crit: {fileID: 0}
   movement: 0
   smashAttackCooldown: 10
@@ -1456,6 +1457,7 @@ MonoBehaviour:
   dizzyCouterMaxShort: 2
   dizzyHitMax: 10
   chaseTimeMax: 10
+  isSmashing: 0
 --- !u!95 &95429706837762770
 Animator:
   serializedVersion: 3
@@ -19019,7 +19021,7 @@ GameObject:
   - component: {fileID: 4400119178328150}
   m_Layer: 0
   m_Name: Index01_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19172,7 +19174,7 @@ GameObject:
   - component: {fileID: 1118573644621044610}
   m_Layer: 0
   m_Name: Pinky02_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19363,7 +19365,7 @@ GameObject:
   - component: {fileID: 1404057084888867552}
   m_Layer: 0
   m_Name: Pinky03_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19775,7 +19777,7 @@ GameObject:
   - component: {fileID: 5624838502004825914}
   m_Layer: 0
   m_Name: Mid03_R
-  m_TagString: BossUnHittable
+  m_TagString: BossUnHittableHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

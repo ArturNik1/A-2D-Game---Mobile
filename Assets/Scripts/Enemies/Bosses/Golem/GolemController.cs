@@ -22,8 +22,9 @@ public class GolemController : BossController
 
     float smashCounter = 0f;
     bool canSmash = false;
-    bool isSmashing = false;
+    public bool isSmashing = false;
     bool inSmashingCoro = false;
+    bool inAttackingDelayCoro = false;
 
     float chaseCounter = 0f;
     float dizzyCounter = 0f;
@@ -145,6 +146,19 @@ public class GolemController : BossController
             StartCoroutine(WaitForEndAttack());
         }
 
+        else if (currentState == GolemStates.Attacking && previousState == GolemStates.Dizzy) {
+            // Charged attack...
+            if (isAttacking) return;
+
+            if (!inSmashingCoro) {
+                inSmashingCoro = true;
+                StartCoroutine(DelaySmashAttack(0.5f));
+            }
+            if (!isSmashing) return;
+            UseSuperChargedAttack();
+            StartCoroutine(WaitForEndSpecialAttack());
+        }
+
         else if (currentState == GolemStates.Dizzy && previousState == GolemStates.Moving) {
             // Coming from Moving state to Dizzy state, meaning Golem didn't close the gap. 
             // Golem will be in this state and animation for a few seconds/a few hits (eachever will be first). 
@@ -157,7 +171,7 @@ public class GolemController : BossController
                 //UseSuperChargedAttack();
                 // Switch at the end of animation...
                 previousState = currentState;
-                currentState = GolemStates.Locked;
+                currentState = GolemStates.Attacking;
                 anim.SetBool("isDizzy", false);
             }
         }
@@ -221,6 +235,16 @@ public class GolemController : BossController
         anim.CrossFade("Dizzy", 0.5f);
     }
 
+    IEnumerator WaitForEndSpecialAttack() { 
+        while (isAttacking) {
+            yield return new WaitForEndOfFrame();
+        }
+        previousState = currentState;
+        currentState = GolemStates.Dizzy;
+        anim.SetBool("isDizzy", true);
+        anim.CrossFade("Dizzy", 0.5f);
+    }
+
     IEnumerator DelaySmashAttack(float seconds) {
         while (true) { 
             float posX = -(transform.position - lockedPlayer.transform.position).normalized.x, posY = -(transform.position - lockedPlayer.transform.position).normalized.y;
@@ -237,6 +261,10 @@ public class GolemController : BossController
     void UseSuperChargedAttack() {
         canSmash = false;
         smashCounter = 0f;
+        isAttacking = true;
+        isSmashing = true;
+        inSmashingCoro = false;
+        anim.CrossFade("SpecialAttack", 0.1f, 2);
     }
 
     void IsAttacking() {
@@ -266,7 +294,7 @@ public class GolemController : BossController
         if (!isAttacking) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.1f);
         else transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime * 0.01f, Vector3.back), Time.fixedDeltaTime);
 
-        //print(Vector3.Angle(transform.forward, lockedPlayer.transform.position - transform.position) <= 15 is done...);
+        if (Vector2.Distance(transform.position, lockedPlayer.transform.position) <= 0.5f) return;
 
         rb.MovePosition(newPosition);
     }
@@ -276,6 +304,9 @@ public class GolemController : BossController
         if (currentState == GolemStates.Idle) { 
             previousState = currentState;
             currentState = GolemStates.Scanning;
+        }
+        if (currentState == GolemStates.Dizzy && previousState == GolemStates.Moving) {
+            dizzyHitCounter++;
         }
     }
 
@@ -290,12 +321,34 @@ public class GolemController : BossController
         PlayDeathAnimation();
     }
 
+    public override void OnCollisionEnter(Collision collision) {
+        base.OnCollisionEnter(collision);
+        if (collision.transform.name == "Player" && collision.GetContact(0).thisCollider.tag.Contains("Hand")) {
+            if (isAttacking && !isSmashing && !inAttackingDelayCoro) {
+                anim.CrossFade("New State", 0.25f, 2);
+                StartCoroutine(SetIsAttackingDelay(0.5f));
+            }
+        }
+    }
+
+    IEnumerator SetIsAttackingDelay(float seconds) {
+        inAttackingDelayCoro = true;
+        yield return new WaitForSeconds(seconds);
+        inAttackingDelayCoro = false;
+        isAttacking = false;
+    }
+
     public void OnPlayerDeath() {
         pController.playerDeath -= OnPlayerDeath;
         previousState = currentState;
         currentState = GolemStates.Winning;
         // Winning animation...
         anim.CrossFade("Victory", 1f);
+    }
+
+    public override void OnDestroy() {
+        base.OnDestroy();
+        pController.playerDeath -= OnPlayerDeath;
     }
 
 }

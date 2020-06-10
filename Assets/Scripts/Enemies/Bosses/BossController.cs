@@ -20,7 +20,7 @@ public abstract class BossController : MonoBehaviour
     protected PlayerController pController;
     protected float _speed;
     protected bool isHit = false;
-    protected bool isAttacking = false;
+    public bool isAttacking = false;
 
 
     [HideInInspector] public ParticleSystem particle_crit;
@@ -126,7 +126,7 @@ public abstract class BossController : MonoBehaviour
         }
     }
 
-    private void OnDestroy() {
+    public virtual void OnDestroy() {
         LevelManager.inBossRoom = false;
         EnemyManager.enemiesTouching.Remove(gameObject);
     }
