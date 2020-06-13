@@ -38,11 +38,12 @@ public class ProjectileController : MonoBehaviour
             // check for raycast above...
             RaycastHit hit;
             if (Physics.Raycast(transform.position, -Vector3.forward, out hit, 10)) {
-                if (hit.collider.tag == "BossUnHittable") {
+                if (hit.collider.tag.Contains("UnHittable")) {
                     pController.ResetProjectile(id);
                 } 
                 else if (hit.collider.tag == "BossHittable") {
-                    DoDamageBoss(hit.transform.gameObject);
+                    if (hit.collider.name == "Back") DoDamageBoss(hit.transform.gameObject, true);
+                    else  DoDamageBoss(hit.transform.gameObject);
                     pController.ResetProjectile(id);
                 }
             }
@@ -61,17 +62,20 @@ public class ProjectileController : MonoBehaviour
     void DoDamage(GameObject target) {
         if (Random.Range(1, 101) <= critProcChance)  { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount * critMultiplier);
-            target.GetComponent<EnemyController>().particle_crit.Play();
+            target.GetComponent<EnemyController>().particles["Crit"].Play();
         }
         else { 
             target.GetComponent<EnemyController>().ReceiveDamage(damageAmount);
         }
     }
 
-    void DoDamageBoss(GameObject target) {
-        if (Random.Range(1, 101) <= critProcChance) {
+    void DoDamageBoss(GameObject target, bool isBack = false) {
+        float _critProcChance;
+        if (isBack) _critProcChance = critProcChance * 3;
+        else _critProcChance = critProcChance;
+        if (Random.Range(1, 101) <= _critProcChance) {
             target.GetComponent<BossController>().ReceiveDamage(damageAmount * critMultiplier);
-            target.GetComponent<BossController>().particle_crit.Play();
+            target.GetComponent<BossController>().particles["Crit"].Play();
         } 
         else {
             target.GetComponent<BossController>().ReceiveDamage(damageAmount);
@@ -84,7 +88,7 @@ public class ProjectileController : MonoBehaviour
             pController.ResetProjectile(id);
         }
         else if (collision.transform.tag == "BossCollider") {
-            if (collision.contacts[0].otherCollider.transform.tag == "BossHittable") DoDamageBoss(collision.gameObject);
+            if (collision.GetContact(0).otherCollider.transform.tag == "BossHittable") DoDamageBoss(collision.gameObject, collision.GetContact(0).otherCollider.name == "Back" ? true : false);
             pController.ResetProjectile(id);
         }
     }

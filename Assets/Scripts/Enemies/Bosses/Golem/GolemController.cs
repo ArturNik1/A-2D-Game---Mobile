@@ -12,6 +12,7 @@ public class GolemController : BossController
     public float movement = 0f;
     
     GameObject lockedPlayer;
+    EnemyManager enemyManager;
 
     [Header("Variables")]
     [SerializeField] float smashAttackCooldown = 10f;
@@ -36,12 +37,14 @@ public class GolemController : BossController
         base.Start();
         currentState = GolemStates.Idle;
         pController.playerDeath += OnPlayerDeath;
+
+        enemyManager = GameObject.Find("Enemies").GetComponent<EnemyManager>();
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        base.Start();
+        base.Update();
         HandleStates();
         UpdateAnimator();
 
@@ -141,7 +144,7 @@ public class GolemController : BossController
             // Use normal attack (while moving?) and continue back to Locked State.
             if (isAttacking) return;
 
-            chaseCounter = 0;
+            //chaseCounter = 0;
             UseNormalAttack();
             StartCoroutine(WaitForEndAttack());
         }
@@ -203,7 +206,7 @@ public class GolemController : BossController
 
     void UseNormalAttack() {
         isAttacking = true;
-        _speed = 0.1f;
+        _speed = 0.25f;
         anim.CrossFade("NormalAttack", 0.1f, 2);
     }
 
@@ -235,6 +238,11 @@ public class GolemController : BossController
         anim.CrossFade("Dizzy", 0.5f);
     }
 
+    void SpawnEnemies() {
+        enemyManager.SpawnBossEnemeis(bossRoom);
+        AudioManager.instance.Play("EnemySpawn01");
+    }
+
     IEnumerator WaitForEndSpecialAttack() { 
         while (isAttacking) {
             yield return new WaitForEndOfFrame();
@@ -243,6 +251,7 @@ public class GolemController : BossController
         currentState = GolemStates.Dizzy;
         anim.SetBool("isDizzy", true);
         anim.CrossFade("Dizzy", 0.5f);
+        SpawnEnemies();
     }
 
     IEnumerator DelaySmashAttack(float seconds) {
@@ -294,7 +303,7 @@ public class GolemController : BossController
         if (!isAttacking) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.1f);
         else transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime * 0.01f, Vector3.back), Time.fixedDeltaTime);
 
-        if (Vector2.Distance(transform.position, lockedPlayer.transform.position) <= 0.5f) return;
+        if (Vector2.Distance(transform.position, lockedPlayer.transform.position) <= 0.45f) return;
 
         rb.MovePosition(newPosition);
     }
@@ -325,6 +334,7 @@ public class GolemController : BossController
         base.OnCollisionEnter(collision);
         if (collision.transform.name == "Player" && collision.GetContact(0).thisCollider.tag.Contains("Hand")) {
             if (isAttacking && !isSmashing && !inAttackingDelayCoro) {
+                chaseCounter = 0;
                 anim.CrossFade("New State", 0.25f, 2);
                 StartCoroutine(SetIsAttackingDelay(0.5f));
             }

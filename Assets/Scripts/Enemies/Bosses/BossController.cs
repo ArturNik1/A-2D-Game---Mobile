@@ -15,6 +15,7 @@ public abstract class BossController : MonoBehaviour
     [HideInInspector]
     public Animator anim;
 
+    protected GameObject bossRoom;
     protected Rigidbody rb;
     protected GameObject player;
     protected PlayerController pController;
@@ -22,18 +23,23 @@ public abstract class BossController : MonoBehaviour
     protected bool isHit = false;
     public bool isAttacking = false;
 
-
-    [HideInInspector] public ParticleSystem particle_crit;
+    public Dictionary<string, ParticleSystem> particles = new Dictionary<string, ParticleSystem>();
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         Init();
+        bossRoom = GameObject.Find("Enemies").GetComponent<BossManager>().bossRoom;
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
-        particle_crit = transform.Find("Body").Find("Particle_Crit").GetComponent<ParticleSystem>();
         _speed = speed;
+
+        GameObject particleHolder = transform.Find("Particles").gameObject;
+        for (int i = 0; i < particleHolder.transform.childCount; i++) {
+            string p = particleHolder.transform.GetChild(i).name.Split('_')[1];
+            particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
+        }
     }
 
     // Update is called once per frame

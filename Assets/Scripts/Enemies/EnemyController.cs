@@ -21,8 +21,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     [HideInInspector]
     public Animator anim;
-    [HideInInspector]
-    public ParticleSystem particle_crit;
+    public Dictionary<string, ParticleSystem> particles = new Dictionary<string, ParticleSystem>();
 
     protected Rigidbody rb;
     protected Vector2 direction;
@@ -43,7 +42,13 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
         ChangeDirectionOnStart();
-        particle_crit = transform.Find("Particle_Crit").GetComponent<ParticleSystem>();
+
+        GameObject particleHolder = transform.Find("Particles").gameObject;
+        for (int i = 0; i < particleHolder.transform.childCount; i++) {
+            string p = particleHolder.transform.GetChild(i).name.Split('_')[1];
+            particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
+        }
+        if (LevelManager.inBossRoom) particles["Spawn"].Play();
     }
 
     void Init() { 

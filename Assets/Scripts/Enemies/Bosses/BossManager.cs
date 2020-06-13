@@ -7,6 +7,8 @@ public class BossManager : MonoBehaviour
     [Header("Bosses")]
     public GameObject[] bossPrefabs; // 0 - golem 
 
+    public GameObject bossRoom;
+
     GameObject enemyParent;
     public GameObject playerGameObject;
     PlayerController pController;
@@ -25,6 +27,7 @@ public class BossManager : MonoBehaviour
         boss.transform.SetParent(enemyParent.transform);
         boss.transform.LookAt(room.transform.Find("Wall_B").transform, -Vector3.forward);
         boss.transform.rotation = Quaternion.Euler(110f, boss.transform.rotation.eulerAngles.z, boss.transform.rotation.eulerAngles.y);
+        bossRoom = room;
     }
 
     int DetermineBoss() { 
