@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Joystick joystick;
 
-    private Vector2 lastMovedJoystickDirection;
+    public Vector2 lastMovedJoystickDirection;
     private bool isOnMobile;
     Vector2 movementInputVector;
 

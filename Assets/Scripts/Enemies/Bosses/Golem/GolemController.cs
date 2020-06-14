@@ -13,6 +13,8 @@ public class GolemController : BossController
     
     GameObject lockedPlayer;
     EnemyManager enemyManager;
+    FieldOfView fov;
+    Vector2 lastMovedDirection;
 
     [Header("Variables")]
     [SerializeField] float smashAttackCooldown = 10f;
@@ -38,6 +40,7 @@ public class GolemController : BossController
         currentState = GolemStates.Idle;
         pController.playerDeath += OnPlayerDeath;
 
+        fov = GetComponent<FieldOfView>();
         enemyManager = GameObject.Find("Enemies").GetComponent<EnemyManager>();
     }
 
@@ -47,6 +50,11 @@ public class GolemController : BossController
         base.Update();
         HandleStates();
         UpdateAnimator();
+
+        if (fov.isEnabled) {
+            fov.SetOrigin(new Vector3 (transform.position.x, transform.position.y, transform.position.z - 0.1f));
+            fov.SetAimDirection(lastMovedDirection);
+        }
 
         IsAttacking();
         IsBeingHit();
@@ -132,6 +140,8 @@ public class GolemController : BossController
             // Short Delay....
             if (!inSmashingCoro) {
                 inSmashingCoro = true;
+                fov.isEnabled = true;
+                fov.SetFoVAndViewDistance(45, 5);
                 StartCoroutine(DelaySmashAttack(0.5f));
             }
             if (!isSmashing) return;
@@ -155,6 +165,8 @@ public class GolemController : BossController
 
             if (!inSmashingCoro) {
                 inSmashingCoro = true;
+                fov.isEnabled = true;
+                fov.SetFoVAndViewDistance(60, 5);
                 StartCoroutine(DelaySmashAttack(0.5f));
             }
             if (!isSmashing) return;
@@ -226,16 +238,23 @@ public class GolemController : BossController
         isSmashing = true;
         inSmashingCoro = false;
         anim.CrossFade("SpecialAttack", 0.1f, 2);
+        Invoke("StartCameraShake", 1f);
+    }
+
+    void StartCameraShake() { 
+        StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.5f, 0.1f));
     }
 
     IEnumerator WaitForEndSmashAttack() {
         while (isAttacking) {
             yield return new WaitForEndOfFrame();
         }
+        fov.DetectInArea();
         previousState = currentState;
         currentState = GolemStates.Dizzy;
         anim.SetBool("isDizzy", true);
         anim.CrossFade("Dizzy", 0.5f);
+        fov.isEnabled = false;
     }
 
     void SpawnEnemies() {
@@ -251,6 +270,7 @@ public class GolemController : BossController
         currentState = GolemStates.Dizzy;
         anim.SetBool("isDizzy", true);
         anim.CrossFade("Dizzy", 0.5f);
+        fov.isEnabled = false;
         SpawnEnemies();
     }
 
@@ -258,6 +278,7 @@ public class GolemController : BossController
         while (true) { 
             float posX = -(transform.position - lockedPlayer.transform.position).normalized.x, posY = -(transform.position - lockedPlayer.transform.position).normalized.y;
             Vector2 direction = new Vector2(posX, posY);
+            lastMovedDirection = direction;
             var inputVector = direction;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime * 0.01f, Vector3.back), Time.fixedDeltaTime * 4f);
             if (Mathf.Abs(Vector2.Angle(transform.forward, lockedPlayer.transform.position - transform.position)) <= 3) break;
@@ -265,6 +286,7 @@ public class GolemController : BossController
         }
         yield return new WaitForSeconds(seconds);
         isSmashing = true;
+
     }
 
     void UseSuperChargedAttack() {
@@ -274,6 +296,7 @@ public class GolemController : BossController
         isSmashing = true;
         inSmashingCoro = false;
         anim.CrossFade("SpecialAttack", 0.1f, 2);
+        Invoke("StartCameraShake", 1f);
     }
 
     void IsAttacking() {
@@ -296,6 +319,7 @@ public class GolemController : BossController
 
         float posX = -(transform.position - lockedPlayer.transform.position).normalized.x, posY = -(transform.position - lockedPlayer.transform.position).normalized.y;
         Vector2 direction = new Vector2(posX, posY);
+        lastMovedDirection = direction;
         var inputVector = direction;
         var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * _speed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;

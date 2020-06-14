@@ -1409,7 +1409,9 @@ GameObject:
   - component: {fileID: 95429706837762770}
   - component: {fileID: 6914367189564335336}
   - component: {fileID: 5939552291468792511}
-  - component: {fileID: 6343425416205837697}
+  - component: {fileID: 8165388022587911984}
+  - component: {fileID: 8540923204613620151}
+  - component: {fileID: 578381837191754185}
   m_Layer: 0
   m_Name: Golem
   m_TagString: BossCollider
@@ -18778,7 +18780,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &6343425416205837697
+--- !u!114 &8165388022587911984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18787,11 +18789,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 1606282618913942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d8b726964b769f468208edb09df5828, type: 3}
+  m_Script: {fileID: 11500000, guid: f63d117ccc6fa3c44928ae91f95587b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 1
-  viewAngle: 104
+  isEnabled: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 768
+  fov: 90
+  viewDistance: 1
+--- !u!33 &8540923204613620151
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606282618913942}
+  m_Mesh: {fileID: 0}
+--- !u!23 &578381837191754185
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606282618913942}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 69104c10bec076446959ba0ef692d669, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 2075951403
+  m_SortingLayer: 3
+  m_SortingOrder: 0
 --- !u!1 &1613466271819566
 GameObject:
   m_ObjectHideFlags: 0
