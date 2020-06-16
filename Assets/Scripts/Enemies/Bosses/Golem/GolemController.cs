@@ -135,8 +135,7 @@ public class GolemController : BossController
         else if (currentState == GolemStates.Attacking && previousState == GolemStates.Locked) {
             // Coming from Locked state straight into Attacking state, meaning Golem is using a smash attack.
             // Switch to Dizzy state after the smash attack, just for a second or two. 
-
-            if (isAttacking) return;
+            if (isAttacking || !pController.isAlive) return;
             // Short Delay....
             if (!inSmashingCoro) {
                 inSmashingCoro = true;
@@ -161,7 +160,7 @@ public class GolemController : BossController
 
         else if (currentState == GolemStates.Attacking && previousState == GolemStates.Dizzy) {
             // Charged attack...
-            if (isAttacking) return;
+            if (isAttacking || !pController.isAlive) return;
 
             if (!inSmashingCoro) {
                 inSmashingCoro = true;
@@ -238,10 +237,11 @@ public class GolemController : BossController
         isSmashing = true;
         inSmashingCoro = false;
         anim.CrossFade("SpecialAttack", 0.1f, 2);
-        Invoke("StartCameraShake", 1f);
+        Invoke("StartCameraShake", 1.125f);
     }
 
-    void StartCameraShake() { 
+    void StartCameraShake() {
+        particles["Slam"].Play();
         StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.5f, 0.1f));
     }
 
@@ -266,6 +266,7 @@ public class GolemController : BossController
         while (isAttacking) {
             yield return new WaitForEndOfFrame();
         }
+        fov.DetectInArea();
         previousState = currentState;
         currentState = GolemStates.Dizzy;
         anim.SetBool("isDizzy", true);
@@ -280,8 +281,8 @@ public class GolemController : BossController
             Vector2 direction = new Vector2(posX, posY);
             lastMovedDirection = direction;
             var inputVector = direction;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime * 0.01f, Vector3.back), Time.fixedDeltaTime * 4f);
-            if (Mathf.Abs(Vector2.Angle(transform.forward, lockedPlayer.transform.position - transform.position)) <= 3) break;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime * 0.01f, Vector3.back), Time.fixedDeltaTime * 5f);
+            if (Mathf.Abs(Vector2.Angle(transform.forward, lockedPlayer.transform.position - transform.position)) <= 7.5f) break;
             yield return new WaitForFixedUpdate();
         }
         yield return new WaitForSeconds(seconds);
@@ -296,7 +297,7 @@ public class GolemController : BossController
         isSmashing = true;
         inSmashingCoro = false;
         anim.CrossFade("SpecialAttack", 0.1f, 2);
-        Invoke("StartCameraShake", 1f);
+        Invoke("StartCameraShake", 1.125f);
     }
 
     void IsAttacking() {
