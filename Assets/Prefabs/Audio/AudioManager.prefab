@@ -49,6 +49,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1.75
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: ButtonClick02
@@ -56,6 +57,7 @@ MonoBehaviour:
     volume: 0.5
     pitch: 0.75
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: PlayerHit01
@@ -63,6 +65,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 2
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: PlayerHit02
@@ -70,6 +73,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1.5
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: PlayerHit03
@@ -77,6 +81,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1.5
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: ItemSpawn01
@@ -84,6 +89,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1.5
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: ItemSpawn02
@@ -91,6 +97,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1.5
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: DoorClose01
@@ -98,6 +105,7 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: DoorClose02
@@ -105,6 +113,7 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: DoorClose03
@@ -112,6 +121,7 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: ItemPickup01
@@ -119,6 +129,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: ItemPickup02
@@ -126,6 +137,7 @@ MonoBehaviour:
     volume: 0.125
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: Theme
@@ -133,6 +145,7 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 1
+    ignoreMasterVolume: 1
     playOnAwake: 1
     source: {fileID: 0}
   - name: PlayerShoot01
@@ -140,6 +153,7 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: EnemyHit01
@@ -147,6 +161,7 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: EnemyHit02
@@ -154,6 +169,7 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: EnemyHit03
@@ -161,5 +177,22 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TypeWriter01
+    clip: {fileID: 8300000, guid: 6d54422a861a301419e256d411966803, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EnemySpawn01
+    clip: {fileID: 8300000, guid: 753f528b12f44f94197e421a1604d4be, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
