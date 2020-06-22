@@ -69,6 +69,16 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
+    void DoDamageChest(GameObject target) {
+        if (Random.Range(1, 101) <= critProcChance) {
+            target.GetComponent<ChestController>().ReceiveDamage(damageAmount * critMultiplier);
+            target.GetComponent<ChestController>().particles["Crit"].Play();
+        }
+        else {
+            target.GetComponent<ChestController>().ReceiveDamage(damageAmount);
+        }
+    }
+
     void DoDamageBoss(GameObject target, bool isBack = false) {
         float _critProcChance;
         if (isBack) _critProcChance = critProcChance * 3;
@@ -84,7 +94,8 @@ public class ProjectileController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider" || collision.transform.tag == "Item") {
-            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item") DoDamage(collision.gameObject);
+            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item" && !collision.transform.name.Contains("Chest")) DoDamage(collision.gameObject);
+            else if (collision.transform.name.Contains("Chest")) DoDamageChest(collision.gameObject);
             pController.ResetProjectile(id);
         }
         else if (collision.transform.tag == "BossCollider") {

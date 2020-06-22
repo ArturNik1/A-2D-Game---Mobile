@@ -101,18 +101,23 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAlive) return;
 
-        EnemyManager.enemiesTouching = EnemyManager.enemiesTouching
-            .OrderByDescending(x => x.GetComponent<BossController>() == null ? -1 : x.GetComponent<BossController>().damage)
-            .ThenByDescending(y => y.GetComponent<EnemyController>() == null ? -1 : y.GetComponent<EnemyController>().damage).ToList();
+        if (EnemyManager.enemiesTouching.Count > 0 && EnemyManager.enemiesTouching[0].GetComponent<ChestController>() != null) {
+            ReceiveDamage(EnemyManager.enemiesTouching[0].GetComponent<ChestController>().damage);
+        }
+        else { 
+            EnemyManager.enemiesTouching = EnemyManager.enemiesTouching
+                .OrderByDescending(x => x.GetComponent<BossController>() == null ? -1 : x.GetComponent<BossController>().damage)
+                .ThenByDescending(y => y.GetComponent<EnemyController>() == null ? -1 : y.GetComponent<EnemyController>().damage).ToList();
 
-        foreach (GameObject touching in EnemyManager.enemiesTouching) { 
-            if (touching.GetComponent<BossController>() != null) {
-                ReceiveDamage(touching.GetComponent<BossController>().damage);
-                break;
-            }
-            else if (touching.GetComponent<EnemyController>() != null) {
-                ReceiveDamage(touching.GetComponent<EnemyController>().damage);
-                break;
+            foreach (GameObject touching in EnemyManager.enemiesTouching) { 
+                if (touching.GetComponent<BossController>() != null) {
+                    ReceiveDamage(touching.GetComponent<BossController>().damage);
+                    break;
+                }
+                else if (touching.GetComponent<EnemyController>() != null) {
+                    ReceiveDamage(touching.GetComponent<EnemyController>().damage);
+                    break;
+                }
             }
         }
 
@@ -201,6 +206,15 @@ public class PlayerController : MonoBehaviour
             else if (raycastHit2Ds[i].transform.tag == "Item") {
                 raycastHit2Ds[i].transform.gameObject.GetComponent<Item>().PickUPItem();
                 break;
+            }
+        }
+        RaycastHit[] raycastHit = Physics.SphereCastAll(transform.position, 0.15f, transform.forward, 0.15f);
+        for (int i = 0; i < raycastHit.Length; i++) {
+            if (raycastHit[i].transform.tag == "Collider") { 
+                if (raycastHit[i].transform.name.Contains("Chest")) { 
+                    raycastHit[i].transform.gameObject.GetComponent<ChestController>().InteractionWithChest();
+                    break;
+                }
             }
         }
     }
