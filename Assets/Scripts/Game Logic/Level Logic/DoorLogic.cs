@@ -44,12 +44,14 @@ public class DoorLogic : MonoBehaviour
 
             if (toRoom.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Special && !toRoom.GetComponent<RoomLogic>().cleared) {
                 // Spawn item....
-                if (ItemManager.instance.availableItems.Count != 0) { 
+                if (ItemManager.instance.availableItems.Count != 0) {
+                    /*
                     GameObject obj = Instantiate(ItemManager.instance.DetermineItem());
                     obj.GetComponent<Item>().fromItemRoom = true;
                     obj.transform.position = toRoom.transform.position;
                     obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
                     obj.GetComponent<Item>().room = toRoom;
+                    */
                 } 
             }
 

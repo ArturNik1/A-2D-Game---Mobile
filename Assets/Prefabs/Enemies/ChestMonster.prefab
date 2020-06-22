@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
+  startingToRotate: 0
   speed: 150
 --- !u!54 &9030269208695361488
 Rigidbody:
@@ -797,7 +798,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &-3723510721880737414
 MonoBehaviour:

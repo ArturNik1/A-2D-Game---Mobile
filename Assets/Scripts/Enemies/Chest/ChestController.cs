@@ -29,8 +29,9 @@ public class ChestController : MonoBehaviour
     RotationHandler rotHandler;
 
     public bool isActive = false;
+    public bool rotatingTowardsPlayer = false;
+    bool isEnemy = false;
     bool isAlive = true;
-    bool isWinning = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -78,7 +79,7 @@ public class ChestController : MonoBehaviour
     void FixedUpdate() {
         if (Time.time == 0 || Time.deltaTime == 0) return;
 
-        if (!pController.isAlive || !isAlive) return;
+        if (!pController.isAlive || !isAlive || !isEnemy) return;
 
         Move();
     }
@@ -87,8 +88,12 @@ public class ChestController : MonoBehaviour
         if (movement == 0) return;
 
         var inputVector = rotHandler.direction;
-        var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * Mathf.Pow(movement, 2.5f) * Time.fixedDeltaTime;
+        var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * Mathf.Pow(movement, 8f) * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
+
+        if (movement >= 0.4f && !rotatingTowardsPlayer) { 
+            rotHandler.LookAtPlayersDirection();
+        }
 
         rb.MovePosition(newPosition);
     }
@@ -101,12 +106,20 @@ public class ChestController : MonoBehaviour
         if (random <= 100) { // 25%?
             // Chest becomes enemy...
             anim.SetTrigger("OptionEnemy");
-            //movement = 0.5f;
+            // StartFight is called through animation state enter.
         }
         else {
             // Chest opens up, item pops out. 
             anim.SetTrigger("OptionOpen");
+            isEnemy = false;
         }
+    }
+
+    public void StartFight() {
+        if (isEnemy) return;
+        isEnemy = true;
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionZ;
     }
 
     public void ChargeForward() {
@@ -140,6 +153,7 @@ public class ChestController : MonoBehaviour
     }
 
     public void ReceiveDamage(float amount) {
+        if (!isEnemy) return;
         health -= amount;
         if (health <= 0) {
             ProjectileController.damageCounter += (amount + health);
@@ -186,8 +200,9 @@ public class ChestController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider") {
-            if (rotHandler.startingToRotate) return;
+            if (rotHandler.startingToRotate || !isEnemy) return;
             movement = 0;
+            rotatingTowardsPlayer = false;
             isCharging = false;
             rb.AddForce(collision.GetContact(0).normal, ForceMode.Impulse);
             anim.CrossFade("GetHit", 0.025f);

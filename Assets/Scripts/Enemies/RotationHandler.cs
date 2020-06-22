@@ -9,7 +9,7 @@ public class RotationHandler : MonoBehaviour
     GameObject lockedPlayer;
     Vector3 pos;
     ChestController cController;
-    bool lookingAtPlayer = false;
+    public bool lookingAtPlayer = false;
 
     public bool startingToRotate = false;
     public float speed = 150f;
@@ -48,25 +48,29 @@ public class RotationHandler : MonoBehaviour
             else left = true;
         }
 
-        while (true) {
-            float angleTarget = Mathf.Atan2(lockedPlayer.transform.position.y - transform.position.y, lockedPlayer.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
-            float currentAngle = DirectionToAngle(direction);
+        float angleTarget = Mathf.Atan2(lockedPlayer.transform.position.y - transform.position.y, lockedPlayer.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
+        float currentAngle = DirectionToAngle(direction);
+        while (Mathf.Abs(angleTarget - currentAngle) >= 3f && cController.movement < 1) {
+            angleTarget = Mathf.Atan2(lockedPlayer.transform.position.y - transform.position.y, lockedPlayer.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
+            currentAngle = DirectionToAngle(direction);
 
-            if (!left) direction = AngleToDirection(currentAngle + Time.deltaTime * speed);
-            else direction = AngleToDirection(currentAngle - Time.deltaTime * speed);
+            float _speed = speed;
+            if (cController.isCharging) _speed = speed / 1.5f; // Happens only when is already charging.  
+
+            if (!left) direction = AngleToDirection(currentAngle + Time.deltaTime * _speed);
+            else direction = AngleToDirection(currentAngle - Time.deltaTime * _speed);
 
             HandleRotation();
-
-            if (Mathf.Abs(angleTarget - currentAngle) <= 5f) break;
 
             yield return null;
         }
         lookingAtPlayer = true;
-        cController.ChargeForward();
+        if (!cController.isCharging) cController.ChargeForward();
         startingToRotate = false;
     }
 
     public void LookAtPlayersDirection() {
+        cController.rotatingTowardsPlayer = true;
         startingToRotate = true;
         StartCoroutine(StartLookingAtPlayer());
     }
