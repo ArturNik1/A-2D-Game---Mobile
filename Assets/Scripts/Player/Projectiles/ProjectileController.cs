@@ -46,7 +46,7 @@ public class ProjectileController : MonoBehaviour
                 pController.ResetProjectile(id);
             }
             else if (hit.collider.tag == "ChestHittable") {
-                if (!hit.collider.gameObject.GetComponent<ChestController>().isEnemy) return;
+                if (!hit.collider.gameObject.GetComponentInParent<ChestController>().isEnemy) return;
                 DoDamageChest(hit.transform.gameObject);
                 pController.ResetProjectile(id);
             }

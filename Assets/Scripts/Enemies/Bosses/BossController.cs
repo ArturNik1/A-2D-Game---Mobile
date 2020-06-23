@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class BossController : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public abstract class BossController : MonoBehaviour
     public float health;
     public float speed;
     public int damage;
+
+    float maxHealth;
+
+    protected GameObject healthBar;
 
     [HideInInspector]
     public Animator anim;
@@ -34,6 +39,9 @@ public abstract class BossController : MonoBehaviour
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
         _speed = speed;
+        maxHealth = health;
+
+        healthBar = GameObject.Find("Canvas").transform.Find("Boss Health Slider").gameObject;
 
         GameObject particleHolder = transform.Find("Particles").gameObject;
         for (int i = 0; i < particleHolder.transform.childCount; i++) {
@@ -83,6 +91,7 @@ public abstract class BossController : MonoBehaviour
             ProjectileController.damageCounter += amount;
             PlayHitAnimation();
         }
+        UpdateHealthBar();
         AudioManager.instance.Play("EnemyHit0" + Random.Range(1, 4));
     }
 
@@ -113,6 +122,10 @@ public abstract class BossController : MonoBehaviour
         rb.Sleep();
     }
 
+    public virtual void UpdateHealthBar() {
+        healthBar.GetComponent<Slider>().value = health / maxHealth;
+    }
+
     public abstract void UpdateAnimator();
 
     public virtual void OnCollisionEnter(Collision collision) {
@@ -134,5 +147,7 @@ public abstract class BossController : MonoBehaviour
 
     public virtual void OnDestroy() {
         EnemyManager.enemiesTouching.Remove(gameObject);
+        if (healthBar == null) return;
+        healthBar.SetActive(false);
     }
 }

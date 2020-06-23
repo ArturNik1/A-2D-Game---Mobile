@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChestController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class ChestController : MonoBehaviour
     public float health;
     public float speed;
     public int damage;
+
+    float maxHealth;
+    GameObject healthBar;
 
     [Header("States")]
     public bool isCharging;
@@ -45,6 +49,9 @@ public class ChestController : MonoBehaviour
         rotHandler = GetComponent<RotationHandler>();
 
         pController.playerDeath += OnPlayerDeath;
+
+        maxHealth = health;
+        healthBar = GameObject.Find("Canvas").transform.Find("Boss Health Slider").gameObject;
 
         GameObject particleHolder = transform.Find("Particles").gameObject;
         for (int i = 0; i < particleHolder.transform.childCount; i++) {
@@ -106,10 +113,13 @@ public class ChestController : MonoBehaviour
         isActive = true;
 
         int random = Random.Range(0, 100);
-        if (random < 25) { // 25%?
+        if (random < 35) { // 34%?
             // Chest becomes enemy...
             anim.SetTrigger("OptionEnemy");
             AudioManager.instance.Play("ChestLock01");
+            healthBar.SetActive(true);
+            healthBar.GetComponent<Slider>().value = 1f;
+            healthBar.transform.Find("Boss Name Text").GetComponent<Text>().text = "CHESTER";
             // StartFight is called through animation state enter.
         }
         else {
@@ -181,6 +191,10 @@ public class ChestController : MonoBehaviour
         anim.SetFloat("movement", movement);
     }
 
+    void UpdateHealthBar() { 
+        healthBar.GetComponent<Slider>().value = health / maxHealth;
+    }
+
     bool IsBeingHit() {
         if (isHit) { 
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit") &&
@@ -206,6 +220,7 @@ public class ChestController : MonoBehaviour
             ProjectileController.damageCounter += amount;
             PlayHitAnimation();
         }
+        UpdateHealthBar();
         AudioManager.instance.Play("EnemyHit0" + Random.Range(1, 4));
     }
 
@@ -273,6 +288,8 @@ public class ChestController : MonoBehaviour
     private void OnDestroy() {
         EnemyManager.enemiesTouching.Remove(gameObject);
         pController.playerDeath -= OnPlayerDeath;
+        if (healthBar == null) return;
+        healthBar.SetActive(false);
     }
 
 

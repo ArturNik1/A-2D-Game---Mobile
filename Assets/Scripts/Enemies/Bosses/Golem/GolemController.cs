@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GolemController : BossController
 {
@@ -39,6 +40,10 @@ public class GolemController : BossController
         base.Start();
         currentState = GolemStates.Idle;
         pController.playerDeath += OnPlayerDeath;
+
+        healthBar.SetActive(true);
+        healthBar.GetComponent<Slider>().value = 1f;
+        healthBar.transform.Find("Boss Name Text").GetComponent<Text>().text = "GOLEM";
 
         fov = GetComponent<FieldOfView>();
         enemyManager = GameObject.Find("Enemies").GetComponent<EnemyManager>();
