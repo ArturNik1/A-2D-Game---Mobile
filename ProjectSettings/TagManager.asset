@@ -11,6 +11,7 @@ TagManager:
   - BossUnHittable
   - BossCollider
   - BossUnHittableHand
+  - ChestHittable
   layers:
   - Default
   - TransparentFX

@@ -133,7 +133,6 @@ public abstract class BossController : MonoBehaviour
     }
 
     public virtual void OnDestroy() {
-        LevelManager.inBossRoom = false;
         EnemyManager.enemiesTouching.Remove(gameObject);
     }
 }

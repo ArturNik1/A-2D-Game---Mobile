@@ -34,18 +34,21 @@ public class ProjectileController : MonoBehaviour
             pController.ResetProjectile(id);
         }
 
-        if (LevelManager.inBossRoom) {
-            // check for raycast above...
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, -Vector3.forward, out hit, 10)) {
-                if (hit.collider.tag.Contains("UnHittable")) {
-                    pController.ResetProjectile(id);
-                } 
-                else if (hit.collider.tag == "BossHittable") {
-                    if (hit.collider.name == "Back") DoDamageBoss(hit.transform.gameObject, true);
-                    else  DoDamageBoss(hit.transform.gameObject);
-                    pController.ResetProjectile(id);
-                }
+        // check for raycast above...
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.forward, out hit, 10) || Physics.Raycast(transform.position, Vector3.forward, out hit, 10)) { // Up
+            if (hit.collider.tag.Contains("UnHittable")) {
+                pController.ResetProjectile(id);
+            } 
+            else if (hit.collider.tag == "BossHittable") {
+                if (hit.collider.name == "Back") DoDamageBoss(hit.transform.gameObject, true);
+                else  DoDamageBoss(hit.transform.gameObject);
+                pController.ResetProjectile(id);
+            }
+            else if (hit.collider.tag == "ChestHittable") {
+                if (!hit.collider.gameObject.GetComponent<ChestController>().isEnemy) return;
+                DoDamageChest(hit.transform.gameObject);
+                pController.ResetProjectile(id);
             }
         }
     }
@@ -95,7 +98,10 @@ public class ProjectileController : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider" || collision.transform.tag == "Item") {
             if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item" && !collision.transform.name.Contains("Chest")) DoDamage(collision.gameObject);
-            else if (collision.transform.name.Contains("Chest")) DoDamageChest(collision.gameObject);
+            else if (collision.transform.name.Contains("Chest")) {
+                if (collision.GetContact(0).otherCollider.name.Contains("Leg")) return;
+                DoDamageChest(collision.gameObject);
+            }
             pController.ResetProjectile(id);
         }
         else if (collision.transform.tag == "BossCollider") {

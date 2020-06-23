@@ -48,7 +48,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             string p = particleHolder.transform.GetChild(i).name.Split('_')[1];
             particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
         }
-        if (LevelManager.inBossRoom) particles["Spawn"].Play();
+        if (pController.currentRoomMain.roomAction == RoomLogic.RoomAction.Boss) particles["Spawn"].Play();
     }
 
     void Init() { 

@@ -20,6 +20,9 @@ public class ChestController : MonoBehaviour
     [Header("Animation Variables")]
     public float movement = 0f;
 
+    [HideInInspector]
+    public GameObject room;
+
     public Dictionary<string, ParticleSystem> particles = new Dictionary<string, ParticleSystem>();
 
     Animator anim;
@@ -30,7 +33,7 @@ public class ChestController : MonoBehaviour
 
     public bool isActive = false;
     public bool rotatingTowardsPlayer = false;
-    bool isEnemy = false;
+    public bool isEnemy = false;
     bool isAlive = true;
 
     // Start is called before the first frame update
@@ -103,15 +106,53 @@ public class ChestController : MonoBehaviour
         isActive = true;
 
         int random = Random.Range(0, 100);
-        if (random <= 100) { // 25%?
+        if (random < 25) { // 25%?
             // Chest becomes enemy...
             anim.SetTrigger("OptionEnemy");
+            AudioManager.instance.Play("ChestLock01");
             // StartFight is called through animation state enter.
         }
         else {
             // Chest opens up, item pops out. 
             anim.SetTrigger("OptionOpen");
+            AudioManager.instance.Play("ChestLock01");
+            StartCoroutine(PlayChestCreakSound());
             isEnemy = false;
+        }
+    }
+
+    IEnumerator PlayChestCreakSound() { 
+        while (AudioManager.instance.IsPlaying("ChestLock01")) {
+            yield return null;
+        }
+        AudioManager.instance.Play("ChestOpen0" + Random.Range(1, 3));
+    }
+
+    IEnumerator DelaySpawnItem (bool fromNormal, float seconds) {
+        yield return new WaitForSeconds(seconds);
+        SpawnItem(fromNormal);
+    }
+
+    public void SpawnItem(bool fromNormal) {
+        if (ItemManager.instance.availableItems.Count != 0) {
+            GameObject obj = Instantiate(ItemManager.instance.DetermineItem());
+            obj.GetComponent<Item>().fromItemRoom = true;
+            if (fromNormal) obj.transform.position = new Vector3(room.transform.position.x, room.transform.position.y + 0.1f, room.transform.position.z - 0.25f);
+            else obj.transform.position = new Vector3(transform.position.x, transform.position.y, -0.1f);
+            obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
+            obj.GetComponent<Item>().room = room;
+        }
+        else {
+            if (ItemManager.instance.droppedItems.Count == 0) return;
+
+            GameObject determined = ItemManager.instance.DetermineItemDropped();
+            if (determined == null) return;
+
+            GameObject obj = Instantiate(determined);
+            obj.transform.position = new Vector3(room.transform.position.x, room.transform.position.y + 0.1f, room.transform.position.z - 0.25f);
+            obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
+
+            AudioManager.instance.Play("ItemSpawn0" + Random.Range(1, 3));
         }
     }
 
@@ -180,11 +221,15 @@ public class ChestController : MonoBehaviour
         StartCoroutine(Die());
     }
 
-    IEnumerator Die() { 
+    IEnumerator Die() {
+        // Make sure all of the death animation is visible...
+        transform.position = new Vector3(transform.position.x, transform.position.y, -0.25f);
         while (true) { 
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f) {
-                // Spawn Item...
-                // Open Chest...
+
+                StartCoroutine(DelaySpawnItem(false, 0.5f));
+
+                Destroy(gameObject, 0.6f);
                 break;
             }
             else {

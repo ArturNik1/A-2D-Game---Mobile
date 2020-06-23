@@ -3071,6 +3071,91 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[19].name
+      value: ChestLock01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[19].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 99efe5320dd2aca44ae3aaf2c04d2457, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[19].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[19].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[20].name
+      value: ChestOpen01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[20].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1391e3358f5767e48825f606b004b505, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[20].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[20].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[21].name
+      value: ChestOpen02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[21].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4bf55226e9880c547ac11b31f9bf814c, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[21].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[21].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[22].name
+      value: ChestOpen02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[22].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4bf55226e9880c547ac11b31f9bf814c, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[22].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[22].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4752643167481886035, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
 {
     public static int currentWorld = 0;
     public static int currentRoomGenerated = 0;
-    public static bool inBossRoom = false;
     public static RoomType currentRoomType;
 
     public GameObject roomPrefab;
@@ -151,7 +150,6 @@ public class LevelManager : MonoBehaviour
     void OnSceneWasSwitched(Scene scene, LoadSceneMode mode) {
         currentWorld = 0;
         currentRoomGenerated = 0;
-        inBossRoom = false;
 
         ProjectileController.damageAmount = 5f;
         ProjectileController.critMultiplier = 1.1f;

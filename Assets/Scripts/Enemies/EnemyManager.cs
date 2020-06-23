@@ -34,7 +34,6 @@ public class EnemyManager : MonoBehaviour
 
         if (room.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Boss) {
             gameObject.GetComponent<BossManager>().SpawnBoss(room);
-            LevelManager.inBossRoom = true;
             return;
         }
         else if (room.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Special) {
@@ -59,6 +58,7 @@ public class EnemyManager : MonoBehaviour
 
         GameObject chest = Instantiate(enemyPrefabs[2], pos, enemyPrefabs[2].transform.rotation);
         chest.transform.SetParent(enemyParent.transform);
+        chest.GetComponent<ChestController>().room = room;
     }
 
     public void SpawnBossEnemeis(GameObject room) {
