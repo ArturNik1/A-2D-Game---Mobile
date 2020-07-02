@@ -77,14 +77,14 @@ public class EnemyManager : MonoBehaviour
 
         pos = new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, true), 0);
         if (Vector2.Distance(pos, pController.transform.position) >= 0.4f) { 
-            enemyType = Random.Range(0, enemyPrefabs.Length);
+            enemyType = Random.Range(0, 2);
             enemy = Instantiate(enemyPrefabs[enemyType], pos, transform.rotation);
             enemy.transform.SetParent(enemyParent.transform);
         }
 
         pos = new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 80, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 80, false), 0);
         if (Vector2.Distance(pos, pController.transform.position) >= 0.4f) {
-            enemyType = Random.Range(0, enemyPrefabs.Length);
+            enemyType = Random.Range(0, 2);
             enemy = Instantiate(enemyPrefabs[enemyType], pos, transform.rotation);
             enemy.transform.SetParent(enemyParent.transform);
         }

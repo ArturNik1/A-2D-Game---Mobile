@@ -3074,7 +3074,7 @@ PrefabInstance:
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
@@ -3139,22 +3139,22 @@ PrefabInstance:
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.data[22].name
-      value: ChestOpen02
+      value: Fireball01
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.data[22].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 4bf55226e9880c547ac11b31f9bf814c, type: 3}
+      objectReference: {fileID: 8300000, guid: ebadc0f044b232748a0e7a27d9b740d6, type: 3}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.data[22].volume
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.data[22].pitch
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4752643167481886035, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}

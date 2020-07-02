@@ -28,6 +28,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     protected Vector2 directionRotate;
     protected GameObject player;
     protected PlayerController pController;
+    protected bool skipMove = false;
 
     public float startDelay;
     float startDelayCounter;
@@ -125,7 +126,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             return;
         }
 
-        if (isHit) return;
+        if (isHit || skipMove) return;
         rb.MovePosition(newPosition);
     }
 
@@ -206,7 +207,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
     }
     public virtual bool IsBeingHit() {
-        if (isHit) { 
+        if (isHit) {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit") &&
                 anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f) {
                 isHit = false;
