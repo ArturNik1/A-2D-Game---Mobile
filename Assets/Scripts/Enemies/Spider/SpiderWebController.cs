@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballController : MonoBehaviour
+public class SpiderWebController : MonoBehaviour
 {
     [HideInInspector]
     public GameObject parent;
@@ -40,7 +40,7 @@ public class FireballController : MonoBehaviour
         }
         else if (other.tag == "Player") {
             other.attachedRigidbody.velocity = Vector3.zero;
-            pController.ReceiveDamage(5);
+            pController.ReceiveDamage(4);
             if (parent != null) parent.GetComponent<LeanGameObjectPool>().Despawn(gameObject);
             else Destroy(gameObject);
         }

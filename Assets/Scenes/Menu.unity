@@ -523,7 +523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.23119973, y: 1}
-  m_AnchoredPosition: {x: -0.022003174, y: 0.025001526}
+  m_AnchoredPosition: {x: -0.022033691, y: 0.025001526}
   m_SizeDelta: {x: -0.054000854, y: -0.051000595}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &204594435
@@ -674,7 +674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.23119973, y: 1}
-  m_AnchoredPosition: {x: -0.022003174, y: 0.025001526}
+  m_AnchoredPosition: {x: -0.022033691, y: 0.025001526}
   m_SizeDelta: {x: -0.054000854, y: -0.051000595}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &285373137
@@ -784,7 +784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.117000006, y: 0.5}
   m_AnchorMax: {x: 0.91213644, y: 0.8428909}
-  m_AnchoredPosition: {x: 0.18008423, y: 0.4634552}
+  m_AnchoredPosition: {x: 0.18011475, y: 0.4634552}
   m_SizeDelta: {x: 0.6438141, y: -0.25230026}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &502244885
@@ -2180,7 +2180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.117000006, y: 0.09444539}
   m_AnchorMax: {x: 0.91213644, y: 0.44200003}
-  m_AnchoredPosition: {x: 0.09005737, y: 0.12741089}
+  m_AnchoredPosition: {x: 0.090026855, y: 0.12741089}
   m_SizeDelta: {x: 0.6438141, y: -0.25230026}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543455971
@@ -2366,7 +2366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37254882, y: 0.34600002}
   m_AnchorMax: {x: 0.629, y: 0.45324686}
-  m_AnchoredPosition: {x: -0.17715454, y: -0.026367188}
+  m_AnchoredPosition: {x: -0.17712402, y: -0.026367188}
   m_SizeDelta: {x: 0.030000687, y: -0.3000002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1646048190
@@ -2947,7 +2947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25779995, y: 0.0398767}
   m_AnchorMax: {x: 0.9822, y: 0.92462504}
-  m_AnchoredPosition: {x: 0.024459839, y: -0.20000458}
+  m_AnchoredPosition: {x: 0.024475098, y: -0.20000458}
   m_SizeDelta: {x: 0.048999786, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071875134
@@ -3074,7 +3074,7 @@ PrefabInstance:
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}
@@ -3155,6 +3155,26 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[22].pitch
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[23].name
+      value: SpiderWeb01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[23].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0681547f80abffd429b6870917e5e4cd, type: 3}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[23].volume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112897299411055495, guid: a41d1c94372a0334b8131a15d4e052a2,
+        type: 3}
+      propertyPath: sounds.Array.data[23].pitch
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4752643167481886035, guid: a41d1c94372a0334b8131a15d4e052a2,
         type: 3}

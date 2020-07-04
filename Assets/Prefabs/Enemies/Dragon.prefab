@@ -531,9 +531,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeModel: {fileID: 0}
-  health: 20
+  health: 25
   speed: 0.2
-  damage: 0
+  damage: 4
   isMoving: 0
   isIdle: 0
   isHit: 0
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6315849204908868500, guid: de6eda2a3dfd6514badb83649e0f5ed4, type: 3}
+  prefab: {fileID: 6315849204908868500, guid: a30a0e1de3543b541aeea9d126d4b1b8, type: 3}
   Notification: 0
   Preload: 3
   Capacity: 10

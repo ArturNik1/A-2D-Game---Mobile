@@ -248,13 +248,14 @@ public class GolemController : BossController
     void StartCameraShake() {
         particles["Slam"].Play();
         StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.5f, 0.1f));
+        fov.DetectInArea();
     }
 
     IEnumerator WaitForEndSmashAttack() {
         while (isAttacking) {
             yield return new WaitForEndOfFrame();
         }
-        fov.DetectInArea();
+        //fov.DetectInArea();
         previousState = currentState;
         currentState = GolemStates.Dizzy;
         anim.SetBool("isDizzy", true);
@@ -271,7 +272,7 @@ public class GolemController : BossController
         while (isAttacking) {
             yield return new WaitForEndOfFrame();
         }
-        fov.DetectInArea();
+        //fov.DetectInArea();
         previousState = currentState;
         currentState = GolemStates.Dizzy;
         anim.SetBool("isDizzy", true);

@@ -34,9 +34,13 @@ public class ProjectileController : MonoBehaviour
             pController.ResetProjectile(id);
         }
 
-        // check for raycast above...
+        // check for raycast above and below in a 2x2 'box'....
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.forward, out hit, 10) || Physics.Raycast(transform.position, Vector3.forward, out hit, 10)) { // Up
+        if (Physics.Raycast(new Vector3(transform.position.x + 0.0175f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0175f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) ||
+            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0175f, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0175f, transform.position.z), -Vector3.forward, out hit, 5) || 
+            Physics.Raycast(new Vector3(transform.position.x + 0.0175f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0175f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) ||
+            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0175f, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0175f, transform.position.z), Vector3.forward, out hit, 5)) { // Up
+            
             if (hit.collider.tag.Contains("UnHittable")) {
                 pController.ResetProjectile(id);
             } 
@@ -48,6 +52,10 @@ public class ProjectileController : MonoBehaviour
             else if (hit.collider.tag == "ChestHittable") {
                 if (!hit.collider.gameObject.GetComponentInParent<ChestController>().isEnemy) return;
                 DoDamageChest(hit.transform.gameObject);
+                pController.ResetProjectile(id);
+            }
+            else if (hit.collider.tag == "RegularHittable") {
+                DoDamage(hit.transform.gameObject);
                 pController.ResetProjectile(id);
             }
         }

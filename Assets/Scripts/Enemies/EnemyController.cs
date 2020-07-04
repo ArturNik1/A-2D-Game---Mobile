@@ -104,13 +104,15 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * speed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
 
-        if (inputVector != Vector2.zero) {
-            isMoving = true;
-            isIdle = false;
-        }
-        else {
-            isMoving = false;
-            isIdle = true;
+        if (!skipMove) { 
+            if (inputVector != Vector2.zero) {
+                isMoving = true;
+                isIdle = false;
+            }
+            else {
+                isMoving = false;
+                isIdle = true;
+            }
         }
 
         if (firstUpdate) {

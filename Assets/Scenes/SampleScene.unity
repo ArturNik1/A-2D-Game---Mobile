@@ -1047,6 +1047,9 @@ MonoBehaviour:
   - {fileID: 1054638298448434, guid: aed40cee58f6f08459e48bfe65d201b9, type: 3}
   - {fileID: 1228834762862560, guid: 58ac5cacec107144e80e52a116059471, type: 3}
   - {fileID: 1798744183352039230, guid: d3627a56b015c8a49b575979c1bcc4b4, type: 3}
+  - {fileID: 1269815030824246, guid: 80f03998e7a14114280554c54466f490, type: 3}
+  - {fileID: 1522199433267968, guid: c48867171113fa041b39589ab2249ff6, type: 3}
+  - {fileID: 1711228206799690, guid: 2368973eddd4e0d46970a26d70703778, type: 3}
   playerGameObject: {fileID: 187244949}
 --- !u!114 &492698530
 MonoBehaviour:
