@@ -208,8 +208,10 @@ public class GolemController : BossController
             }
         }
 
-        else if (currentState == GolemStates.Winning) { 
+        else if (currentState == GolemStates.Winning) {
             // This will be empty here, likely to setup an action event for player's death.
+            isAttacking = false;
+            isSmashing = false;
         }
 
         else if (currentState == GolemStates.Dying) { 

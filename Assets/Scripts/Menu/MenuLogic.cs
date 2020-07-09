@@ -21,6 +21,7 @@ public class MenuLogic : MonoBehaviour
     public GameObject mainCanvas;
     public Button infoReturnButton;
     public PlayerController player;
+    public GameObject debug;
 
     public void LoadScene() {
         if (SceneManager.GetActiveScene().buildIndex == 0) StartCoroutine(LoadLevel(1));
@@ -121,6 +122,11 @@ public class MenuLogic : MonoBehaviour
                 }
             }
         }
+
+        if (Debug.isDebugBuild && SceneManager.GetActiveScene().buildIndex == 1) {
+            debug.SetActive(true);
+        }
+
     }
 
     void SetGamePauseText(Text leftText) {

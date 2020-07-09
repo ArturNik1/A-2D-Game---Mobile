@@ -19,9 +19,14 @@ public class SpiderController : EnemyController
         projectiles = GameObject.Find("ProjectilesEnemy").transform;
     }
 
-    public override void Move()
+    public override void Update()
     {
         shotCooldownCounter += Time.deltaTime;
+        base.Update();
+    }
+
+    public override void Move()
+    {
         if (Vector2.Distance(player.transform.position, gameObject.transform.position) <= 0.9f) {
             skipMove = true;
             isMoving = false;
@@ -41,8 +46,8 @@ public class SpiderController : EnemyController
         }
         base.Move();
     }
-
     void Shoot() {
+        if (rb.detectCollisions == false) return; // In process of dying, don't shoot.
         var obj = GetComponent<LeanGameObjectPool>().Spawn(transform.position, transform.rotation, projectiles);
         obj.GetComponent<SpiderWebController>().parent = gameObject;
         AudioManager.instance.Play("SpiderWeb01");
@@ -50,6 +55,25 @@ public class SpiderController : EnemyController
 
     bool isLookingAtPlayerAprox() { 
         return Mathf.Abs(Vector2.Angle(transform.forward, player.transform.position - transform.position)) <= 5f;
+    }
+
+    public override void PlayHitAnimation() {
+        anim.CrossFade("GetHit", 0.1f, 1);
+        isHit = true;
+        isMoving = false;
+        ChangeDirectionOnHitToPlayerNoRandom();
+    }
+
+    public override bool IsBeingHit() {
+        if (isHit) {
+            if (anim.GetCurrentAnimatorStateInfo(1).IsName("GetHit") &&
+                anim.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.9f) {
+                isHit = false;
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
 }

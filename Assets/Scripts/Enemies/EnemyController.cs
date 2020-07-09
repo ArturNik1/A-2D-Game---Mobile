@@ -179,7 +179,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
         AudioManager.instance.Play("EnemyHit0" + Random.Range(1, 4));
     }
-    public void PlayHitAnimation() {
+    public virtual void PlayHitAnimation() {
         anim.CrossFade("GetHit", 0.1f);
         isHit = true;
         isMoving = false;
@@ -219,6 +219,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
         return false;
     }
+
+    public float DistanceFromPlayer() {
+        return Vector2.Distance(player.transform.position, gameObject.transform.position);
+    }
+
     public virtual void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Collider") {
             if (collision.transform.name == "Player") {
@@ -232,7 +237,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
     }
 
-    public void OnCollisionExit(Collision collision) {
+    public virtual void OnCollisionExit(Collision collision) {
         rb.velocity = Vector3.zero;
         if (collision.transform.name == "Player") {
             collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

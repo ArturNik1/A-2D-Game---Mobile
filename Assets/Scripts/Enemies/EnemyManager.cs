@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Enemies")]
     public GameObject[] enemyPrefabs; // 0 - slime ; 1 - snail 2 - chest;
 
-    GameObject enemyParent;
+    [HideInInspector] public GameObject enemyParent;
     public GameObject playerGameObject;
     PlayerController pController;
 

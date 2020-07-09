@@ -1051,6 +1051,7 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   infoReturnButton: {fileID: 0}
   player: {fileID: 0}
+  debug: {fileID: 0}
 --- !u!1 &557293964
 GameObject:
   m_ObjectHideFlags: 0

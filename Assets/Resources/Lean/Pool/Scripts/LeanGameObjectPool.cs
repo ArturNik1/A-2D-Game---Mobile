@@ -478,7 +478,7 @@ namespace Lean.Pool
 
 				if (prefabMap.TryGetValue(prefab, out existingPool) == true)
 				{
-					Debug.LogWarning("You have multiple pools managing the same prefab (" + prefab.name + ").", existingPool);
+					//Debug.LogWarning("You have multiple pools managing the same prefab (" + prefab.name + ").", existingPool);
 					return;
 				}
 				else
