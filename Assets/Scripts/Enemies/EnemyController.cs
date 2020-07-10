@@ -38,6 +38,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     // Start is called before the first frame update
     public virtual void Start()
     {
+        print(transform.GetChild(0).transform.rotation.eulerAngles);
         Init();
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
@@ -71,6 +72,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     // Update is called once per frame
     public virtual void Update()
     {
+        print(transform.GetChild(0).transform.rotation.eulerAngles);
         if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
 
         if (!isAlive) rb.velocity = Vector3.zero;
@@ -115,13 +117,15 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             }
         }
 
-        if (firstUpdate) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 1);
-            firstUpdate = false;
-        }
-        else { 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.1f);
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.1f);
+
+        //if (firstUpdate) {
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 1);
+        //    firstUpdate = false;
+        //}
+        //else {
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.1f);
+        //}
 
         if (startDelayCounter <= startDelay) { // Don't move if X seconds had not passed.
             startDelayCounter += Time.deltaTime;

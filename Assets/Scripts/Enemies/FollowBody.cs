@@ -9,7 +9,8 @@ public class FollowBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        body = transform.parent.Find("Body");
+        //body = transform.parent.Find("Body");
+        body = transform.parent.Find("BodyHolder").GetChild(0);
     }
 
     // Update is called once per frame
