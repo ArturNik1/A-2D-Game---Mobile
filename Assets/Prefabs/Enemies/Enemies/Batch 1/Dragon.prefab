@@ -538,6 +538,7 @@ MonoBehaviour:
   isIdle: 0
   isHit: 0
   anim: {fileID: 0}
+  damageToBeTaken: []
   startDelay: 0.5
   isShooting: 0
   shotCooldownMax: 2.5
@@ -1793,7 +1794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 470264, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 470264, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1801,7 +1802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 470264, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.04
+      value: 0.869
       objectReference: {fileID: 0}
     - target: {fileID: 470264, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1841,11 +1842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19867628, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 1.5
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 19867628, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 2
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 19884710, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: playOnAwake

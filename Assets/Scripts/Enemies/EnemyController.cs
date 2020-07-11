@@ -23,6 +23,9 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public Animator anim;
     public Dictionary<string, ParticleSystem> particles = new Dictionary<string, ParticleSystem>();
 
+    [HideInInspector]
+    public List<float> damageToBeTaken = new List<float>();
+
     protected Rigidbody rb;
     protected Vector2 direction;
     protected Vector2 directionRotate;
@@ -33,7 +36,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public float startDelay;
     float startDelayCounter;
     bool isWinning;
-    bool isAlive = true;
+    protected bool isAlive = true;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -74,6 +77,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
 
         if (!isAlive) rb.velocity = Vector3.zero;
+
+        if (damageToBeTaken.Count > 0) {
+            ReceiveDamage(damageToBeTaken[0]);
+            damageToBeTaken.Clear();
+        }
 
         UpdateStates();
         
@@ -195,7 +203,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     }
     public virtual IEnumerator Die() {
         while (true) {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f) {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.2f) {
 
                 if (Random.Range(1, 101) <= ItemManager.instance.dropRate) 
                     ItemManager.instance.SpawnItemDropped(transform.position);

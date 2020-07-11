@@ -1114,6 +1114,7 @@ MonoBehaviour:
   isIdle: 0
   isHit: 0
   anim: {fileID: 0}
+  damageToBeTaken: []
   startDelay: 0.5
   isShooting: 0
   shotCooldownMax: 1.75
@@ -12593,7 +12594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 470264, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05
+      value: -0.166
       objectReference: {fileID: 0}
     - target: {fileID: 470264, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -12627,26 +12628,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 19867628, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19867628, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 19867628, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 19884710, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19884710, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab7ba85939993443bb971699f501f9d, type: 3}
 --- !u!4 &1545785194180892419 stripped
@@ -12672,11 +12653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 464840, guid: fa040c39f6c04084da8916f3db381bd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 464840, guid: fa040c39f6c04084da8916f3db381bd5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 464840, guid: fa040c39f6c04084da8916f3db381bd5, type: 3}
       propertyPath: m_LocalRotation.x

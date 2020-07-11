@@ -29,6 +29,9 @@ public class ChestController : MonoBehaviour
 
     public Dictionary<string, ParticleSystem> particles = new Dictionary<string, ParticleSystem>();
 
+    [HideInInspector]
+    public List<float> damageToBeTaken = new List<float>();
+
     Animator anim;
     Rigidbody rb;
     GameObject player;
@@ -82,6 +85,11 @@ public class ChestController : MonoBehaviour
         if (Time.timeScale == 0 || Time.deltaTime == 0) return;
 
         if (!isAlive) rb.velocity = Vector3.zero;
+
+        if (damageToBeTaken.Count > 0) {
+            ReceiveDamage(damageToBeTaken[0]);
+            damageToBeTaken.Clear();
+        }
 
         UpdateStates();
     }

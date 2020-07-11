@@ -34,14 +34,24 @@ public class ProjectileController : MonoBehaviour
             pController.ResetProjectile(id);
         }
 
+        //Debug.DrawRay(new Vector3(transform.position.x + 0.0225f, transform.position.y, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
+        //Debug.DrawRay(new Vector3(transform.position.x - 0.0225f, transform.position.y, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
+
         // check for raycast above and below in a 2x2 'box'....
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x + 0.0175f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0175f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) ||
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0175f, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0175f, transform.position.z), -Vector3.forward, out hit, 5) || 
-            Physics.Raycast(new Vector3(transform.position.x + 0.0175f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0175f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) ||
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0175f, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0175f, transform.position.z), Vector3.forward, out hit, 5)) { // Up
+        if (Physics.Raycast(new Vector3(transform.position.x + 0.0225f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0225f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) ||
+            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z), -Vector3.forward, out hit, 5) || 
+            Physics.Raycast(new Vector3(transform.position.x + 0.0225f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0225f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) ||
+            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z), Vector3.forward, out hit, 5)) { // Up
             
             if (hit.collider.tag.Contains("UnHittable")) {
+                print(hit.collider.name);
+                if (hit.collider.name.Contains("Shield")) { 
+                    hit.collider.GetComponentInParent<SkeletonController>().shieldHit = true;
+                    DoDamage(hit.transform.gameObject);
+                }
                 pController.ResetProjectile(id);
             } 
             else if (hit.collider.tag == "BossHittable") {
@@ -55,6 +65,7 @@ public class ProjectileController : MonoBehaviour
                 pController.ResetProjectile(id);
             }
             else if (hit.collider.tag == "RegularHittable") {
+                if (hit.collider.name.Contains("Shield")) hit.collider.GetComponentInParent<SkeletonController>().shieldHit = true;
                 DoDamage(hit.transform.gameObject);
                 pController.ResetProjectile(id);
             }
@@ -72,27 +83,27 @@ public class ProjectileController : MonoBehaviour
 
     void DoDamage(GameObject target) {
         if (Random.Range(1, 101) <= critProcChance)  { 
-            target.GetComponent<EnemyController>().ReceiveDamage(damageAmount * critMultiplier);
+            target.GetComponent<EnemyController>().damageToBeTaken.Add(damageAmount * critMultiplier);
             target.GetComponent<EnemyController>().particles["Crit"].Play();
         }
         else { 
-            target.GetComponent<EnemyController>().ReceiveDamage(damageAmount);
+            target.GetComponent<EnemyController>().damageToBeTaken.Add(damageAmount);
         }
     }
 
     void DoDamageChest(GameObject target) {
         if (Random.Range(1, 101) <= critProcChance) {
-            target.GetComponent<ChestController>().ReceiveDamage(damageAmount * critMultiplier);
+            target.GetComponent<ChestController>().damageToBeTaken.Add(damageAmount * critMultiplier);
             target.GetComponent<ChestController>().particles["Crit"].Play();
         }
         else {
-            target.GetComponent<ChestController>().ReceiveDamage(damageAmount);
+            target.GetComponent<ChestController>().damageToBeTaken.Add(damageAmount);
         }
     }
 
-    void DoDamageBoss(GameObject target, bool isBack = false) {
+    void DoDamageBoss(GameObject target, bool critZone = false) {
         float _critProcChance;
-        if (isBack) _critProcChance = critProcChance * 3;
+        if (critZone) _critProcChance = critProcChance * 3;
         else _critProcChance = critProcChance;
         if (Random.Range(1, 101) <= _critProcChance) {
             target.GetComponent<BossController>().ReceiveDamage(damageAmount * critMultiplier);
@@ -104,15 +115,19 @@ public class ProjectileController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.transform.tag == "Collider" || collision.transform.tag == "Item") {
-            if (!collision.transform.name.StartsWith("Wall") && collision.transform.tag != "Item" && !collision.transform.name.Contains("Chest")) DoDamage(collision.gameObject);
-            else if (collision.transform.name.Contains("Chest")) {
-                if (collision.GetContact(0).otherCollider.name.Contains("Leg")) return;
-                DoDamageChest(collision.gameObject);
+        if (collision.transform.tag == "Collider") 
+        {
+            if (!collision.GetContact(0).otherCollider.transform.tag.Contains("UnHittable") && !collision.transform.name.StartsWith("Wall")) 
+            {
+                if (collision.GetContact(0).otherCollider.transform.name.Contains("Shield")) collision.gameObject.GetComponentInParent<SkeletonController>().shieldHit = true;
+                if (!collision.transform.name.Contains("Chest")) DoDamage(collision.gameObject);
+                else DoDamageChest(collision.gameObject);
             }
             pController.ResetProjectile(id);
         }
-        else if (collision.transform.tag == "BossCollider") {
+        else if (collision.transform.tag == "Item") pController.ResetProjectile(id);
+        else if (collision.transform.tag == "BossCollider")
+        {
             if (collision.GetContact(0).otherCollider.transform.tag == "BossHittable") DoDamageBoss(collision.gameObject, collision.GetContact(0).otherCollider.name == "Back" ? true : false);
             pController.ResetProjectile(id);
         }

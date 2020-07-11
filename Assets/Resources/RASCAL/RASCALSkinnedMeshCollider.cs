@@ -5,6 +5,9 @@ using System.Threading;
 using System.Collections.Generic;
 using UnityEngine;
 using RASCAL;
+using System.ComponentModel;
+using UnityScript.Core;
+using System.Net.Http.Headers;
 
 [AddComponentMenu("Physics/RASCAL Skinned Mesh Collider", 0)]
 [ExecuteInEditMode]
@@ -706,6 +709,7 @@ public class RASCALSkinnedMeshCollider : MonoBehaviour {
             collMesh.uv3 = serializedUV3;
             collMesh.uv4 = serializedUV4;
 
+            if (!meshCol.GetComponent<MeshCollider>().enabled) return;
             meshCol.sharedMesh = collMesh;
         }
 
