@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 95429706837762770}
   - component: {fileID: 6914367189564335336}
   - component: {fileID: 5939552291468792511}
-  - component: {fileID: 8165388022587911984}
+  - component: {fileID: 7714716591096220640}
   - component: {fileID: 8540923204613620151}
   - component: {fileID: 578381837191754185}
   m_Layer: 0
@@ -18780,7 +18780,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &8165388022587911984
+--- !u!114 &7714716591096220640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18795,7 +18795,7 @@ MonoBehaviour:
   isEnabled: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 0
   fov: 90
   viewDistance: 1
 --- !u!33 &8540923204613620151

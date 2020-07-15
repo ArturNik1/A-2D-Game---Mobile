@@ -157,6 +157,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
         direction = new Vector2(posX, posY);
     }
+    public virtual void ChangeDirectionToPlayerDelay() {
+        Vector2 lastDirection = direction;
+        float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
+        direction = Vector3.Slerp(new Vector2(posX, posY), lastDirection, 0.986f);
+    }
     public virtual void ChangeDirectionOnHit(float normalX, float normalY) {
         float randX, randY;
 
