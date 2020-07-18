@@ -5,6 +5,18 @@ using UnityEngine.UI;
 
 public class RandomDebug : MonoBehaviour
 {
+    public int fpsTarget;
+
+    private void Awake()
+    {
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+    }
+
+    private void Update()
+    {
+        Application.targetFrameRate = fpsTarget;
+    }
+
     public void SpawnEnemy(Text text) {
         if (text.text != "") {
             EnemyManager enemy = GameObject.Find("Enemies").GetComponent<EnemyManager>();

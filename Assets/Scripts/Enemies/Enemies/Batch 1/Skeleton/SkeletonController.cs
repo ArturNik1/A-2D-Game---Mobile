@@ -22,24 +22,17 @@ public class SkeletonController : EnemyController
         bodyHolder = transform.Find("BodyHolder");
     }
 
-    public override void Update()
+    public override void FixedUpdate()
     {
-        base.Update();
+        if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
 
-        if (!isAlive) return;
+        if (!pController.isAlive || !isAlive) return;
 
         fov.SetOrigin(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f));
         fov.SetAimDirection(direction);
         shouldRun = fov.DetectInArea();
 
         HandleMovementAndSpeed();
-    }
-
-    public override void FixedUpdate()
-    {
-        if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
-
-        if (!pController.isAlive || !isAlive) return;
 
         Move();
     }

@@ -18795,7 +18795,7 @@ MonoBehaviour:
   isEnabled: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   fov: 90
   viewDistance: 1
 --- !u!33 &8540923204613620151

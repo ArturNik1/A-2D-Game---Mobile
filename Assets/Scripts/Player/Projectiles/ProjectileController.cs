@@ -47,7 +47,6 @@ public class ProjectileController : MonoBehaviour
             Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z), Vector3.forward, out hit, 5)) { // Up
             
             if (hit.collider.tag.Contains("UnHittable")) {
-                print(hit.collider.name);
                 if (hit.collider.name.Contains("Shield")) { 
                     hit.collider.GetComponentInParent<SkeletonController>().shieldHit = true;
                     DoDamage(hit.transform.gameObject);

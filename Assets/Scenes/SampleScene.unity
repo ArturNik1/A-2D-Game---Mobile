@@ -1556,6 +1556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossPrefabs:
   - {fileID: 1606282618913942, guid: a4d3b4130576b224d92ddd0674d37b1c, type: 3}
+  - {fileID: 1091293637548798, guid: 18f39242843d0984e94b2444f1149a6a, type: 3}
   bossRoom: {fileID: 0}
   playerGameObject: {fileID: 187244949}
 --- !u!1001 &492946247
@@ -5150,6 +5151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177a2d7f9b0a18e4ab0eea150da3f541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fpsTarget: 60
 --- !u!224 &1888355043 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18,

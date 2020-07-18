@@ -1,13 +1,9 @@
 ﻿using System.Collections;
 using System;
 using System.Linq;
-using System.Threading;
 using System.Collections.Generic;
 using UnityEngine;
 using RASCAL;
-using System.ComponentModel;
-using UnityScript.Core;
-using System.Net.Http.Headers;
 
 [AddComponentMenu("Physics/RASCAL Skinned Mesh Collider", 0)]
 [ExecuteInEditMode]

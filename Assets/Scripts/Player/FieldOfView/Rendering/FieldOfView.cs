@@ -62,7 +62,7 @@ public class FieldOfView : MonoBehaviour {
 
                     // Keep raycast going after hitting the player.
                     RaycastHit newHit;
-                    Physics.Raycast(raycastHit.point, UtilsClass.GetVectorFromAngle(angle), out newHit, viewDistance - Mathf.Abs(Vector2.Distance(origin, raycastHit.point)), 256);
+                    Physics.Raycast(raycastHit.point, UtilsClass.GetVectorFromAngle(angle), out newHit, viewDistance - Mathf.Abs(Vector2.Distance(origin, raycastHit.point)), 128);
                     if (newHit.collider == null) {
                         vertex = origin + UtilsClass.GetVectorFromAngle(angle) * (viewDistance - Mathf.Abs(Vector2.Distance(origin, raycastHit.point)));
                     } 
