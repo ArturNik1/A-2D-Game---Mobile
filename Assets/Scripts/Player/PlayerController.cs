@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         if (EnemyManager.enemiesTouching.Count > 0 && EnemyManager.enemiesTouching[0].GetComponent<ChestController>() != null) {
             ReceiveDamage(EnemyManager.enemiesTouching[0].GetComponent<ChestController>().damage);
         }
-        else { 
+        else {
             EnemyManager.enemiesTouching = EnemyManager.enemiesTouching
                 .OrderByDescending(x => x.GetComponent<BossController>() == null ? -1 : x.GetComponent<BossController>().damage)
                 .ThenByDescending(y => y.GetComponent<EnemyController>() == null ? -1 : y.GetComponent<EnemyController>().damage).ToList();

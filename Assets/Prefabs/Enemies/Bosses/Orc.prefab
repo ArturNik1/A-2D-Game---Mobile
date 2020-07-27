@@ -315,10 +315,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeModel: {fileID: 0}
   health: 10
-  speed: 0
+  speed: 0.25
   damage: 0
   anim: {fileID: 0}
   isAttacking: 0
+  movement: 0
+  chargeAttackCooldown: 10
+  chaseTimeMax: 10
 --- !u!95 &95691348325781582
 Animator:
   serializedVersion: 3
@@ -22817,6 +22820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4809997701502724}
   - component: {fileID: 6386348835046746706}
+  - component: {fileID: 8812319427972384199}
   m_Layer: 0
   m_Name: Weapon01
   m_TagString: Untagged
@@ -22852,6 +22856,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &8812319427972384199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376863161701740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6f4e7b8bfd7824ab01611de2fe1ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1398234557475942
 GameObject:
   m_ObjectHideFlags: 0

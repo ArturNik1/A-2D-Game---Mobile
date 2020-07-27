@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class RandomDebug : MonoBehaviour
 {
     public int fpsTarget;
+    public Text fpsText;
+
+    float _timer;
 
     private void Awake()
     {
@@ -15,6 +18,23 @@ public class RandomDebug : MonoBehaviour
     private void Update()
     {
         Application.targetFrameRate = fpsTarget;
+
+        if (Time.unscaledTime > _timer)
+        {
+            int fps = (int)(1f / Time.unscaledDeltaTime);
+            fpsText.text = "FPS: " + fps;
+            _timer = Time.unscaledTime + 0.25f;
+        }
+    }
+
+    public void SkipRoom() {
+        var t = FindObjectsOfType<DoorLogic>();
+        foreach (var item in t) {
+            if (item.name.Contains("Up")) { 
+                item.HandleDoorAction();
+                break;
+            }
+        }
     }
 
     public void SpawnEnemy(Text text) {
