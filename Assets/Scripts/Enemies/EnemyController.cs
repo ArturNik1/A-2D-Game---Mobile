@@ -55,7 +55,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         if (pController.currentRoomMain.roomAction == RoomLogic.RoomAction.Boss) particles["Spawn"].Play();
     }
 
-    void Init() { 
+    protected void Init() { 
         // Setup active model and animator.
         if (activeModel == null) {
             anim = GetComponentInChildren<Animator>();
@@ -174,6 +174,9 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         else randY = Random.Range(-1f, 1f);
 
         direction = new Vector2(randX, randY);
+    }
+    public virtual void ChangeDirection(float normalX, float normalY) {
+        direction = new Vector2(normalX, normalY);
     }
     #endregion
 

@@ -104,6 +104,13 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public GameObject SpawnSingleEnemy(Vector3 pos, Quaternion rot) {
+        GameObject enemy;
+        enemy = Instantiate(enemyPrefabs[0], pos, rot);
+        enemy.transform.SetParent(enemyParent.transform);
+        return enemy;
+    }
+
     EnemySpawnPattern RollForSpawnPattern(GameObject room) {
         RoomType type = room.GetComponent<RoomLogic>().roomType;
         int rand;

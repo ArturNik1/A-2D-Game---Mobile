@@ -37,6 +37,10 @@ public class EvilMageController : BossController
     bool isWalking = false;
     
     EnemyManager enemyManager;
+    Vector2 lastMovedDirection;
+
+    [Header ("Objects")]
+    [SerializeField] GameObject shootingPoint;
 
     public override void Start() {
         base.Start();
@@ -124,6 +128,10 @@ public class EvilMageController : BossController
                 else { 
                     ableToMove = false;
                     movement = 0f;
+                    isWalking = false;
+                    walkCounter = 0f;
+                    previousState = currentState;
+                    currentState = EvilMageStates.Locked;
                 }
             }
             else if (isWalking) {
@@ -169,7 +177,7 @@ public class EvilMageController : BossController
             // Use one of the special shots, switch to Dizzy when done.
             if (isAttacking) return;
             isAttacking = true;
-            anim.CrossFade("Attack02", 0.1f, 2);
+            anim.CrossFade("Attack02", 0.25f, 2);
         }
 
         else if (currentState == EvilMageStates.Dizzy && previousState == EvilMageStates.SpecialAttack) { 
@@ -189,7 +197,7 @@ public class EvilMageController : BossController
     void FollowPlayer() {
         float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
         Vector2 direction = new Vector2(posX, posY);
-        //lastMovedDirection = direction;
+        lastMovedDirection = direction;
         var inputVector = direction;
         var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * _speed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
@@ -199,6 +207,19 @@ public class EvilMageController : BossController
 
         if (!ableToMove) return;
         rb.MovePosition(newPosition);
+    }
+
+    #region Attacks
+
+    public void UseNormalAttack() {
+        NormalAttack01();
+    }
+
+    void NormalAttack01() {
+        // Shoot Slime...
+        GameObject slime = enemyManager.SpawnSingleEnemy(shootingPoint.transform.position, transform.rotation);
+        slime.GetComponent<SlimeController>().isCharging = true;
+        slime.GetComponent<SlimeController>().ChangeDirection(lastMovedDirection.x, lastMovedDirection.y);
     }
 
     public void EndNormalAttack() {
@@ -219,6 +240,28 @@ public class EvilMageController : BossController
 
     }
 
+    public void EndSpecialAttack() {
+        isAttacking = false;
+        canUseSpecialShot = false;
+        startSpecialShotCooldown = true;
+        specialShotCounter = 0f;
+        previousState = currentState;
+        currentState = EvilMageStates.Dizzy;
+    }
+
+    public void EndDizzyState() {
+        canUseNormalShot = false;
+        startNormalShotCooldown = true;
+        normalShotCounter = 0f;
+        canUseSpecialShot = false;
+        startSpecialShotCooldown = true;
+        specialShotCounter = 0f;
+        previousState = currentState;
+        currentState = EvilMageStates.Locked;
+    }
+
+    #endregion
+    
     public override void ReceiveDamage(float amount) {
         base.ReceiveDamage(amount);
         if (currentState == EvilMageStates.Idle) {

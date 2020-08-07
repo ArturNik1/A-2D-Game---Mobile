@@ -4,6 +4,29 @@ using UnityEngine;
 
 public class SlimeController : EnemyController
 {
+    public bool isCharging = false; // Only charging when Evil Mage spawned it.
+
+    public override void Start()
+    {
+        if (!isCharging) {
+            base.Start();
+            return;
+        }
+
+        Init();
+        rb = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
+        pController = player.GetComponent<PlayerController>();
+
+        GameObject particleHolder = transform.Find("Particles").gameObject;
+        for (int i = 0; i < particleHolder.transform.childCount; i++) {
+            string p = particleHolder.transform.GetChild(i).name.Split('_')[1];
+            particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
+        }
+
+        AddVelocityForward();
+    }
+
     public override void Move()
     {
         base.Move();
@@ -12,6 +35,10 @@ public class SlimeController : EnemyController
             // Keep tracking player... 
             ChangeDirectionOnHitToPlayerNoRandom();
         }
+    }
+
+    public void AddVelocityForward() {
+        rb.AddForce(transform.forward * Time.deltaTime * 50f, ForceMode.Impulse);
     }
 
     public override void OnCollisionEnter(Collision collision) {
@@ -25,6 +52,11 @@ public class SlimeController : EnemyController
             }
             else {
                 ChangeDirectionOnHitToPlayer();
+            }
+
+            if (isCharging) {
+                isCharging = false;
+                rb.angularVelocity = Vector3.zero;
             }
         }
     }
