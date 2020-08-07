@@ -217,7 +217,8 @@ public class EvilMageController : BossController
 
     void NormalAttack01() {
         // Shoot Slime...
-        GameObject slime = enemyManager.SpawnSingleEnemy(shootingPoint.transform.position, transform.rotation);
+        Vector3 pos = new Vector3(shootingPoint.transform.position.x, shootingPoint.transform.position.y);
+        GameObject slime = enemyManager.SpawnSingleEnemy(pos, transform.rotation);
         slime.GetComponent<SlimeController>().isCharging = true;
         slime.GetComponent<SlimeController>().ChangeDirection(lastMovedDirection.x, lastMovedDirection.y);
     }

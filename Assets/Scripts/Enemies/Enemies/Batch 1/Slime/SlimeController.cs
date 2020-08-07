@@ -24,6 +24,10 @@ public class SlimeController : EnemyController
             particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
         }
 
+        if (pController.currentRoomMain.roomAction == RoomLogic.RoomAction.Boss) particles["Spawn"].Play();
+
+        AudioManager.instance.Play("EvilMageNormal01");
+
         AddVelocityForward();
     }
 
@@ -38,7 +42,7 @@ public class SlimeController : EnemyController
     }
 
     public void AddVelocityForward() {
-        rb.AddForce(transform.forward * Time.deltaTime * 50f, ForceMode.Impulse);
+        rb.AddForce(transform.forward, ForceMode.Impulse);
     }
 
     public override void OnCollisionEnter(Collision collision) {
