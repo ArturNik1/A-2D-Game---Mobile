@@ -1634,6 +1634,7 @@ MonoBehaviour:
   bossPrefabs:
   - {fileID: 1606282618913942, guid: a4d3b4130576b224d92ddd0674d37b1c, type: 3}
   - {fileID: 1091293637548798, guid: 18f39242843d0984e94b2444f1149a6a, type: 3}
+  - {fileID: 1580023137681114, guid: 10d7eb5b92310d344b6679b998d45e07, type: 3}
   bossRoom: {fileID: 0}
   playerGameObject: {fileID: 187244949}
 --- !u!1001 &492946247
