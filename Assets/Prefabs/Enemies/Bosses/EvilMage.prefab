@@ -1463,6 +1463,12 @@ MonoBehaviour:
   specialShotCooldown: 10
   walkAmount: 4
   shootingPoint: {fileID: 1510353119958289874}
+  fireball: {fileID: 6315849204908868500, guid: de6eda2a3dfd6514badb83649e0f5ed4,
+    type: 3}
+  fireballCharge: {fileID: 6315849204908868500, guid: 3c3dc7aed17544d4abfd4bbe2f712fd1,
+    type: 3}
+  lightingStrike: {fileID: 8386998887450132152, guid: ce334c2775e6fc74aba80eac969ece96,
+    type: 3}
 --- !u!95 &95364101480869094
 Animator:
   serializedVersion: 3

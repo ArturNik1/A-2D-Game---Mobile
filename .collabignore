@@ -28,8 +28,8 @@ ehthumbs.db
 # Unity generated
 # ===============
 [Aa]ssets/DungeonAssets/
-[Aa]ssets/Epic Toon FX/Prefabs
-[Aa]ssets/Epic Toon FX/Prefabs 2D
+[Aa]ssets/Epic Toon FX/Prefabs/
+[Aa]ssets/Epic Toon FX/Prefabs 2D/
 [Oo]bj/
 [Bb]uild
 sysinfo.txt

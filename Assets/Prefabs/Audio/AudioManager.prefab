@@ -196,3 +196,139 @@ MonoBehaviour:
     ignoreMasterVolume: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: ChestLock01
+    clip: {fileID: 8300000, guid: 99efe5320dd2aca44ae3aaf2c04d2457, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ChestOpen01
+    clip: {fileID: 8300000, guid: 1391e3358f5767e48825f606b004b505, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ChestOpen02
+    clip: {fileID: 8300000, guid: 4bf55226e9880c547ac11b31f9bf814c, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Fireball01
+    clip: {fileID: 8300000, guid: ebadc0f044b232748a0e7a27d9b740d6, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SpiderWeb01
+    clip: {fileID: 8300000, guid: 0681547f80abffd429b6870917e5e4cd, type: 3}
+    volume: 0.15
+    pitch: 2
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: OrcSpinning01
+    clip: {fileID: 8300000, guid: 8d549f9afb0422b4d9ea5181ef04551c, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 1
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: OrcNormal01
+    clip: {fileID: 8300000, guid: 2db9c30b7fa9c5045b14a867fcbc1003, type: 3}
+    volume: 0.3
+    pitch: 0.5
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageNormal01
+    clip: {fileID: 8300000, guid: 7f911577f92411646a6567c11b49018d, type: 3}
+    volume: 0.125
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageLaugh
+    clip: {fileID: 8300000, guid: 3ce193ad0efa91f4a939ea08bba4a2fc, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageNormal02
+    clip: {fileID: 8300000, guid: c181004519c8f824f995fae062381d4b, type: 3}
+    volume: 0.075
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageBuildFireball
+    clip: {fileID: 8300000, guid: f51474b82b54c374ea633600051fdbde, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageShootFireball
+    clip: {fileID: 8300000, guid: 72c028dcdc77a5b4c8280ca41e22fd6c, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageHitFloor01
+    clip: {fileID: 8300000, guid: 4ac6810883263804fa3602b513454ba9, type: 3}
+    volume: 0.075
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageHitFloor02
+    clip: {fileID: 8300000, guid: 5727e31b031249744974b437a6224601, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageBuildLightning
+    clip: {fileID: 8300000, guid: 0c43cb93efaa93c4aa176808f7779c14, type: 3}
+    volume: 0.12
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageShootLightning
+    clip: {fileID: 8300000, guid: 18e362ea5e2672f4a9fb20a0be6f49b7, type: 3}
+    volume: 0.075
+    pitch: 1
+    loop: 0
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: EvilMageSparkLightning
+    clip: {fileID: 8300000, guid: d3dd24678eed48343b52636bb8d962e7, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    ignoreMasterVolume: 0
+    playOnAwake: 0
+    source: {fileID: 0}

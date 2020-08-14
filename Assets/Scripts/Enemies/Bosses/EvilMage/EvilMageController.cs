@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lean.Pool;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -13,8 +14,8 @@ public class EvilMageController : BossController
     [Header("Animation Variables")]
     public float movement = 0f;
 
-    bool isAlive = true;
     bool firstUpdate = true;
+    bool isWinning = false;
 
     // Each cooldown starts after that particular attack animation is done.
     [Header("Variables")]
@@ -38,9 +39,15 @@ public class EvilMageController : BossController
     
     EnemyManager enemyManager;
     Vector2 lastMovedDirection;
+    Transform projectiles;
 
     [Header ("Objects")]
+    #pragma warning disable CS0649
     [SerializeField] GameObject shootingPoint;
+    [SerializeField] GameObject fireball;
+    [SerializeField] GameObject fireballCharge;
+    [SerializeField] GameObject lightingStrike;
+    #pragma warning restore CS0649
 
     public override void Start() {
         base.Start();
@@ -52,6 +59,7 @@ public class EvilMageController : BossController
         healthBar.transform.Find("Boss Name Text").GetComponent<Text>().text = "MAGE";
 
         enemyManager = GameObject.Find("Enemies").GetComponent<EnemyManager>();
+        projectiles = GameObject.Find("ProjectilesEnemy").transform;
     }
 
     public override void Update() {
@@ -61,6 +69,8 @@ public class EvilMageController : BossController
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -1, 0) * Time.fixedDeltaTime, Vector3.back), 1);
             firstUpdate = false;
         }
+
+        if (isWinning) currentState = EvilMageStates.Winning;
 
         HandleStates();
         UpdateAnimator();
@@ -202,7 +212,7 @@ public class EvilMageController : BossController
         var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * _speed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffset;
 
-        if (!isAttacking) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.08f);
+        if (!isAttacking) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.14f);
         else transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime * 0.01f, Vector3.back), Time.fixedDeltaTime * 2f);
 
         if (!ableToMove) return;
@@ -212,7 +222,27 @@ public class EvilMageController : BossController
     #region Attacks
 
     public void UseNormalAttack() {
-        NormalAttack01();
+        switch (normalShotAttacksAmount) {
+            case 4:
+                NormalAttack02();
+                break;
+            case 5:
+                if (normalShotAttacksCount == 3) NormalAttack01();
+                else NormalAttack02();
+                break;
+            case 6:
+                if (normalShotAttacksCount == 1 || normalShotAttacksCount == 2) NormalAttack01();
+                else NormalAttack02();
+                break;
+            case 7:
+                if (normalShotAttacksCount == 4 || normalShotAttacksCount == 7) NormalAttack01();
+                else NormalAttack02();
+                break;
+            case 8:
+                if (normalShotAttacksCount == 3 || normalShotAttacksCount == 4 || normalShotAttacksCount == 7) NormalAttack01();
+                else NormalAttack02();
+                break;
+        }
     }
 
     void NormalAttack01() {
@@ -221,6 +251,85 @@ public class EvilMageController : BossController
         GameObject slime = enemyManager.SpawnSingleEnemy(pos, transform.rotation);
         slime.GetComponent<SlimeController>().isCharging = true;
         slime.GetComponent<SlimeController>().ChangeDirection(lastMovedDirection.x, lastMovedDirection.y);
+    }
+
+    void NormalAttack02() {
+        Vector3 originalPos = shootingPoint.transform.localPosition;
+        shootingPoint.transform.localPosition = new Vector3(shootingPoint.transform.localPosition.x, 0.15f, 0);
+        Vector3 pos = new Vector3(shootingPoint.transform.position.x, shootingPoint.transform.position.y);
+        var obj = LeanPool.Spawn(fireball, pos, transform.rotation, projectiles);
+
+        float posX = -(obj.transform.position - player.transform.position).normalized.x, posY = -(obj.transform.position - player.transform.position).normalized.y;
+        Vector2 direction = new Vector2(posX, posY);
+        obj.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction * Time.fixedDeltaTime, Vector3.back), 1);
+
+        var fire = obj.GetComponent<FireballController>();
+        fire.parent = gameObject;
+        fire.isFromBoss = true;
+        shootingPoint.transform.localPosition = originalPos;
+
+        AudioManager.instance.Play("EvilMageNormal02");
+    }
+
+    public void UseSpecialAttack(float time) {
+        if (Random.Range(0, 2) == 0) StartCoroutine(SpecialAttack01(time));
+        else StartCoroutine(SpecialAttack02(time));
+    }
+
+    IEnumerator SpecialAttack01(float time) {
+        Vector3 originalPos = shootingPoint.transform.localPosition;
+        shootingPoint.transform.localPosition = new Vector3(shootingPoint.transform.localPosition.x, 0.15f, 0);
+        Vector3 pos = new Vector3(shootingPoint.transform.position.x, shootingPoint.transform.position.y);
+        var obj = LeanPool.Spawn(fireballCharge, pos, transform.rotation, projectiles);
+        var fire = obj.GetComponent<FireballController>();
+        fire.parent = gameObject;
+        fire.isFromBoss = true;
+        fire.shouldHold = true;
+        shootingPoint.transform.localPosition = originalPos;
+        obj.transform.localScale = Vector3.zero;
+
+        AudioManager.instance.Play("EvilMageBuildFireball");
+
+        float current = 0f;
+        while (true) {
+            current += Time.deltaTime;
+            if (current >= time) break;
+            obj.transform.localScale += Vector3.one * Time.deltaTime * 0.25f; 
+            
+            yield return new WaitForEndOfFrame();
+        }
+
+        AudioManager.instance.Play("EvilMageShootFireball");
+
+        obj.GetComponent<FireballController>().shouldHold = false;
+    }
+
+    IEnumerator SpecialAttack02(float time) {
+        Vector3 originalPos = shootingPoint.transform.localPosition;
+        shootingPoint.transform.localPosition = new Vector3(shootingPoint.transform.localPosition.x, 0.15f, 0);
+        Vector3 pos = new Vector3(shootingPoint.transform.position.x, shootingPoint.transform.position.y);
+        var obj = LeanPool.Spawn(lightingStrike, pos, transform.rotation, projectiles);
+        obj.transform.GetChild(1).transform.rotation = transform.rotation;
+        var fire = obj.GetComponent<LightningStrikeController>();
+        fire.shouldHold = true;
+        shootingPoint.transform.localPosition = originalPos;
+        obj.transform.localScale = Vector3.zero;
+
+        AudioManager.instance.Play("EvilMageBuildLightning");
+
+        float current = 0f;
+        while (true) {
+            current += Time.deltaTime;
+            if (current >= time) break;
+            obj.transform.localScale += Vector3.one * Time.deltaTime * 0.4f;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        AudioManager.instance.Play("EvilMageShootLightning");
+        AudioManager.instance.Play("EvilMageSparkLightning");
+
+        obj.GetComponent<LightningStrikeController>().shouldHold = false;
     }
 
     public void EndNormalAttack() {
@@ -261,17 +370,33 @@ public class EvilMageController : BossController
         currentState = EvilMageStates.Locked;
     }
 
+    public void HitFloor(int num) { 
+        if (num == 1) {
+            AudioManager.instance.Play("EvilMageHitFloor01");
+            return;
+        }
+        else if (num == 2) {
+            AudioManager.instance.Play("EvilMageHitFloor02");
+            return;
+        }
+    }
+
     #endregion
     
     public override void ReceiveDamage(float amount) {
         base.ReceiveDamage(amount);
         if (currentState == EvilMageStates.Idle) {
-            previousState = currentState;
-            currentState = EvilMageStates.Moving;
-            isWalking = true;
-            startNormalShotCooldown = true;
-            startSpecialShotCooldown = true;
+            anim.CrossFade("Taunt", 0.1f, 0);
+            AudioManager.instance.Play("EvilMageLaugh");
         }
+    }
+
+    public void ExitTauntAnimation() {
+        previousState = currentState;
+        currentState = EvilMageStates.Moving;
+        isWalking = true;
+        startNormalShotCooldown = true;
+        startSpecialShotCooldown = true;
     }
 
     public override void KillBoss() {
@@ -286,6 +411,7 @@ public class EvilMageController : BossController
 
     public void OnPlayerDeath() {
         pController.playerDeath -= OnPlayerDeath;
+        isWinning = true;
         previousState = currentState;
         currentState = EvilMageStates.Winning;
         anim.CrossFade("Victory", 1f);
@@ -295,6 +421,13 @@ public class EvilMageController : BossController
     {
         base.OnDestroy();
         pController.playerDeath -= OnPlayerDeath;
+
+        GameObject obj;
+        obj = GameObject.Find("LeanPool (Projectile_Fireball)");
+        if (obj != null) Destroy(obj, 1f);
+
+        obj = GameObject.Find("LeanPool (Projectile_FireballCharge)");
+        if (obj != null) Destroy(obj, 1f);
     }
 
 }
