@@ -48,6 +48,8 @@ public abstract class BossController : MonoBehaviour
             string p = particleHolder.transform.GetChild(i).name.Split('_')[1];
             particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
         }
+
+        bossRoom.GetComponent<RoomLogic>().aliveEnemies++;
     }
 
     // Update is called once per frame
@@ -146,6 +148,9 @@ public abstract class BossController : MonoBehaviour
     }
 
     public virtual void OnDestroy() {
+        player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies--;
+        if (player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies <= 0) player.GetComponent<PlayerController>().currentRoomMain.cleared = true;
+
         EnemyManager.enemiesTouching.Remove(gameObject);
         if (healthBar == null) return;
         healthBar.SetActive(false);

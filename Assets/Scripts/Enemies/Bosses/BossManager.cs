@@ -32,7 +32,7 @@ public class BossManager : MonoBehaviour
 
     int DetermineBoss() { 
         if (LevelManager.currentWorld == 0) {
-            return Random.Range(2, 3);
+            return Random.Range(0, 3);
         }
         return 0;
     }

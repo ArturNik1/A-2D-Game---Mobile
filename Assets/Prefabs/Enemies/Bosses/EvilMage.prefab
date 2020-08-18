@@ -1455,7 +1455,7 @@ MonoBehaviour:
   activeModel: {fileID: 0}
   health: 200
   speed: 0.15
-  damage: 0
+  damage: 2
   anim: {fileID: 0}
   isAttacking: 0
   movement: 0

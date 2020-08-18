@@ -12,6 +12,7 @@ public class DoorLogic : MonoBehaviour
     public void PopulateGameObjects(GameObject fromRoom, GameObject toRoom, bool nextWorld = false) {
         if (nextWorld && toRoom == null) {
             this.nextWorld = true;
+            this.fromRoom = fromRoom;
             return;
         }
         this.fromRoom = fromRoom;
@@ -19,6 +20,8 @@ public class DoorLogic : MonoBehaviour
     }
 
     public void HandleDoorAction() {
+        if (fromRoom.GetComponent<RoomLogic>().aliveEnemies > 0) return;
+
         AudioManager.instance.Play("DoorClose0" + Random.Range(1, 4));
 
         if (nextWorld) {
@@ -36,23 +39,19 @@ public class DoorLogic : MonoBehaviour
             // Spawn enemies here....
             GameObject.Find("Enemies").GetComponent<EnemyManager>().SpawnEnemies(toRoom);
 
+            // Makes sure that the items left on the ground will despawn properly and will be able to appear in the future.
             for (int i = 0; i < ItemManager.instance.itemsHolder.transform.childCount; i++) {
                 int index = ItemManager.instance.FindItemInPicked(ItemManager.instance.ReturnItemFromItems(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject));
                 if (index != -1) ItemManager.instance.pickedItems[index].canBeDroppedAmount = ItemManager.instance.pickedItems[index].maxItemAmount - ItemManager.instance.pickedItems[index].itemAmount;
                 Destroy(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject);
             }
 
-            if (toRoom.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Special && !toRoom.GetComponent<RoomLogic>().cleared) {
-                // Spawn item....
-                if (ItemManager.instance.availableItems.Count != 0) {
-                    /*
-                    GameObject obj = Instantiate(ItemManager.instance.DetermineItem());
-                    obj.GetComponent<Item>().fromItemRoom = true;
-                    obj.transform.position = toRoom.transform.position;
-                    obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
-                    obj.GetComponent<Item>().room = toRoom;
-                    */
-                } 
+            if (fromRoom.name == "SpecialRoom") {
+                // Leaving item room...
+                var rl = fromRoom.GetComponent<RoomLogic>();
+                if (rl.hasChest) {
+                    Destroy(rl.chestObject);
+                }
             }
 
             // Change currentRoomType and current room info.

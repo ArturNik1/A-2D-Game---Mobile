@@ -24,7 +24,10 @@ public class SpiderWebController : MonoBehaviour
     {
         lifetimeCounter += Time.deltaTime;
         if (lifetimeCounter >= lifetimeMax) {
-            if (parent != null) parent.GetComponent<LeanGameObjectPool>().Despawn(gameObject);
+            if (parent != null) {
+                SetToDefaultColor();
+                parent.GetComponent<LeanGameObjectPool>().Despawn(gameObject);
+            } 
             else Destroy(gameObject);
         }
 
@@ -35,15 +38,29 @@ public class SpiderWebController : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.name == "Collider") {
             if (other.transform.parent.childCount > 1) return;
-            if (parent != null) parent.GetComponent<LeanGameObjectPool>().Despawn(gameObject);
+            if (parent != null) {
+                SetToDefaultColor();
+                parent.GetComponent<LeanGameObjectPool>().Despawn(gameObject);
+            } 
             else Destroy(gameObject);
         }
         else if (other.tag == "Player") {
             other.attachedRigidbody.velocity = Vector3.zero;
             pController.ReceiveDamage(4);
-            if (parent != null) parent.GetComponent<LeanGameObjectPool>().Despawn(gameObject);
+            if (parent != null) {
+                SetToDefaultColor();
+                parent.GetComponent<LeanGameObjectPool>().Despawn(gameObject);
+            } 
             else Destroy(gameObject);
         }
+    }
+
+    void SetToDefaultColor() {
+        var _obj = transform.GetChild(0);
+        _obj.GetChild(0).gameObject.SetActive(true);
+        _obj.GetChild(1).gameObject.SetActive(true);
+        _obj.GetChild(2).gameObject.SetActive(false);
+        _obj.GetChild(3).gameObject.SetActive(false);
     }
 
 }

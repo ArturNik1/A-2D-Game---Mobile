@@ -28,6 +28,8 @@ public class SlimeController : EnemyController
 
         AudioManager.instance.Play("EvilMageNormal01");
 
+        player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies++;
+
         AddVelocityForward();
     }
 

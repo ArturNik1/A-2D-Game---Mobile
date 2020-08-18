@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ChestController : MonoBehaviour
 {
@@ -61,6 +63,9 @@ public class ChestController : MonoBehaviour
             string p = particleHolder.transform.GetChild(i).name.Split('_')[1];
             particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
         }
+
+        room.GetComponent<RoomLogic>().hasChest = true;
+        room.GetComponent<RoomLogic>().chestObject = gameObject;
     }
 
     void Init() {
@@ -128,6 +133,8 @@ public class ChestController : MonoBehaviour
             healthBar.SetActive(true);
             healthBar.GetComponent<Slider>().value = 1f;
             healthBar.transform.Find("Boss Name Text").GetComponent<Text>().text = "CHESTER";
+            
+            room.GetComponent<RoomLogic>().aliveEnemies++;
             // StartFight is called through animation state enter.
         }
         else {
@@ -153,7 +160,9 @@ public class ChestController : MonoBehaviour
 
     public void SpawnItem(bool fromNormal) {
         if (ItemManager.instance.availableItems.Count != 0) {
-            GameObject obj = Instantiate(ItemManager.instance.DetermineItem());
+            GameObject itemFromList = ItemManager.instance.DetermineItem(room);
+            GameObject obj = Instantiate(itemFromList);
+            room.GetComponent<RoomLogic>().chestItem = itemFromList;
             obj.GetComponent<Item>().fromItemRoom = true;
             if (fromNormal) obj.transform.position = new Vector3(room.transform.position.x, room.transform.position.y + 0.1f, room.transform.position.z - 0.25f);
             else obj.transform.position = new Vector3(transform.position.x, transform.position.y, -0.1f);
@@ -294,6 +303,13 @@ public class ChestController : MonoBehaviour
     }
 
     private void OnDestroy() {
+        if (isEnemy) {
+            room.GetComponent<RoomLogic>().aliveEnemies--;
+            room.GetComponent<RoomLogic>().hasChest = false;
+            room.GetComponent<RoomLogic>().chestObject = null;
+            if (room.GetComponent<RoomLogic>().aliveEnemies <= 0) room.GetComponent<RoomLogic>().cleared = true;
+        }
+
         EnemyManager.enemiesTouching.Remove(gameObject);
         pController.playerDeath -= OnPlayerDeath;
         if (healthBar == null) return;

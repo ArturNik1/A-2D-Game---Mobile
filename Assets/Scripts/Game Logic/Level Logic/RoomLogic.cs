@@ -21,6 +21,11 @@ public class RoomLogic : MonoBehaviour
     public GameObject player;
 
     public bool cleared = false;
+    public int aliveEnemies = 0;
+
+    public bool hasChest = false;
+    public GameObject chestObject;
+    public GameObject chestItem;
 
     private int currentWorld = LevelManager.currentWorld;
     private int currentRoom = LevelManager.currentRoomGenerated;

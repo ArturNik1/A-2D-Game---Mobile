@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ItemManager : MonoBehaviour
 {
@@ -39,9 +41,31 @@ public class ItemManager : MonoBehaviour
 
     #region Item Room
 
-    public GameObject DetermineItem() {
+    int FindGameObjectInList(GameObject obj) {
+        for (int i = 0; i < availableItems.Count; i++) {
+            if (availableItems[i] == obj) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public GameObject DetermineItem(GameObject room) {
         // Determine item spawned in item rooms.
-        int rand = Random.Range(0, availableItems.Count);
+        int rand = 0;
+        if (room.GetComponent<RoomLogic>().chestItem != null) {
+
+            int n = FindGameObjectInList(room.GetComponent<RoomLogic>().chestItem);
+            if (n == -1) { 
+                rand = Random.Range(0, availableItems.Count); // Nothing found, random it.
+            }
+            else {
+                rand = n;
+            }
+        }
+        else { 
+            rand = Random.Range(0, availableItems.Count);
+        }
         GameObject item = availableItems[rand];
 
         AudioManager.instance.Play("ItemSpawn0" + Random.Range(1, 3));

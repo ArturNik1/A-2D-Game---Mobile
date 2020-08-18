@@ -8,6 +8,8 @@ public class DragonController : EnemyController
     public bool isShooting = false;
     public float shotCooldownMax = 2.5f;
 
+    int shotCounter = 0;
+
     Transform projectiles;
     float shotCooldownCounter = 0.0f;
 
@@ -41,9 +43,26 @@ public class DragonController : EnemyController
     }
 
     void Shoot() {
+        if (rb.detectCollisions == false) return; // In process of dying, don't shoot.
+
+        shotCounter++;
+
         var obj = GetComponent<LeanGameObjectPool>().Spawn(transform.position, transform.rotation, projectiles);
         obj.GetComponent<FireballController>().parent = gameObject;
         AudioManager.instance.Play("Fireball01");
+
+        if (shotCounter >= 3) {
+            shotCounter = 0;
+
+            Vector3 rot = transform.rotation.eulerAngles;
+
+            obj = GetComponent<LeanGameObjectPool>().Spawn(transform.position, Quaternion.Euler(rot.x + 15f, -90f, 90f), projectiles);
+            obj.GetComponent<FireballController>().parent = gameObject;
+
+            obj = GetComponent<LeanGameObjectPool>().Spawn(transform.position, Quaternion.Euler(rot.x - 15f, -90f, 90f), projectiles);
+            obj.GetComponent<FireballController>().parent = gameObject;
+        }
+
     }
 
     bool isLookingAtPlayerAprox() {

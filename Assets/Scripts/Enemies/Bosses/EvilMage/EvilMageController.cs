@@ -15,7 +15,9 @@ public class EvilMageController : BossController
     public float movement = 0f;
 
     bool firstUpdate = true;
+    bool isTaunting = false;
     bool isWinning = false;
+    bool isAlive = true;
 
     // Each cooldown starts after that particular attack animation is done.
     [Header("Variables")]
@@ -60,10 +62,14 @@ public class EvilMageController : BossController
 
         enemyManager = GameObject.Find("Enemies").GetComponent<EnemyManager>();
         projectiles = GameObject.Find("ProjectilesEnemy").transform;
+
+        normalShotAttacksAmount = Random.Range(4, 9);
     }
 
     public override void Update() {
         base.Update();
+
+        if (!isAlive) return;
 
         if (firstUpdate) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -1, 0) * Time.fixedDeltaTime, Vector3.back), 1);
@@ -381,27 +387,44 @@ public class EvilMageController : BossController
         }
     }
 
-    #endregion
-    
-    public override void ReceiveDamage(float amount) {
-        base.ReceiveDamage(amount);
-        if (currentState == EvilMageStates.Idle) {
-            anim.CrossFade("Taunt", 0.1f, 0);
-            AudioManager.instance.Play("EvilMageLaugh");
+    IEnumerator HideBoss() {
+        while (true) {
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.001f);
+            if (transform.localPosition.z >= 0.17f) {
+                break;
+            }
+            yield return new WaitForFixedUpdate();
         }
+    }
+
+    #endregion
+
+    public override void ReceiveDamage(float amount) {
+        if (currentState == EvilMageStates.Idle && !isTaunting) {
+            anim.CrossFade("Taunt", 0.1f, 0);
+            isTaunting = true;
+            AudioManager.instance.Play("EvilMageLaugh");
+            return;
+        }
+        else if (isTaunting) return;
+
+        base.ReceiveDamage(amount);
     }
 
     public void ExitTauntAnimation() {
         previousState = currentState;
         currentState = EvilMageStates.Moving;
         isWalking = true;
+        isTaunting = false;
         startNormalShotCooldown = true;
         startSpecialShotCooldown = true;
     }
 
     public override void KillBoss() {
+        StartCoroutine(HideBoss());
         previousState = currentState;
         currentState = EvilMageStates.Dying;
+        isAlive = false;
         PlayDeathAnimation();
     }
 
@@ -411,7 +434,7 @@ public class EvilMageController : BossController
 
     public void OnPlayerDeath() {
         pController.playerDeath -= OnPlayerDeath;
-        isWinning = true;
+        isWinning = true;                       
         previousState = currentState;
         currentState = EvilMageStates.Winning;
         anim.CrossFade("Victory", 1f);

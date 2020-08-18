@@ -27,6 +27,13 @@ public class RandomDebug : MonoBehaviour
         }
     }
 
+    public void KillAll() {
+        var t = GameObject.Find("Enemies");
+        for (int i = 0; i < t.transform.childCount; i++) {
+            Destroy(t.transform.GetChild(i).gameObject);
+        }
+    }
+
     public void SkipRoom() {
         var t = FindObjectsOfType<DoorLogic>();
         foreach (var item in t) {

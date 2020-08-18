@@ -53,6 +53,8 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
             particles.Add(p, particleHolder.transform.GetChild(i).GetComponent<ParticleSystem>());
         }
         if (pController.currentRoomMain.roomAction == RoomLogic.RoomAction.Boss) particles["Spawn"].Play();
+
+        player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies++;
     }
 
     protected void Init() { 
@@ -277,6 +279,8 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     private void OnDestroy()
     {
+        player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies--;
+        if (player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies <= 0) player.GetComponent<PlayerController>().currentRoomMain.cleared = true;
         EnemyManager.enemiesTouching.Remove(gameObject);
     }
 
