@@ -53,6 +53,19 @@ public class DoorLogic : MonoBehaviour
                     Destroy(rl.chestObject);
                 }
             }
+            else if (toRoom.name == "SpecialRoom") {
+                // Enters item room...
+                var rl = toRoom.GetComponent<RoomLogic>();
+                if (rl.chestItem != null && !rl.hasChest) {
+                    GameObject obj = Instantiate(rl.chestItem);
+                    var item = obj.GetComponent<Item>();
+                    item.fromItemRoom = true;
+                    obj.transform.position = rl.itemPos;
+                    obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
+                    item.room = toRoom;
+                }
+            }
+
 
             // Change currentRoomType and current room info.
             LevelManager.currentRoomType = toRoom.GetComponent<RoomLogic>().roomType;

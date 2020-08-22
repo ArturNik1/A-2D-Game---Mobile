@@ -20,18 +20,28 @@ public abstract class Item : MonoBehaviour
     [HideInInspector]
     public bool fromItemRoom;
 
+    float originalY;
+    bool goingUP = true;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         player = GameObject.Find("Player");
         animManager = player.GetComponent<AnimatorManager>();
         pController = player.GetComponent<PlayerController>();
+
+        originalY = transform.position.y;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        // Bop up and down...
+        // Bop up and down... 50 cycles per second.
+        if (goingUP) transform.position = new Vector3(transform.position.x, transform.position.y + (Time.fixedDeltaTime / 150f), transform.position.z);
+        else transform.position = new Vector3(transform.position.x, transform.position.y - (Time.fixedDeltaTime / 150f), transform.position.z);
+
+        if (transform.position.y >= originalY + 0.0075f) goingUP = false;
+        else if (transform.position.y <= originalY) goingUP = true;
     }
 
     public virtual void PickUPItem() {
@@ -47,6 +57,7 @@ public abstract class Item : MonoBehaviour
         pickedUp = true;
         if (fromItemRoom) {
             room.GetComponent<RoomLogic>().cleared = true;
+            room.GetComponent<RoomLogic>().chestItem = null;
             ItemManager.instance.HandlePickUpItemRoom(gameObject);
         }
         else { 

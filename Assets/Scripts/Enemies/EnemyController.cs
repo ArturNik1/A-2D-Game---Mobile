@@ -104,6 +104,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     public virtual void FixedUpdate() {
         if (Time.timeScale == 0 || Time.deltaTime == 0) return; // skip if game is paused.
 
+        if (firstUpdate) {
+            Move();
+            return;
+        }
+
         if (!pController.isAlive || IsBeingHit() || !isAlive) return;
 
         Move();
@@ -279,6 +284,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     private void OnDestroy()
     {
+        if (player == null) return;
         player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies--;
         if (player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies <= 0) player.GetComponent<PlayerController>().currentRoomMain.cleared = true;
         EnemyManager.enemiesTouching.Remove(gameObject);

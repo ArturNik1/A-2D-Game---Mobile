@@ -33,6 +33,8 @@ public class MenuLogic : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
+        if (AudioManager.instance.IsPlaying("TypeWriter01")) AudioManager.instance.StopPlaying("TypeWriter01");
+
         SceneManager.LoadScene(levelIndex);
     }
 

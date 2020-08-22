@@ -26,6 +26,7 @@ public class RoomLogic : MonoBehaviour
     public bool hasChest = false;
     public GameObject chestObject;
     public GameObject chestItem;
+    public Vector3 itemPos;
 
     private int currentWorld = LevelManager.currentWorld;
     private int currentRoom = LevelManager.currentRoomGenerated;

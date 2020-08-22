@@ -148,6 +148,8 @@ public abstract class BossController : MonoBehaviour
     }
 
     public virtual void OnDestroy() {
+        if (player == null) return;
+
         player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies--;
         if (player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies <= 0) player.GetComponent<PlayerController>().currentRoomMain.cleared = true;
 

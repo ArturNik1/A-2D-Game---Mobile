@@ -39,6 +39,7 @@ public class ChestController : MonoBehaviour
     GameObject player;
     PlayerController pController;
     RotationHandler rotHandler;
+    Vector3 enemyChestItemPos;
 
     public bool isActive = false;
     public bool rotatingTowardsPlayer = false;
@@ -166,6 +167,7 @@ public class ChestController : MonoBehaviour
             obj.GetComponent<Item>().fromItemRoom = true;
             if (fromNormal) obj.transform.position = new Vector3(room.transform.position.x, room.transform.position.y + 0.1f, room.transform.position.z - 0.25f);
             else obj.transform.position = new Vector3(transform.position.x, transform.position.y, -0.1f);
+            room.GetComponent<RoomLogic>().itemPos = obj.transform.position;
             obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
             obj.GetComponent<Item>().room = room;
         }
@@ -241,6 +243,20 @@ public class ChestController : MonoBehaviour
         AudioManager.instance.Play("EnemyHit0" + Random.Range(1, 4));
     }
 
+    IEnumerator HideChest() {
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.0225f);
+        while (true) {
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.0025f);
+            if (transform.localPosition.z >= 0.35f)
+            {
+                break;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        StartCoroutine(DelaySpawnItem(false, 0.5f));
+        Destroy(gameObject, 0.6f);
+    }
+
     void PlayDeathAnimation() {
         anim.CrossFade("Die", 0.1f);
         isHit = true;
@@ -259,9 +275,12 @@ public class ChestController : MonoBehaviour
         while (true) { 
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f) {
 
-                StartCoroutine(DelaySpawnItem(false, 0.5f));
+                //StartCoroutine(DelaySpawnItem(false, 0.5f));
 
-                Destroy(gameObject, 0.6f);
+                //Destroy(gameObject, 0.6f);
+
+                StartCoroutine(HideChest());
+
                 break;
             }
             else {
@@ -303,11 +322,14 @@ public class ChestController : MonoBehaviour
     }
 
     private void OnDestroy() {
+        if (player == null) return;
+
         if (isEnemy) {
-            room.GetComponent<RoomLogic>().aliveEnemies--;
-            room.GetComponent<RoomLogic>().hasChest = false;
-            room.GetComponent<RoomLogic>().chestObject = null;
-            if (room.GetComponent<RoomLogic>().aliveEnemies <= 0) room.GetComponent<RoomLogic>().cleared = true;
+            var t = player.GetComponent<PlayerController>().currentRoomMain;
+            t.aliveEnemies--;
+            t.hasChest = false;
+            t.chestObject = null;
+            if (t.aliveEnemies <= 0) t.cleared = true;
         }
 
         EnemyManager.enemiesTouching.Remove(gameObject);
