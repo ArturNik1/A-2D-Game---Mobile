@@ -13,6 +13,8 @@ public class BossManager : MonoBehaviour
     public GameObject playerGameObject;
     PlayerController pController;
 
+    TextCountdown textCountdown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class BossManager : MonoBehaviour
 
         enemyParent = gameObject;
         pController = playerGameObject.GetComponent<PlayerController>();
+        textCountdown = GameObject.Find("Canvas").transform.Find("CinematicPanel").GetComponent<TextCountdown>();
     }
 
     public void SpawnBoss(GameObject room) {
@@ -28,6 +31,22 @@ public class BossManager : MonoBehaviour
         boss.transform.LookAt(room.transform.Find("Wall_B").transform, -Vector3.forward);
         boss.transform.rotation = Quaternion.Euler(110f, boss.transform.rotation.eulerAngles.z, boss.transform.rotation.eulerAngles.y);
         bossRoom = room;
+    }
+
+    public void StartWaveCountdown() {
+        // UI countdown and then start waves..
+        StartCoroutine(textCountdown.DoCountdown(0f, this, pController));
+    }
+
+    public void StartWaves() {
+        // 3 Waves...
+        // Character should go to the middle, while looking around.
+        // Start countdown when standing at the middle.
+        // Have black bars when entering the room.
+        // Boss bar should be wave progress.
+
+        StartCoroutine(textCountdown.gameObject.GetComponent<CinematicBars>().Show(300, 0.3f));
+        StartCoroutine(textCountdown.gameObject.GetComponent<CinematicBars>().Walk(this));
     }
 
     int DetermineBoss() { 

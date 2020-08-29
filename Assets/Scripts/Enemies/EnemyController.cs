@@ -285,9 +285,20 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     private void OnDestroy()
     {
         if (player == null) return;
-        player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies--;
-        if (player.GetComponent<PlayerController>().currentRoomMain.aliveEnemies <= 0) player.GetComponent<PlayerController>().currentRoomMain.cleared = true;
+        var playerController = player.GetComponent<PlayerController>();
+        playerController.currentRoomMain.aliveEnemies--;
+        if (playerController.currentRoomMain.aliveEnemies <= 0) {
+            if (GameObject.Find("Enemies").GetComponent<WaveManager>().waveEnabled) return;
+            playerController.currentRoomMain.cleared = true;
+        }
         EnemyManager.enemiesTouching.Remove(gameObject);
+
+        if (playerController.currentRoomMain.roomAction == RoomLogic.RoomAction.Boss) {
+            var waveManager = GameObject.Find("Enemies").GetComponent<WaveManager>();
+            if (!waveManager.waveEnabled) return;
+            waveManager.enemyDied = true;
+        }
+
     }
 
 }

@@ -178,6 +178,15 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
+    public void UpdatePlayerAnim(float v, float h) {
+        playerAnim.vertical = v;
+        playerAnim.horizontal = h;
+    }
+
+    public float GetPlayersMovementY() {
+        return playerAnim.vertical;
+    }
+
     public void BlockMovement() {
         canMove = false;
     }

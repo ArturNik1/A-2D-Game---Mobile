@@ -33,7 +33,9 @@ public class EnemyManager : MonoBehaviour
         pController.ResetAllProjectiles();
 
         if (room.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Boss) {
-            gameObject.GetComponent<BossManager>().SpawnBoss(room);
+            // On odd worlds do waves, on even worlds do Bosses.
+            if (LevelManager.currentWorld + 1 % 2 != 0) gameObject.GetComponent<BossManager>().StartWaves();
+            else gameObject.GetComponent<BossManager>().SpawnBoss(room);
             return;
         }
         else if (room.GetComponent<RoomLogic>().roomAction == RoomLogic.RoomAction.Special) {

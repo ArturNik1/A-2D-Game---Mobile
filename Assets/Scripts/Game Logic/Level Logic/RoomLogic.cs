@@ -107,7 +107,7 @@ public class RoomLogic : MonoBehaviour
     #region Room RNG
 
     RoomType DetermineBossRoomType() {
-        int rand = Random.Range(1, 100);
+        /*int rand = Random.Range(1, 100);
         if (rand <= 60) {
             width = width_16;
             height = 16;
@@ -117,6 +117,18 @@ public class RoomLogic : MonoBehaviour
             height = 24;
             return RoomType.Gigantic;
         }
+        */
+        if (LevelManager.currentWorld + 1 % 2 != 0) {
+            width = width_16;
+            height = 16;
+            return RoomType.Huge;
+        }
+        else {
+            width = 24;
+            height = 24;
+            return RoomType.Gigantic;
+        }
+
     }
 
     RoomType DetermineForwardRoomType() {

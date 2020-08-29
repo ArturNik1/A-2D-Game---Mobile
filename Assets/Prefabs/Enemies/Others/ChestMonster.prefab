@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeModel: {fileID: 0}
-  health: 12.5
+  health: 125
   speed: 0.5
   damage: 4
   isCharging: 0
