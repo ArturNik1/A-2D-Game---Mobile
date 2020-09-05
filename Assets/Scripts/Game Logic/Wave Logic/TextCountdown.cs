@@ -20,8 +20,8 @@ public class TextCountdown : MonoBehaviour
         text.text = count[i] + "";
         while (true) {
 
-            if (goingUP) text.fontSize += 5;
-            else text.fontSize -= 5;
+            if (goingUP) text.fontSize += 6;
+            else text.fontSize -= 6;
 
             text.fontSize++;
             if (text.fontSize >= 300) goingUP = false;
@@ -34,6 +34,8 @@ public class TextCountdown : MonoBehaviour
             yield return new WaitForSeconds(Time.fixedDeltaTime / 2); // should be 0.02 seconds unless changed. This makes font go up by 50 every second.
         }
         playerController.UnBlockMovement(0);
+        StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(1.5f, 0.05f));
+        AudioManager.instance.Play("EarthquakeShort");
         StartCoroutine(GetComponent<CinematicBars>().Hide(0.3f));
     }
 

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class EnemyController : MonoBehaviour, IEnemyController
 {
@@ -288,15 +290,19 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         var playerController = player.GetComponent<PlayerController>();
         playerController.currentRoomMain.aliveEnemies--;
         if (playerController.currentRoomMain.aliveEnemies <= 0) {
-            if (GameObject.Find("Enemies").GetComponent<WaveManager>().waveEnabled) return;
             playerController.currentRoomMain.cleared = true;
         }
         EnemyManager.enemiesTouching.Remove(gameObject);
 
         if (playerController.currentRoomMain.roomAction == RoomLogic.RoomAction.Boss) {
-            var waveManager = GameObject.Find("Enemies").GetComponent<WaveManager>();
-            if (!waveManager.waveEnabled) return;
-            waveManager.enemyDied = true;
+            if (player == null) return;
+            try {
+                var waveManager = GameObject.Find("Enemies").GetComponent<WaveManager>();
+                if (!waveManager.waveEnabled) return;
+                waveManager.enemyDied = true;
+                waveManager.aliveEnemies--;
+            }
+            catch (NullReferenceException) { return; }
         }
 
     }
