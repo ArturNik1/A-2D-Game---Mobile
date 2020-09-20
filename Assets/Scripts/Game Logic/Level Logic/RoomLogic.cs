@@ -107,18 +107,7 @@ public class RoomLogic : MonoBehaviour
     #region Room RNG
 
     RoomType DetermineBossRoomType() {
-        /*int rand = Random.Range(1, 100);
-        if (rand <= 60) {
-            width = width_16;
-            height = 16;
-            return RoomType.Huge;
-        } else {
-            width = 24;
-            height = 24;
-            return RoomType.Gigantic;
-        }
-        */
-        if (LevelManager.currentWorld + 1 % 2 != 0) {
+        if ((LevelManager.currentWorld + 1) % 2 != 0) {
             width = width_16;
             height = 16;
             return RoomType.Huge;
@@ -133,35 +122,30 @@ public class RoomLogic : MonoBehaviour
 
     RoomType DetermineForwardRoomType() {
         int rand = Random.Range(1, 100);
-        switch (currentWorld) {
-            case 0:
-                if (rand <= 32) { // 30
-                    width = width_16;
-                    height = 12;
+        if (rand <= 32) { // 30
+            width = width_16;
+            height = 12;
 
-                    return RoomType.LargeH;
-                }
-                else if (rand <= 64) { // 60
-                    width = width_12;
-                    height = 16;
-
-                    return RoomType.LargeV;
-                }
-                else if (rand <= 95) { // 90
-                    width = width_16;
-                    height = 16;
-
-                    return RoomType.Huge;
-                } 
-                else {
-                    width = 24;
-                    height = 24;
-
-                    return RoomType.Gigantic;
-                }
+            return RoomType.LargeH;
         }
-        return RoomType.LargeH;
+        else if (rand <= 64) { // 60
+            width = width_12;
+            height = 16;
 
+            return RoomType.LargeV;
+        }
+        else if (rand <= 95) { // 90
+            width = width_16;
+            height = 16;
+
+            return RoomType.Huge;
+        } 
+        else {
+            width = 24;
+            height = 24;
+
+            return RoomType.Gigantic;
+        }
     }
 
     RoomType DetermineHallwayRoomType() {

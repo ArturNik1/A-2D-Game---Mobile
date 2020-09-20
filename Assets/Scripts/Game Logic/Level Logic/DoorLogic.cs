@@ -27,6 +27,7 @@ public class DoorLogic : MonoBehaviour
         if (nextWorld) {
             // head to next world. 
             print("NEXT WORLD");
+            LoadNextWorld();
         } else {
             Camera.main.GetComponent<CameraLogic>().flashingScreen.color = new Color(0, 0, 0, 1f);
             Camera.main.GetComponent<CameraLogic>().CallFlashMethod();
@@ -40,11 +41,7 @@ public class DoorLogic : MonoBehaviour
             GameObject.Find("Enemies").GetComponent<EnemyManager>().SpawnEnemies(toRoom);
 
             // Makes sure that the items left on the ground will despawn properly and will be able to appear in the future.
-            for (int i = 0; i < ItemManager.instance.itemsHolder.transform.childCount; i++) {
-                int index = ItemManager.instance.FindItemInPicked(ItemManager.instance.ReturnItemFromItems(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject));
-                if (index != -1) ItemManager.instance.pickedItems[index].canBeDroppedAmount = ItemManager.instance.pickedItems[index].maxItemAmount - ItemManager.instance.pickedItems[index].itemAmount;
-                Destroy(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject);
-            }
+            ResetGroundItems();
 
             if (fromRoom.name == "SpecialRoom") {
                 // Leaving item room...
@@ -73,6 +70,28 @@ public class DoorLogic : MonoBehaviour
             player.GetComponent<PlayerController>().currentRoomObject = toRoom;
             player.GetComponent<PlayerController>().currentRoomMain = toRoom.GetComponent<RoomLogic>();
             HandlePlayerTransform(player);
+        }
+    }
+
+    void LoadNextWorld() {
+        LevelManager.currentWorld++;
+        LevelManager.currentRoomGenerated = 0;
+
+        GameObject rooms = GameObject.Find("Rooms");
+        for (int i = 0; i < rooms.transform.childCount; i++) {
+            Destroy(rooms.transform.GetChild(i).gameObject);
+        }
+        
+        var player = GameObject.Find("Player");
+        player.GetComponent<LevelManager>().CreateRooms();
+        player.transform.position = new Vector3(0, 0, player.transform.position.z);
+    }
+
+    void ResetGroundItems() {
+        for (int i = 0; i < ItemManager.instance.itemsHolder.transform.childCount; i++) {
+            int index = ItemManager.instance.FindItemInPicked(ItemManager.instance.ReturnItemFromItems(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject));
+            if (index != -1) ItemManager.instance.pickedItems[index].canBeDroppedAmount = ItemManager.instance.pickedItems[index].maxItemAmount - ItemManager.instance.pickedItems[index].itemAmount;
+            Destroy(ItemManager.instance.itemsHolder.transform.GetChild(i).gameObject);
         }
     }
 

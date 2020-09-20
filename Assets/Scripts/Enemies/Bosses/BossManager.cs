@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BossManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class BossManager : MonoBehaviour
     public GameObject[] bossPrefabs; // 0 - golem 
 
     public GameObject bossRoom;
+
+    List<GameObject> availableBosses;
+    List<GameObject> usedBosses = new List<GameObject>();
 
     GameObject enemyParent;
     public GameObject playerGameObject;
@@ -19,6 +23,8 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         if (bossPrefabs.Length == 0) Debug.LogError("BossPrefab array is empty!");
+
+        availableBosses = bossPrefabs.ToList<GameObject>();
 
         enemyParent = gameObject;
         pController = playerGameObject.GetComponent<PlayerController>();
@@ -49,10 +55,17 @@ public class BossManager : MonoBehaviour
         StartCoroutine(textCountdown.gameObject.GetComponent<CinematicBars>().Walk(this));
     }
 
-    int DetermineBoss() { 
-        if (LevelManager.currentWorld == 0) {
-            return Random.Range(0, 3);
+    int DetermineBoss() {
+        int index = Random.Range(0, availableBosses.Count);
+        usedBosses.Add(availableBosses[index]);
+
+        for (int i = 0; i < bossPrefabs.Length; i++) {
+            if (availableBosses[index] == bossPrefabs[i]) { 
+                availableBosses.RemoveAt(index);
+                return i;
+            }
         }
+        
         return 0;
     }
 
