@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -615,195 +616,160 @@ public class EnemyManager : MonoBehaviour
         enemySpawnIndex = new List<int>();
         int currentWorld = LevelManager.currentWorld;
 
-        bool oneType = false;
         int rand = Random.Range(0, 100);
-        if (rand <= 25) {
-            oneType = true;
-        } 
+        if (rand <= 20) {
+            // Same type...
+            // 0-Slime ; 1-Snail ; 2-Bat ; 3-Spider ; 4-Skeleton ; 5-Dragon
+            int type = RandomToEnemyArrayIndex(Random.Range(0, currentWorld + 2));
+            int amount = (int)char.GetNumericValue(pattern.ToString()[pattern.ToString().Length-1]);
+            for (int i = 0; i < amount; i++) {
+                enemySpawnIndex.Add(type);
+            }
+            return;
+        }
+        else if (currentWorld > 4) {
+            int type;
+            //type = RandomToEnemyArrayIndex(Random.Range(0, currentWorld + 2));
+            int amount = (int)char.GetNumericValue(pattern.ToString()[pattern.ToString().Length - 1]);
+            for (int i = 0; i < amount; i++) {
+                type = RandomToEnemyArrayIndex(Random.Range(0, 6));
+                enemySpawnIndex.Add(type);
+            }
+            return;
+        }
 
         // Possible to add more variations to every pattern...
         switch (pattern) {
+            // 0-Slime ; 1-Snail ; 2-Bat ; 3-Spider ; 4-Skeleton ; 5-Dragon
             case EnemySpawnPatterns.EnemySpawnPattern.LargeH_4:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 2, 1, 1 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 2, 2, 3, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 2, 2, 4, 4 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 5, 5, 3, 3 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.LargeH_5:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0, 1 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0, 1 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 2, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 1, 1, 2, 2, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 2, 2, 4, 4, 3 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 5, 5, 4, 4, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.LargeH_6:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0, 0, 1 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0, 0, 1 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 2, 0, 0, 1, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 2, 2, 0, 0, 3, 2 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 1, 1, 3, 3, 0, 4 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 4, 4, 5, 5, 5, 3 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.LargeV_4:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 2, 0, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 3, 3, 2, 2 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 4, 4, 3, 3 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 4, 4, 5, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.LargeV_5:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 0, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 1, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 2, 2, 3, 3, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 4, 4, 0, 0, 3 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 2, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.LargeV_6:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 0, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 0, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 0, 1, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 3, 1, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 1, 4, 1, 2, 2, 2 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 4, 1, 4, 4, 5, 4 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.LargeV_7:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 0, 1, 0, 0, 1, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 0, 1, 0, 0, 1, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 2, 0, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 0, 2, 0, 3, 2, 3, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 3, 1, 3, 2, 4, 2, 0 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 5, 4, 5, 4, 2, 4, 2 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Huge_5:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 1, 2, 1, 2, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 3, 0, 3, 0, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 3, 3, 3, 3, 4 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 5, 5, 5, 5, 4 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Huge_6:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 0, 0, 0, 1, 1, 1 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 0, 0, 0, 1, 1, 1 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 0, 0, 0, 2, 1, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 3, 0, 3, 0, 1, 0 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 4, 4, 4 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 5, 3, 5, 4, 2 ,4 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Huge_7:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 0, 0, 0, 0, 1, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 0, 0, 0, 0, 1, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 1, 2, 1, 2, 0, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 3, 3, 3, 3, 2, 3, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 2, 0, 2, 0, 2, 3, 3 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 4, 2, 4, 2, 5 ,2 ,2 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Huge_8:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 1, 0, 0, 1 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 1, 0, 0, 1 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 1, 0, 0, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 3, 1, 3, 1, 3, 0, 0, 0 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 2, 4, 2, 4, 1, 3, 3, 4 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 4, 2, 4, 2, 4, 0, 0, 3 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Gigantic_8:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 1, 0, 0, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 1, 0, 0, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 1, 2, 0, 2, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 2, 3, 3, 3, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 3, 3, 3, 3, 0, 4, 0, 4 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 2, 1, 2, 1, 1, 5, 1, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Gigantic_10:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 0, 0, 0, 0, 1, 1 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 0, 0, 0, 0, 1, 1 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 1, 0, 1, 0, 1, 0, 1, 0, 1, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 2, 3, 3, 3, 3, 1, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 2, 4, 4, 4, 4, 1, 3 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 4, 4, 4, 4, 3, 5, 3, 5, 2, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Gigantic_12:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type, type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 0, 2, 0, 2, 0, 2, 0, 2, 1, 2, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 0, 3, 0, 3, 2, 2, 2, 2, 3, 2, 3, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 4, 4, 4, 4, 0, 1, 0, 1, 4, 3, 3, 3 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 2, 5, 4, 5, 4, 2, 4, 4, 4 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Small_3:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 2, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 2, 2, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 4, 4, 1 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 4, 4, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Small_5:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 1, 2, 0, 0 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 1, 3, 1, 2, 2 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 3, 3, 3, 4, 4 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 5, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Medium_4:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 0, 0, 1 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 0, 0, 1 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 2, 2, 2, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 3, 2, 2, 3 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 3, 3, 3, 3 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 3, 3, 5, 5 });
                 break;
             case EnemySpawnPatterns.EnemySpawnPattern.Medium_6:
-                if (currentWorld == 0) {
-                    if (oneType) {
-                        int type = Random.Range(0, 2);
-                        enemySpawnIndex.AddRange(new int[] { type, type, type, type, type, type });
-                        break;
-                    }
-                    enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 0, 0, 0 });
-                }
+                if (currentWorld == 0) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 0, 0, 0 });
+                else if (currentWorld == 1) enemySpawnIndex.AddRange(new int[] { 1, 1, 1, 2, 2, 2 });
+                else if (currentWorld == 2) enemySpawnIndex.AddRange(new int[] { 3, 3, 3, 0, 0, 1 });
+                else if (currentWorld == 3) enemySpawnIndex.AddRange(new int[] { 4, 4, 4, 3, 3, 2 });
+                else if (currentWorld == 4) enemySpawnIndex.AddRange(new int[] { 5, 5, 5, 4, 4, 1 });
                 break;
         }
+
+        ListToEnemyArrayIndex(enemySpawnIndex);
 
         if (enemySpawnIndex.Count == 0) { 
             // Fill 20 slots with 0 to avoid null error.
@@ -812,6 +778,30 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
+    }
+
+    int RandomToEnemyArrayIndex(int rand) { 
+        switch (rand) {
+            case 0:
+                return 0; // Slime
+            case 1:
+                return 1; // Snail
+            case 2:
+                return 4; // Bat
+            case 3:
+                return 5; // Spider
+            case 4:
+                return 6; // Dragon
+            case 5:
+                return 3; // Skeleton
+        }
+        return 0;
+    }
+
+    void ListToEnemyArrayIndex(List<int> enemySpawn) {
+        for (int i = 0; i < enemySpawn.Count; i++) {
+            enemySpawn[i] = RandomToEnemyArrayIndex(enemySpawn[i]);
+        }
     }
 
     void RemoveAllEnemies() {

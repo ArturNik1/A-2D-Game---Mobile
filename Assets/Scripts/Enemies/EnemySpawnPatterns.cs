@@ -122,18 +122,194 @@ public static class EnemySpawnPatterns
     }
 
     static EnemySpawnPattern RollPatternWorldThree(RoomType type) {
+        int rand;
+
+        if (type == RoomType.LargeH) {
+            rand = Random.Range(1, 4); // max is exclusive
+            if (rand == 1) return EnemySpawnPattern.LargeH_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeH_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeH_6;
+        }
+
+        else if (type == RoomType.LargeV) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.LargeV_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeV_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeV_6;
+            else if (rand == 4) return EnemySpawnPattern.LargeV_7; // should be rare.
+        }
+
+        else if (type == RoomType.Huge) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.Huge_5;
+            else if (rand == 2) return EnemySpawnPattern.Huge_6;
+            else if (rand == 3) return EnemySpawnPattern.Huge_7;
+            else if (rand == 4) return EnemySpawnPattern.Huge_8; // should be rare.
+        }
+
+        else if (type == RoomType.Gigantic) {
+            rand = Random.Range(1, 4);
+            if (rand == 1) return EnemySpawnPattern.Gigantic_8;
+            else if (rand == 2) return EnemySpawnPattern.Gigantic_10;
+            else if (rand == 3) return EnemySpawnPattern.Gigantic_12;
+        }
+
+        else if (type == RoomType.Small) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Small_3;
+            else if (rand == 2) return EnemySpawnPattern.Small_5;
+        }
+
+        else if (type == RoomType.Medium) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Medium_4;
+            else if (rand == 2) return EnemySpawnPattern.Medium_6;
+        }
+
         return EnemySpawnPattern.Nothing;
     }
 
     static EnemySpawnPattern RollPatternWorldFour(RoomType type) {
+        int rand;
+
+        if (type == RoomType.LargeH) {
+            rand = Random.Range(1, 4); // max is exclusive
+            if (rand == 1) return EnemySpawnPattern.LargeH_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeH_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeH_6;
+        }
+
+        else if (type == RoomType.LargeV) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.LargeV_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeV_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeV_6;
+            else if (rand == 4) return EnemySpawnPattern.LargeV_7; // should be rare.
+        }
+
+        else if (type == RoomType.Huge) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.Huge_5;
+            else if (rand == 2) return EnemySpawnPattern.Huge_6;
+            else if (rand == 3) return EnemySpawnPattern.Huge_7;
+            else if (rand == 4) return EnemySpawnPattern.Huge_8; // should be rare.
+        }
+
+        else if (type == RoomType.Gigantic) {
+            rand = Random.Range(1, 4);
+            if (rand == 1) return EnemySpawnPattern.Gigantic_8;
+            else if (rand == 2) return EnemySpawnPattern.Gigantic_10;
+            else if (rand == 3) return EnemySpawnPattern.Gigantic_12;
+        }
+
+        else if (type == RoomType.Small) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Small_3;
+            else if (rand == 2) return EnemySpawnPattern.Small_5;
+        }
+
+        else if (type == RoomType.Medium) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Medium_4;
+            else if (rand == 2) return EnemySpawnPattern.Medium_6;
+        }
+
         return EnemySpawnPattern.Nothing;
     }
 
     static EnemySpawnPattern RollPatternWorldFive(RoomType type) {
+        int rand;
+
+        if (type == RoomType.LargeH) {
+            rand = Random.Range(1, 4); // max is exclusive
+            if (rand == 1) return EnemySpawnPattern.LargeH_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeH_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeH_6;
+        }
+
+        else if (type == RoomType.LargeV) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.LargeV_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeV_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeV_6;
+            else if (rand == 4) return EnemySpawnPattern.LargeV_7; // should be rare.
+        }
+
+        else if (type == RoomType.Huge) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.Huge_5;
+            else if (rand == 2) return EnemySpawnPattern.Huge_6;
+            else if (rand == 3) return EnemySpawnPattern.Huge_7;
+            else if (rand == 4) return EnemySpawnPattern.Huge_8; // should be rare.
+        }
+
+        else if (type == RoomType.Gigantic) {
+            rand = Random.Range(1, 4);
+            if (rand == 1) return EnemySpawnPattern.Gigantic_8;
+            else if (rand == 2) return EnemySpawnPattern.Gigantic_10;
+            else if (rand == 3) return EnemySpawnPattern.Gigantic_12;
+        }
+
+        else if (type == RoomType.Small) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Small_3;
+            else if (rand == 2) return EnemySpawnPattern.Small_5;
+        }
+
+        else if (type == RoomType.Medium) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Medium_4;
+            else if (rand == 2) return EnemySpawnPattern.Medium_6;
+        }
+
         return EnemySpawnPattern.Nothing;
     }
 
     static EnemySpawnPattern RollPatternWorldSix(RoomType type) {
+        int rand;
+
+        if (type == RoomType.LargeH) {
+            rand = Random.Range(1, 4); // max is exclusive
+            if (rand == 1) return EnemySpawnPattern.LargeH_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeH_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeH_6;
+        }
+
+        else if (type == RoomType.LargeV) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.LargeV_4;
+            else if (rand == 2) return EnemySpawnPattern.LargeV_5;
+            else if (rand == 3) return EnemySpawnPattern.LargeV_6;
+            else if (rand == 4) return EnemySpawnPattern.LargeV_7; // should be rare.
+        }
+
+        else if (type == RoomType.Huge) {
+            rand = Random.Range(1, 5);
+            if (rand == 1) return EnemySpawnPattern.Huge_5;
+            else if (rand == 2) return EnemySpawnPattern.Huge_6;
+            else if (rand == 3) return EnemySpawnPattern.Huge_7;
+            else if (rand == 4) return EnemySpawnPattern.Huge_8; // should be rare.
+        }
+
+        else if (type == RoomType.Gigantic) {
+            rand = Random.Range(1, 4);
+            if (rand == 1) return EnemySpawnPattern.Gigantic_8;
+            else if (rand == 2) return EnemySpawnPattern.Gigantic_10;
+            else if (rand == 3) return EnemySpawnPattern.Gigantic_12;
+        }
+
+        else if (type == RoomType.Small) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Small_3;
+            else if (rand == 2) return EnemySpawnPattern.Small_5;
+        }
+
+        else if (type == RoomType.Medium) {
+            rand = Random.Range(1, 3);
+            if (rand == 1) return EnemySpawnPattern.Medium_4;
+            else if (rand == 2) return EnemySpawnPattern.Medium_6;
+        }
+
         return EnemySpawnPattern.Nothing;
     }
 }

@@ -142,13 +142,13 @@ public class SkeletonController : EnemyController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody.name == "Player") {
+        if (other.attachedRigidbody != null && other.attachedRigidbody.name == "Player") {
             EnemyManager.enemiesTouching.Add(gameObject);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.attachedRigidbody.name == "Player") { 
+        if (other.attachedRigidbody != null && other.attachedRigidbody.name == "Player") { 
             EnemyManager.enemiesTouching.Remove(gameObject);
         }
     }
