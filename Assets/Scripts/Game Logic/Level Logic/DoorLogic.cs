@@ -98,25 +98,25 @@ public class DoorLogic : MonoBehaviour
     void HandlePlayerTransform(GameObject player) {
         if (gameObject.name == "DoorUp") { // position player at DoorDown of new room - looking up + set camera to focus on playerPointObject.
             player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            Vector3 doorPos = toRoom.transform.Find("DoorDown").position;
+            Vector3 doorPos = toRoom.transform.Find("Objects").Find("DoorDown").position;
             player.transform.position = new Vector3(doorPos.x, doorPos.y + 0.15f, player.transform.position.z);
             Camera.main.GetComponent<CameraLogic>().SetFocus(true);
         }
         else if (gameObject.name == "DoorDown") { // position player at DoorUp of new room - looking down + set camera to focus on playerPointObject.
             player.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-            Vector3 doorPos = toRoom.transform.Find("DoorUp").position;
+            Vector3 doorPos = toRoom.transform.Find("Objects").Find("DoorUp").position;
             player.transform.position = new Vector3(doorPos.x, doorPos.y - 0.15f, player.transform.position.z);
             Camera.main.GetComponent<CameraLogic>().SetFocus(true);
         }
         else if (gameObject.name == "DoorRight") { // position player at DoorLeft of new room - looking left + set camera to focus on playerPointObject.
             player.transform.rotation = Quaternion.Euler(0f, 0f, 270f);
-            Vector3 doorPos = toRoom.transform.Find("DoorLeft").position;
+            Vector3 doorPos = toRoom.transform.Find("Objects").Find("DoorLeft").position;
             player.transform.position = new Vector3(doorPos.x + 0.12f, 0f, player.transform.position.z);
             Camera.main.GetComponent<CameraLogic>().SetFocus(true);
         }
         else if (gameObject.name == "DoorLeft") { // position player at DoorRight of new room - looking right + set camera to focus on playerPointObject.
             player.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            Vector3 doorPos = toRoom.transform.Find("DoorRight").position;
+            Vector3 doorPos = toRoom.transform.Find("Objects").Find("DoorRight").position;
             player.transform.position = new Vector3(doorPos.x - 0.12f, 0f, player.transform.position.z);
             Camera.main.GetComponent<CameraLogic>().SetFocus(true);
         }

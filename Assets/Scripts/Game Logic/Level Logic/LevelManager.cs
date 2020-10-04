@@ -21,6 +21,30 @@ public class LevelManager : MonoBehaviour
     public GameObject roomPrefab;
     public GameObject roomsHolder;
 
+    public GameObject[] _roomItem;
+    Dictionary<int, List<GameObject>> roomItem = new Dictionary<int, List<GameObject>>();
+
+    public GameObject[] _roomTiny;
+    Dictionary<int, List<GameObject>> roomTiny = new Dictionary<int, List<GameObject>>();
+
+    public GameObject[] _roomSmall;
+    Dictionary<int, List<GameObject>> roomSmall = new Dictionary<int, List<GameObject>>();
+
+    public GameObject[] _roomMedium;
+    Dictionary<int, List<GameObject>> roomMedium = new Dictionary<int, List<GameObject>>();
+
+    public GameObject[] _roomLargeH;
+    Dictionary<int, List<GameObject>> roomLargeH = new Dictionary<int, List<GameObject>>();
+
+    public GameObject[] _roomLargeV;
+    Dictionary<int, List<GameObject>> roomLargeV = new Dictionary<int, List<GameObject>>();
+
+    public GameObject[] _roomHuge;
+    Dictionary<int, List<GameObject>> roomHuge = new Dictionary<int, List<GameObject>>();
+
+    public GameObject[] _roomGigantic;
+    Dictionary<int, List<GameObject>> roomGigantic = new Dictionary<int, List<GameObject>>();
+
     private Dictionary<int, GameObject> worldRooms;
 
     private void Awake() {
@@ -31,6 +55,7 @@ public class LevelManager : MonoBehaviour
         worldRooms = new Dictionary<int, GameObject>();
         if (currentWorld == 0) {
             PopulateTuples();
+            PopulateRoomDictionaries();
             CreateRooms();
         }
     }
@@ -55,21 +80,100 @@ public class LevelManager : MonoBehaviour
         itemMinMax.Add(new Tuple<int, int>(2, 4)); // 2-3 rooms
     }
 
+    void PopulateRoomDictionaries() {
+        foreach (var room in _roomItem) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomItem, world, room);
+        }
+        foreach (var room in _roomTiny) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomTiny, world, room);
+        }
+        foreach (var room in _roomSmall) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomSmall, world, room);
+        }
+        foreach (var room in _roomMedium) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomMedium, world, room);
+        }
+        foreach (var room in _roomLargeH) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomLargeH, world, room);
+        }
+        foreach (var room in _roomLargeV) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomLargeV, world, room);
+        }
+        foreach (var room in _roomHuge) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomHuge, world, room);
+        }
+        foreach (var room in _roomGigantic) {
+            int world = int.Parse(room.name.Split('_')[1]);
+            Add(roomGigantic, world, room);
+        }
+    }
+
+    void Add(Dictionary<int, List<GameObject>> dic, int key, GameObject value) {
+        if (!dic.ContainsKey(key)) {
+            dic[key] = new List<GameObject>();
+        }
+        dic[key].Add(value);
+    }
+
+    Dictionary<int, List<GameObject>> RoomTypeToDictionary(RoomType type) { 
+        switch (type) {
+            case RoomType.Tiny:
+                return roomTiny;
+            case RoomType.Small:
+                return roomSmall;
+            case RoomType.Medium:
+                return roomMedium;
+            case RoomType.LargeH:
+                return roomLargeH;
+            case RoomType.LargeV:
+                return roomLargeV;
+            case RoomType.Huge:
+                return roomHuge;
+            case RoomType.Gigantic:
+                return roomGigantic;
+        }
+        return roomLargeH;
+    }
+
     public void CreateRooms() {
         worldRooms = new Dictionary<int, GameObject>();
         GameObject newRoom;
         // Create first welcoming room and add it to worldRooms.
-        newRoom = Instantiate(roomPrefab, roomsHolder.transform);
+
+        if (roomTiny.ContainsKey(currentWorld)) newRoom = Instantiate(roomTiny[currentWorld][Random.Range(0, roomTiny[currentWorld].Count)], roomsHolder.transform);
+        else {
+            int rand = Random.Range(0, roomTiny.Keys.Count);
+            newRoom = Instantiate(roomTiny[rand][Random.Range(0, roomTiny[rand].Count)], roomsHolder.transform);
+        } 
+
         newRoom.GetComponent<RoomLogic>().GenerateWelcomingRoom();
         worldRooms.Add(currentRoomGenerated, newRoom);
         currentRoomGenerated++;
 
+        int forwardRooms, itemRooms, shopRooms;
         // Amount of forward rooms until getting to the boss.
-        int forwardRooms = Random.Range(forwardMinMax[currentWorld].Item1, forwardMinMax[currentWorld].Item2);
+        if (forwardMinMax[currentWorld] != null)
+            forwardRooms = Random.Range(forwardMinMax[currentWorld].Item1, forwardMinMax[currentWorld].Item2);
+        else {
+            int index = Random.Range(0, forwardMinMax.Count);
+            forwardRooms = Random.Range(forwardMinMax[index].Item1, forwardMinMax[index].Item2);
+        }
         // Amount of item rooms generated.
-        int itemRooms = Random.Range(itemMinMax[currentWorld].Item1, itemMinMax[currentWorld].Item2);
+        if (itemMinMax[currentWorld] != null)
+            itemRooms = Random.Range(itemMinMax[currentWorld].Item1, itemMinMax[currentWorld].Item2);
+        else {
+            int index = Random.Range(0, itemMinMax.Count);
+            itemRooms = Random.Range(itemMinMax[index].Item1, itemMinMax[index].Item2);
+        }
         // Amount of shop rooms generated.
-        int shopRooms = Random.Range(1, 1);
+        shopRooms = Random.Range(1, 1);
 
         // Add random item room locations to rooms list, used later after forward rooms are generated.
         int generatedItemRooms = 0;
@@ -87,34 +191,63 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < forwardRooms; i++) {
             // Generate new forward room, set position and add it to worldRooms.
-            newRoom = Instantiate(roomPrefab, roomsHolder.transform);
+
+            RoomType type = RoomLogic.GetForwardRoomTypeWithoutSettingDim();
+            var r = RoomTypeToDictionary(type);
+            if (r.ContainsKey(currentWorld)) newRoom = Instantiate(r[currentWorld][Random.Range(0, r[currentWorld].Count)], roomsHolder.transform);
+            else {
+                int rand = Random.Range(0, r.Keys.Count);
+                newRoom = Instantiate(r[rand][Random.Range(0, r[rand].Count)], roomsHolder.transform);
+            }
+
             newRoom.transform.localPosition = new Vector3(newRoom.transform.localPosition.x,
                 worldRooms[i].transform.localPosition.y + 4, newRoom.transform.localPosition.z);
-            newRoom.GetComponent<RoomLogic>().GenerateForwardRoom();
+            newRoom.GetComponent<RoomLogic>().GenerateForwardRoom(type);
             worldRooms.Add(currentRoomGenerated, newRoom);
 
             // if hallway and item room should be generated, proceed to generate and setup both.
             if (rooms.Count > 0 && rooms[0] == i + 1) {
                 GameObject specialRoom, specialItemRoom;
-                specialRoom = Instantiate(roomPrefab, newRoom.transform);
+                //specialRoom = Instantiate(roomPrefab, newRoom.transform);
+
+                type = RoomLogic.GetHallwayRoomTypeWithoutSettingDim();
+                r = RoomTypeToDictionary(type);
+                if (r.ContainsKey(currentWorld)) specialRoom = Instantiate(r[currentWorld][Random.Range(0, r[currentWorld].Count)], newRoom.transform);
+                else {
+                    int rand = Random.Range(0, r.Keys.Count);
+                    specialRoom = Instantiate(r[rand][Random.Range(0, r[rand].Count)], newRoom.transform);
+                }
+
                 // Randomly choose hallway direction, setup it's transform.
                 bool left = Random.Range(0, 2) == 0 ? true : false;
                 if (left) {
                     specialRoom.transform.localPosition = new Vector3(specialRoom.transform.localPosition.x - 0.3f,
                         specialRoom.transform.localPosition.y, specialRoom.transform.localPosition.z);
-                    specialItemRoom = Instantiate(roomPrefab, specialRoom.transform);
+
+                    if (roomItem.ContainsKey(currentWorld)) specialItemRoom = Instantiate(roomItem[currentWorld][Random.Range(0, roomItem[currentWorld].Count)], specialRoom.transform);
+                    else {
+                        int rand = Random.Range(0, roomItem.Keys.Count);
+                        specialItemRoom = Instantiate(roomItem[rand][Random.Range(0, roomItem[rand].Count)], specialRoom.transform);
+                    }
+
                     specialItemRoom.transform.localPosition = new Vector3(specialItemRoom.transform.localPosition.x - 0.2f,
                         specialItemRoom.transform.localPosition.y, specialItemRoom.transform.localPosition.z);
                 }
                 else {
                     specialRoom.transform.localPosition = new Vector3(specialRoom.transform.localPosition.x + 0.3f,
                         specialRoom.transform.localPosition.y, specialRoom.transform.localPosition.z);
-                    specialItemRoom = Instantiate(roomPrefab, specialRoom.transform);
+
+                    if (roomItem.ContainsKey(currentWorld)) specialItemRoom = Instantiate(roomItem[currentWorld][Random.Range(0, roomItem[currentWorld].Count)], specialRoom.transform);
+                    else {
+                        int rand = Random.Range(0, roomItem.Keys.Count);
+                        specialItemRoom = Instantiate(roomItem[rand][Random.Range(0, roomItem[rand].Count)], specialRoom.transform);
+                    }
+
                     specialItemRoom.transform.localPosition = new Vector3(specialItemRoom.transform.localPosition.x + 0.2f,
                         specialItemRoom.transform.localPosition.y, specialItemRoom.transform.localPosition.z);
                 }
                 // Generate noth rooms.
-                specialRoom.GetComponent<RoomLogic>().GenerateHallwayRoom(left);
+                specialRoom.GetComponent<RoomLogic>().GenerateHallwayRoom(left, type);
                 specialItemRoom.GetComponent<RoomLogic>().GenerateItemRoom(left);
                 // Remove item and hallway room from the list.
                 rooms.RemoveAt(0);
@@ -123,10 +256,17 @@ public class LevelManager : MonoBehaviour
             currentRoomGenerated++;
         }
         // Generate and setup boss room.
-        newRoom = Instantiate(roomPrefab, roomsHolder.transform);
+        RoomType _type = RoomLogic.GetBossRoomTypeWithoutSettingDim();
+        var _r = RoomTypeToDictionary(_type);
+        if (_r.ContainsKey(currentWorld)) newRoom = Instantiate(_r[currentWorld][Random.Range(0, _r[currentWorld].Count)], roomsHolder.transform);
+        else {
+            int rand = Random.Range(0, _r.Keys.Count);
+            newRoom = Instantiate(_r[rand][Random.Range(0, _r[rand].Count)], roomsHolder.transform);
+        }
+
         newRoom.transform.localPosition = new Vector3(newRoom.transform.localPosition.x,
                 worldRooms[worldRooms.Count - 1].transform.localPosition.y + 4, newRoom.transform.localPosition.z);
-        newRoom.GetComponent<RoomLogic>().GenerateBossRoom();
+        newRoom.GetComponent<RoomLogic>().GenerateBossRoom(_type);
         worldRooms.Add(currentRoomGenerated, newRoom);
         currentRoomGenerated++;
 

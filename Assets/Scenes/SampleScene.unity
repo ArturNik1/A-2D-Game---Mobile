@@ -703,9 +703,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db04c27070feca4b9149b17be91f6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 8441145315216136551, guid: fc3ae5c188f16ec42a680b60978f2126,
+  roomPrefab: {fileID: 8441145315216136551, guid: d402532252a0cc84783fb3cc08d9922c,
     type: 3}
   roomsHolder: {fileID: 2064857148}
+  _roomItem:
+  - {fileID: 8441145315216136551, guid: 43207434ecf745c4d8d55678d71b0d68, type: 3}
+  - {fileID: 8441145315216136551, guid: 3f87d125bc0ccd7428f0c2aedf0fa285, type: 3}
+  _roomTiny:
+  - {fileID: 8441145315216136551, guid: 1ca9996c4b7098d4c92441c584540fb5, type: 3}
+  - {fileID: 8441145315216136551, guid: 8bf43e44c9450554e8a17943339ff8ad, type: 3}
+  - {fileID: 8441145315216136551, guid: d402532252a0cc84783fb3cc08d9922c, type: 3}
+  - {fileID: 8441145315216136551, guid: 1011643d76f47ba4186ff31916e872f4, type: 3}
+  - {fileID: 8441145315216136551, guid: 89b952609c289a54783983a0885be838, type: 3}
+  _roomSmall:
+  - {fileID: 8441145315216136551, guid: c17a54aadfe8198468e353c911ed956c, type: 3}
+  - {fileID: 8441145315216136551, guid: aa1141330f9206b428f97b7cdbcd0fe9, type: 3}
+  _roomMedium:
+  - {fileID: 8441145315216136551, guid: 9565f3d6476a50b43995841075cf1782, type: 3}
+  - {fileID: 8441145315216136551, guid: 2b1e32cceab27444fa2530da9c2e5490, type: 3}
+  _roomLargeH:
+  - {fileID: 8441145315216136551, guid: c14d19df14438964fa5177ebe666c9e6, type: 3}
+  - {fileID: 8441145315216136551, guid: 3350e47533e5abf41a91b0116defd977, type: 3}
+  _roomLargeV:
+  - {fileID: 8441145315216136551, guid: ab8049226745c084cb9e527a288a9a9c, type: 3}
+  - {fileID: 8441145315216136551, guid: 5e23eb5faa0dd2f42a8bbbc63ff7edd2, type: 3}
+  _roomHuge:
+  - {fileID: 8441145315216136551, guid: 1159cfe3eac630545917576956a2d4c5, type: 3}
+  - {fileID: 8441145315216136551, guid: 88dfc38b33db2d94eabad95996221ade, type: 3}
+  _roomGigantic:
+  - {fileID: 8441145315216136551, guid: 40b5753b848d929428862f435b91ed1c, type: 3}
+  - {fileID: 8441145315216136551, guid: c175e09f08bb16340be6d5de2b850921, type: 3}
 --- !u!4 &187244953
 Transform:
   m_ObjectHideFlags: 0
@@ -1742,6 +1769,8 @@ MonoBehaviour:
   currentWave: 1
   spawnedEnemies: 0
   aliveEnemies: 0
+  enemyDied: 0
+  waveEnabled: 0
 --- !u!1001 &492946247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4360,7 +4389,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4378,7 +4407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363644291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 25, z: 0}
+  m_LocalPosition: {x: 0, y: 25, z: 1}
   m_LocalScale: {x: 512, y: 512, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5699,7 +5728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5868693, y: 0.80974996}
   m_AnchorMax: {x: 0.9931757, y: 0.9943981}
-  m_AnchoredPosition: {x: 171.89996, y: 24.222961}
+  m_AnchoredPosition: {x: 171.90002, y: 24.223022}
   m_SizeDelta: {x: -343.7, y: -48.395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1875076142

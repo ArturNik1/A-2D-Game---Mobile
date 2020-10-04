@@ -57,28 +57,30 @@ public class RoomLogic : MonoBehaviour
         MakeDoorsVisible(up: true);
     }
 
-    public void GenerateBossRoom() {
+    public void GenerateBossRoom(RoomType type) {
         gameObject.name = "Room" + currentWorld + "_" + currentRoom;
-        roomType = DetermineBossRoomType();
+        roomType = type;
+        DetermineBossRoomType();
         roomAction = RoomAction.Boss;
         transform.localScale = new Vector3(width, height, 1);
         MakeDoorsVisible(up: true, down: true);
         gameObject.SetActive(false);
     }
 
-    public void GenerateForwardRoom() {
+    public void GenerateForwardRoom(RoomType type) {
         gameObject.name = "Room" + currentWorld + "_" + currentRoom;
-        roomType = DetermineForwardRoomType();
+        roomType = type;
+        SetDimBasedOnRoomType(type);
         roomAction = RoomAction.Forward;
         transform.localScale = new Vector3(width, height, 1);
         MakeDoorsVisible(up: true, down: true);
         gameObject.SetActive(false);
     }
 
-    public void GenerateHallwayRoom(bool isLeft) {
+    public void GenerateHallwayRoom(bool isLeft, RoomType type) {
         // Generate hallway + item room... (small/medium + tiny)
         gameObject.name = "HallwayRoom";
-        roomType = DetermineHallwayRoomType();
+        roomType = DetermineHallwayRoomType(type);
         roomAction = RoomAction.Hallway;
         transform.localScale = new Vector3(width, height, 1);
         MakeDoorsVisible(right: true, left: true);
@@ -106,50 +108,55 @@ public class RoomLogic : MonoBehaviour
 
     #region Room RNG
 
-    RoomType DetermineBossRoomType() {
+    public static RoomType GetBossRoomTypeWithoutSettingDim() {
+        if ((LevelManager.currentWorld + 1) % 2 != 0) return RoomType.Huge;
+        else return RoomType.Gigantic;
+    }
+
+    void DetermineBossRoomType() {
         if ((LevelManager.currentWorld + 1) % 2 != 0) {
             width = width_16;
             height = 16;
-            return RoomType.Huge;
         }
         else {
             width = 24;
             height = 24;
-            return RoomType.Gigantic;
         }
 
     }
 
-    RoomType DetermineForwardRoomType() {
+    public static RoomType GetForwardRoomTypeWithoutSettingDim() {
         int rand = Random.Range(1, 100);
-        if (rand <= 32) { // 30
+        if (rand <= 32) return RoomType.LargeH;
+        else if (rand <= 64) return RoomType.LargeV;
+        else if (rand <= 95) return RoomType.Huge;
+        else return RoomType.Gigantic;
+    }
+
+    void SetDimBasedOnRoomType(RoomType type) { 
+        if (type == RoomType.LargeH) {
             width = width_16;
             height = 12;
-
-            return RoomType.LargeH;
         }
-        else if (rand <= 64) { // 60
+        else if (type == RoomType.LargeV) {
             width = width_12;
             height = 16;
-
-            return RoomType.LargeV;
         }
-        else if (rand <= 95) { // 90
+        else if (type == RoomType.Huge) {
             width = width_16;
             height = 16;
-
-            return RoomType.Huge;
-        } 
+        }
         else {
             width = 24;
             height = 24;
-
-            return RoomType.Gigantic;
         }
     }
 
-    RoomType DetermineHallwayRoomType() {
-        RoomType type = Random.Range(0, 2) == 0 ? RoomType.Small : RoomType.Medium; // 0 2 
+    public static RoomType GetHallwayRoomTypeWithoutSettingDim() { 
+        return Random.Range(0, 2) == 0 ? RoomType.Small : RoomType.Medium;
+    }
+
+    RoomType DetermineHallwayRoomType(RoomType type) {
         float parentX = transform.parent.localScale.x, parentY = transform.parent.localScale.y;
         RoomType parentRoomType = transform.parent.GetComponent<RoomLogic>().roomType;
         if (type == RoomType.Small) {
@@ -180,16 +187,16 @@ public class RoomLogic : MonoBehaviour
     bool MakeDoorsVisible(bool up = false, bool right = false, bool down = false, bool left = false) {
         // Active different doors at different rooms.
         if (up) {
-            transform.Find("DoorUp").gameObject.SetActive(true);
+            transform.Find("Objects").Find("DoorUp").gameObject.SetActive(true);
         }
         if (right) {
-            transform.Find("DoorRight").gameObject.SetActive(true);
+            transform.Find("Objects").Find("DoorRight").gameObject.SetActive(true);
         }
         if (down) {
-            transform.Find("DoorDown").gameObject.SetActive(true);
+            transform.Find("Objects").Find("DoorDown").gameObject.SetActive(true);
         }
         if (left) {
-            transform.Find("DoorLeft").gameObject.SetActive(true);
+            transform.Find("Objects").Find("DoorLeft").gameObject.SetActive(true);
         }
         return false;
     }
@@ -199,43 +206,43 @@ public class RoomLogic : MonoBehaviour
         // Add correct fromRoom and toRoom to every room.
         switch (roomAction) {
             case RoomAction.Welcome:
-                tempDoor = transform.Find("DoorUp").GetComponent<DoorLogic>();
+                tempDoor = transform.Find("Objects").Find("DoorUp").GetComponent<DoorLogic>();
                 tempDoor.PopulateGameObjects(gameObject, roomUp, nextWorld);
                 break;
             case RoomAction.Forward:
-                tempDoor = transform.Find("DoorUp").GetComponent<DoorLogic>();
+                tempDoor = transform.Find("Objects").Find("DoorUp").GetComponent<DoorLogic>();
                 tempDoor.PopulateGameObjects(gameObject, roomUp, nextWorld);
-                tempDoor = transform.Find("DoorDown").GetComponent<DoorLogic>();
+                tempDoor = transform.Find("Objects").Find("DoorDown").GetComponent<DoorLogic>();
                 tempDoor.PopulateGameObjects(gameObject, roomDown, nextWorld);
                 if (roomLeft != null) {
-                    tempDoor = transform.Find("DoorLeft").GetComponent<DoorLogic>();
+                    tempDoor = transform.Find("Objects").Find("DoorLeft").GetComponent<DoorLogic>();
                     tempDoor.PopulateGameObjects(gameObject, roomLeft, nextWorld);
                 }
                 if (roomRight != null) {
-                    tempDoor = transform.Find("DoorRight").GetComponent<DoorLogic>();
+                    tempDoor = transform.Find("Objects").Find("DoorRight").GetComponent<DoorLogic>();
                     tempDoor.PopulateGameObjects(gameObject, roomRight, nextWorld);
                 }
                 break;
             case RoomAction.Hallway:
-                tempDoor = transform.Find("DoorLeft").GetComponent<DoorLogic>();
+                tempDoor = transform.Find("Objects").Find("DoorLeft").GetComponent<DoorLogic>();
                 tempDoor.PopulateGameObjects(gameObject, roomLeft, nextWorld);
-                tempDoor = transform.Find("DoorRight").GetComponent<DoorLogic>();
+                tempDoor = transform.Find("Objects").Find("DoorRight").GetComponent<DoorLogic>();
                 tempDoor.PopulateGameObjects(gameObject, roomRight, nextWorld);
                 break;
             case RoomAction.Special:
                 if (roomLeft != null) {
-                    tempDoor = transform.Find("DoorLeft").GetComponent<DoorLogic>();
+                    tempDoor = transform.Find("Objects").Find("DoorLeft").GetComponent<DoorLogic>();
                     tempDoor.PopulateGameObjects(gameObject, roomLeft, nextWorld);
                 }
                 if (roomRight != null) {
-                    tempDoor = transform.Find("DoorRight").GetComponent<DoorLogic>();
+                    tempDoor = transform.Find("Objects").Find("DoorRight").GetComponent<DoorLogic>();
                     tempDoor.PopulateGameObjects(gameObject, roomRight, nextWorld);
                 }
                 break;
             case RoomAction.Boss:
-                tempDoor = transform.Find("DoorUp").GetComponent<DoorLogic>();
+                tempDoor = transform.Find("Objects").Find("DoorUp").GetComponent<DoorLogic>();
                 tempDoor.PopulateGameObjects(gameObject, roomUp, nextWorld);
-                tempDoor = transform.Find("DoorDown").GetComponent<DoorLogic>();
+                tempDoor = transform.Find("Objects").Find("DoorDown").GetComponent<DoorLogic>();
                 tempDoor.PopulateGameObjects(gameObject, roomDown, nextWorld);
                 break;
         }
