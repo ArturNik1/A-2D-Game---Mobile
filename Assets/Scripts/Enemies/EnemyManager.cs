@@ -58,7 +58,7 @@ public class EnemyManager : MonoBehaviour
         float middle_Y = (wall_U.position.y + wall_B.position.y) / 2f;
         float maxPerHalf_Y = wall_U.position.y - middle_Y - wall_U.GetComponentInChildren<BoxCollider>().size.x; // x instead of y
 
-        Vector3 pos = new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 0, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 0, true), 0);
+        Vector3 pos = new Vector3(CalculateByPercentOffMiddle_X(middle_X, maxPerHalf_X, 1, true), CalculateByPercentOffMiddle_Y(middle_Y, maxPerHalf_Y, 5, false), 0);
 
         GameObject chest = Instantiate(enemyPrefabs[2], pos, enemyPrefabs[2].transform.rotation);
         chest.transform.SetParent(enemyParent.transform);

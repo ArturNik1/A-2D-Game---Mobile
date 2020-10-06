@@ -165,7 +165,7 @@ public class ChestController : MonoBehaviour
             GameObject obj = Instantiate(itemFromList);
             room.GetComponent<RoomLogic>().chestItem = itemFromList;
             obj.GetComponent<Item>().fromItemRoom = true;
-            if (fromNormal) obj.transform.position = new Vector3(room.transform.position.x, room.transform.position.y + 0.1f, room.transform.position.z - 0.25f);
+            if (fromNormal) obj.transform.position = new Vector3(room.transform.position.x + 0.006f, room.transform.position.y + 0.08f, room.transform.position.z - 0.25f);
             else obj.transform.position = new Vector3(transform.position.x, transform.position.y, -0.1f);
             room.GetComponent<RoomLogic>().itemPos = obj.transform.position;
             obj.transform.SetParent(ItemManager.instance.itemsHolder.transform);
