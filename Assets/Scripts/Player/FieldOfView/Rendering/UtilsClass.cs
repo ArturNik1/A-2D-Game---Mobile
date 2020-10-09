@@ -23,7 +23,8 @@ namespace CodeMonkey.Utils {
 
         public static Vector3 GetVectorFromAngle(float angle) {
             // angle = 0 -> 360
-            float angleRad = angle * (Mathf.PI/180f);
+            //float angleRad = angle * (Mathf.PI/180f);
+            float angleRad = angle * Mathf.Deg2Rad; 
             return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
         }
 

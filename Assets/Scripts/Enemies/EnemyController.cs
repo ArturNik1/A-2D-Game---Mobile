@@ -40,6 +40,8 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     bool isWinning;
     protected bool isAlive = true;
 
+    public bool test = false;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -118,7 +120,9 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
 
     public virtual void Move() {
         var inputVector = direction;
-        var movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * speed * Time.fixedDeltaTime;
+        // movementOffset = new Vector3(inputVector.x, inputVector.y, 0).normalized * speed * Time.fixedDeltaTime; // Old movement type - lagging behind a bit.
+        var inputAndTime = (Vector3)inputVector * Time.fixedDeltaTime;
+        var movementOffset = inputAndTime * speed;
         var newPosition = rb.position + movementOffset;
 
         if (!skipMove) { 
@@ -133,11 +137,11 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         }
 
         if (firstUpdate) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 1);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputAndTime, Vector3.back), 1);
             firstUpdate = false;
         }
         else {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVector * Time.fixedDeltaTime, Vector3.back), 0.1f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputAndTime, Vector3.back), 0.1f);
         }
 
         if (startDelayCounter <= startDelay) { // Don't move if X seconds had not passed.
@@ -156,20 +160,20 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         direction = new Vector2(randX, randY);
     }
     public virtual void ChangeDirectionOnHitToPlayer() {
-        float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
-        posX = Random.Range(posX - 0.3f, posX + 0.3f);
-        posY = Random.Range(posY - 0.3f, posY + 0.3f);
+        Vector3 normalizedPos = -(transform.position - player.transform.position).normalized;
+        normalizedPos.x = Random.Range(normalizedPos.x - 0.3f, normalizedPos.x + 0.3f);
+        normalizedPos.y = Random.Range(normalizedPos.y - 0.3f, normalizedPos.y + 0.3f);
 
-        direction = new Vector2(posX, posY);
+        direction = new Vector2(normalizedPos.x, normalizedPos.y);
     }
     public virtual void ChangeDirectionOnHitToPlayerNoRandom() {
-        float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
-        direction = new Vector2(posX, posY);
+        Vector3 normalizedPos = -(transform.position - player.transform.position).normalized;
+        direction = new Vector2(normalizedPos.x, normalizedPos.y);
     }
-    public virtual void ChangeDirectionToPlayerDelay() {
+    public virtual void ChangeDirectionToPlayerDelay(Vector3 normalizedPos) {
         Vector2 lastDirection = direction;
-        float posX = -(transform.position - player.transform.position).normalized.x, posY = -(transform.position - player.transform.position).normalized.y;
-        direction = Vector3.Slerp(new Vector2(posX, posY), lastDirection, 0.9325f);
+        //Vector3 normalizedPos = -(transform.position - player.transform.position).normalized;
+        direction = Vector3.Slerp(new Vector2(normalizedPos.x, normalizedPos.y), lastDirection, 0.9325f);
     }
     public virtual void ChangeDirectionOnHit(float normalX, float normalY) {
         float randX, randY;

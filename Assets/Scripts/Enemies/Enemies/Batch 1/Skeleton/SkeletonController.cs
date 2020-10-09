@@ -11,15 +11,40 @@ public class SkeletonController : EnemyController
     bool _isHit = false;
 
     Transform bodyHolder;
-    FieldOfViewEnemy fov;
 
     float movement = 0.0f;
+    float distanceFromPlayer;
+    Vector2 normalizedPos;
+
+    [SerializeField] float viewDistance = 1.25f;
+    [SerializeField] int viewFOV = 60;
 
     public override void Start()
     {
         base.Start();
-        fov = GetComponent<FieldOfViewEnemy>();
         bodyHolder = transform.Find("BodyHolder");
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        distanceFromPlayer = DistanceFromPlayer();
+
+        if (distanceFromPlayer <= viewDistance)
+        {
+
+            Vector2 enemyLookDirection = transform.forward;
+            Vector2 playerRelativeDirection = (player.transform.position - transform.position).normalized;
+            normalizedPos = playerRelativeDirection;
+            float newAngle = Vector2.Angle(enemyLookDirection, playerRelativeDirection);
+
+            if (newAngle <= viewFOV) shouldRun = true;
+            else shouldRun = false;
+
+        }
+        else shouldRun = false;
+
     }
 
     public override void FixedUpdate()
@@ -28,22 +53,18 @@ public class SkeletonController : EnemyController
 
         if (!pController.isAlive || !isAlive) return;
 
-        fov.SetOrigin(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f));
-        fov.SetAimDirection(direction);
-        shouldRun = fov.DetectInArea();
-
-        HandleMovementAndSpeed();
+        HandleMovementAndSpeed(distanceFromPlayer);
 
         Move();
     }
 
-    void HandleMovementAndSpeed() {
+    void HandleMovementAndSpeed(float distance) {
         if (shouldRun) {
             // Lock on to player..
-            ChangeDirectionToPlayerDelay();
+            ChangeDirectionToPlayerDelay(normalizedPos);
 
             //if (isAttacking) return;
-            if (DistanceFromPlayer() <= 0.25f && !_isHit) {
+            if (distance <= 0.25f && !_isHit) {
                 anim.CrossFade("Attack02", 0f, 0);
                 isAttacking = true;
                 speed = 0;

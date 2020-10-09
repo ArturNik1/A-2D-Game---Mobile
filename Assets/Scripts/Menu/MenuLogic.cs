@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -85,6 +86,10 @@ public class MenuLogic : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void Awake() {
+        SceneManager.sceneLoaded += OnSceneWasSwitched;
+    }
+
     private void OnEnable() {
 
         if (SceneManager.GetActiveScene().buildIndex == 0) {
@@ -101,6 +106,11 @@ public class MenuLogic : MonoBehaviour
 
     private void Update()
     {
+
+        //var StandaloneInputModule = (StandaloneExtension)EventSystem.current.currentInputModule;
+        //StandaloneInputModule.GetPointerData();
+
+
         // Handle Back Button.
         if (Input.GetKeyDown(KeyCode.Escape)) { 
             if (SceneManager.GetActiveScene().buildIndex == 0) { 
@@ -125,6 +135,7 @@ public class MenuLogic : MonoBehaviour
             }
         }
 
+        //if (Debug.isDebugBuild && SceneManager.GetActiveScene().buildIndex == 1 && Application.platform != RuntimePlatform.Android) {
         if (Debug.isDebugBuild && SceneManager.GetActiveScene().buildIndex == 1) {
             debug.SetActive(true);
         }
@@ -177,5 +188,19 @@ public class MenuLogic : MonoBehaviour
     }
 
     #endregion
+
+    void OnSceneWasSwitched(Scene scene, LoadSceneMode mode) {
+        LevelManager.currentWorld = 0;
+        LevelManager.currentRoomGenerated = 0;
+
+        ProjectileController.damageAmount = 5f;
+        ProjectileController.critMultiplier = 1.1f;
+        ProjectileController.critProcChance = 5f;
+        ProjectileController.damageCounter = 0;
+    }
+
+    private void OnDestroy() {
+        SceneManager.sceneLoaded -= OnSceneWasSwitched;
+    }
 
 }

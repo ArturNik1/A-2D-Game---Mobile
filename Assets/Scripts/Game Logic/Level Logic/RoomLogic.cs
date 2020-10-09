@@ -71,7 +71,7 @@ public class RoomLogic : MonoBehaviour
         gameObject.name = "Room" + currentWorld + "_" + currentRoom;
         roomType = type;
         SetDimBasedOnRoomType(type);
-        roomAction = RoomAction.Forward;
+        roomAction = RoomAction.Forward;    
         transform.localScale = new Vector3(width, height, 1);
         MakeDoorsVisible(up: true, down: true);
         gameObject.SetActive(false);
@@ -130,7 +130,7 @@ public class RoomLogic : MonoBehaviour
         if (rand <= 32) return RoomType.LargeH;
         else if (rand <= 64) return RoomType.LargeV;
         else if (rand <= 95) return RoomType.Huge;
-        else return RoomType.Gigantic;
+        return RoomType.Gigantic;
     }
 
     void SetDimBasedOnRoomType(RoomType type) { 
@@ -149,6 +149,7 @@ public class RoomLogic : MonoBehaviour
         else {
             width = 24;
             height = 24;
+            transform.Find("Objects").transform.Find("Arena").gameObject.SetActive(false);
         }
     }
 

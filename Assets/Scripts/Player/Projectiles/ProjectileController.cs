@@ -21,10 +21,18 @@ public class ProjectileController : MonoBehaviour
     [HideInInspector]
     public Vector2 direction;
 
+    float posZ;
+
+    Transform trans; // using trans instead of transform seems to be cheaper per the profiler.
+
     // Start is called before the first frame update
     void OnEnable() {
         rb = GetComponent<Rigidbody>();
         currentTime = 0;
+
+        posZ = transform.position.z + 0.25f;
+
+        trans = transform;
     }
 
     // Update is called once per frame
@@ -34,18 +42,15 @@ public class ProjectileController : MonoBehaviour
             pController.ResetProjectile(id);
         }
 
-        //Debug.DrawRay(new Vector3(transform.position.x + 0.0225f, transform.position.y, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
-        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
-        //Debug.DrawRay(new Vector3(transform.position.x - 0.0225f, transform.position.y, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
-        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z + 1f), -Vector3.forward, Color.red, 5f);
+        //Debug.DrawRay(new Vector3(transform.position.x + 0.0225f, transform.position.y, transform.position.z + 0.5f), -Vector3.forward, Color.red, 1f);
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z + 0.5f), -Vector3.forward, Color.red, 2f);
+        //Debug.DrawRay(new Vector3(transform.position.x - 0.0225f, transform.position.y, transform.position.z + 0.5f), -Vector3.forward, Color.red, 1f);
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z + 0.5f), -Vector3.forward, Color.red, 2f);
 
         // check for raycast above and below in a 2x2 'box'....
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x + 0.0225f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0225f, transform.position.y, transform.position.z), -Vector3.forward, out hit, 5) ||
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z), -Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z), -Vector3.forward, out hit, 5) || 
-            Physics.Raycast(new Vector3(transform.position.x + 0.0225f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x - 0.0225f, transform.position.y, transform.position.z), Vector3.forward, out hit, 5) ||
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z), Vector3.forward, out hit, 5) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z), Vector3.forward, out hit, 5)) { // Up
-            
+        if (Physics.Raycast(new Vector3(trans.position.x + 0.0225f, trans.position.y, posZ), -Vector3.forward, out hit, 0.75f) || Physics.Raycast(new Vector3(trans.position.x - 0.0225f, trans.position.y, posZ), -Vector3.forward, out hit, 0.75f)) { //|| 
+            //Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.0225f, transform.position.z + 0.5f), -Vector3.forward, out hit, 0.5f) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.0225f, transform.position.z + 0.5f), -Vector3.forward, out hit, 0.5f)) { 
             if (hit.collider.tag.Contains("UnHittable")) {
                 if (hit.collider.name.Contains("Shield")) { 
                     hit.collider.GetComponentInParent<SkeletonController>().shieldHit = true;
@@ -72,9 +77,9 @@ public class ProjectileController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        var inputVector = direction;
-        if (inputVector == Vector2.zero) inputVector = Vector2.up;
-        var movementOffSet = new Vector3(inputVector.x, inputVector.y, 0).normalized * shotSpeed * Time.fixedDeltaTime;
+        Vector3 inputVector = direction;
+        if (inputVector == Vector3.zero) inputVector = Vector2.up;
+        var movementOffSet = inputVector.normalized * shotSpeed * Time.fixedDeltaTime;
         var newPosition = rb.position + movementOffSet;
 
         rb.MovePosition(newPosition);

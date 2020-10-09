@@ -65,7 +65,6 @@ public class PlayerController : MonoBehaviour
     #region lifeCycle
 
     private void Awake() {
-        playerInputActions = new PlayerInputActions();
         rb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<AnimatorManager>();
         pInfo = GetComponent<PlayerInfo>();
@@ -74,13 +73,20 @@ public class PlayerController : MonoBehaviour
         healthText = healthBar.transform.Find("Health Text").GetComponent<Text>();
 
         isOnMobile = Application.isMobilePlatform;
+
+        playerInputActions = new PlayerInputActions();
+        if (isOnMobile) {
+            playerInputActions.Disable();
+        }
     }
 
     private void OnEnable() {
+        if (isOnMobile) return;
         playerInputActions.Enable();
     }
 
     private void OnDisable() {
+        if (isOnMobile) return;
         playerInputActions.Disable();
     }
 
@@ -104,7 +110,7 @@ public class PlayerController : MonoBehaviour
         if (EnemyManager.enemiesTouching.Count > 0 && EnemyManager.enemiesTouching[0].GetComponent<ChestController>() != null) {
             ReceiveDamage(EnemyManager.enemiesTouching[0].GetComponent<ChestController>().damage);
         }
-        else {
+        else if (EnemyManager.enemiesTouching.Count != 0) {
             EnemyManager.enemiesTouching = EnemyManager.enemiesTouching
                 .OrderByDescending(x => x.GetComponent<BossController>() == null ? -1 : x.GetComponent<BossController>().damage)
                 .ThenByDescending(y => y.GetComponent<EnemyController>() == null ? -1 : y.GetComponent<EnemyController>().damage).ToList();

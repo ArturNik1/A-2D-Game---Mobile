@@ -18778,7 +18778,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 124
   m_CollisionDetection: 0
 --- !u!114 &7714716591096220640
 MonoBehaviour:
@@ -18798,6 +18798,7 @@ MonoBehaviour:
     m_Bits: 512
   fov: 90
   viewDistance: 1
+  rays: 6
 --- !u!33 &8540923204613620151
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -194,7 +194,6 @@ GameObject:
   - component: {fileID: 95072803331382628}
   - component: {fileID: 6070008956227143962}
   - component: {fileID: 7621160244421719404}
-  - component: {fileID: 8065785077071546669}
   - component: {fileID: 51931811067240459}
   - component: {fileID: 4655496735129446330}
   m_Layer: 0
@@ -245,9 +244,12 @@ MonoBehaviour:
   anim: {fileID: 0}
   damageToBeTaken: []
   startDelay: 0
+  test: 0
   shieldHit: 0
   isAttacking: 0
   shouldRun: 0
+  viewDistance: 1.25
+  viewFOV: 60
 --- !u!95 &95072803331382628
 Animator:
   serializedVersion: 3
@@ -23579,24 +23581,6 @@ MonoBehaviour:
     noBones: 0
   asyncUpdating: 0
   _serialized: 1
---- !u!114 &8065785077071546669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112885853905290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e670d23e272b9944f9db221a13c5df30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showMesh: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  fov: 60
-  viewDistance: 1.25
 --- !u!33 &51931811067240459
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -45,17 +45,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""a4d2f175-12ad-4d10-8e35-e5766b8572b3"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""WASD"",
                     ""id"": ""a8185339-84c3-437d-be4b-4d925c07584b"",
                     ""path"": ""2DVector"",
@@ -156,17 +145,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""60fa4de2-0a91-4fcc-b4a2-ad7b3266ac4c"",
-                    ""path"": ""<Joystick>/stick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b6ba7807-9b77-42fe-aa03-c191548a9035"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -178,31 +156,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e907e7ba-a817-4e7f-b612-e2315c3010ea"",
-                    ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2a2ab77c-d5d0-4228-9d69-4a6454e8d33d"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0c2f1c8f-9b03-4fba-8935-9e39e5c7601d"",
-                    ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",

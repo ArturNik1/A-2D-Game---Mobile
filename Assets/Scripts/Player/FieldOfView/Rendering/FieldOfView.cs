@@ -17,6 +17,8 @@ public class FieldOfView : MonoBehaviour {
     private float startingAngle = 135;
     private MeshFilter meshFilter;
 
+    public int rays = 50;
+
     GameObject player;
 
     private void Start() {
@@ -36,7 +38,7 @@ public class FieldOfView : MonoBehaviour {
         } 
         else if (!isEnabled) return;
 
-        int rayCount = 50;
+        int rayCount = rays;
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
 
@@ -52,19 +54,20 @@ public class FieldOfView : MonoBehaviour {
         for (int i = 0; i <= rayCount; i++) {
             Vector3 vertex;
             RaycastHit raycastHit;
-            Physics.Raycast(origin, UtilsClass.GetVectorFromAngle(angle), out raycastHit, viewDistance, layerMask);
+            Vector3 UtilsAngle = UtilsClass.GetVectorFromAngle(angle);
+            Physics.Raycast(origin, UtilsAngle, out raycastHit, viewDistance, layerMask);
             if (raycastHit.collider == null) {
                 // No hit
-                vertex = origin + UtilsClass.GetVectorFromAngle(angle) * viewDistance;
+                vertex = origin + UtilsAngle * viewDistance;
             } else {
                 // Say that player is in the area.
                 if (raycastHit.collider.gameObject.tag == "Player") {
 
                     // Keep raycast going after hitting the player.
                     RaycastHit newHit;
-                    Physics.Raycast(raycastHit.point, UtilsClass.GetVectorFromAngle(angle), out newHit, viewDistance - Mathf.Abs(Vector2.Distance(origin, raycastHit.point)), 128);
+                    Physics.Raycast(raycastHit.point, UtilsAngle, out newHit, viewDistance - Mathf.Abs(Vector2.Distance(origin, raycastHit.point)), 128);
                     if (newHit.collider == null) {
-                        vertex = origin + UtilsClass.GetVectorFromAngle(angle) * (viewDistance - Mathf.Abs(Vector2.Distance(origin, raycastHit.point)));
+                        vertex = origin + UtilsAngle * (viewDistance - Mathf.Abs(Vector2.Distance(origin, raycastHit.point)));
                     } 
                     else {
                         vertex = newHit.point;

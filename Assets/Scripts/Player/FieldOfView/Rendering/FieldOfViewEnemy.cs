@@ -13,21 +13,23 @@ public class FieldOfViewEnemy : MonoBehaviour {
     private Mesh mesh;
     [Range (0, 360)][SerializeField] private float fov = 90;
     [SerializeField] private float viewDistance = 1;
+    [SerializeField] private int rayCount = 50;
     private Vector3 origin;
     private float startingAngle = 135;
     private MeshFilter meshFilter;
 
-    GameObject player;
+    GameObject player; // this can be null if enemy is not chasing player
+    GameObject playerObject; // this is always player's gameobject.
 
     private void Start() {
         mesh = new Mesh();
         meshFilter = GetComponent<MeshFilter>();
         meshFilter.mesh = mesh;
         origin = Vector3.zero;
+        playerObject = GameObject.Find("Player");
     }
 
     private void LateUpdate() {
-        int rayCount = 50;
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
 
@@ -35,28 +37,29 @@ public class FieldOfViewEnemy : MonoBehaviour {
         Vector2[] uv = new Vector2[vertices.Length];
         int[] triangles = new int[rayCount * 3];
 
-        vertices[0] = transform.InverseTransformPoint(origin);
+        if (showMesh) vertices[0] = transform.InverseTransformPoint(origin);
 
         int vertexIndex = 1;
         int triangleIndex = 0;
         bool rayHasPlayer = false;
         for (int i = 0; i <= rayCount; i++) {
-            Vector3 vertex;
+            Vector3 vertex = Vector3.zero;
             RaycastHit raycastHit;
-            Physics.Raycast(origin, UtilsClass.GetVectorFromAngle(angle), out raycastHit, viewDistance, layerMask);
+            Vector3 UtilsAngle = UtilsClass.GetVectorFromAngle(angle);
+            Physics.Raycast(origin, UtilsAngle, out raycastHit, viewDistance, layerMask);
             if (raycastHit.collider == null) {
                 // No hit
-                vertex = origin + UtilsClass.GetVectorFromAngle(angle) * viewDistance;
+                if (showMesh) vertex = origin + UtilsAngle * viewDistance;
             } else {
                 // Hit
                 if (player == null) player = raycastHit.collider.transform.root.gameObject;
                 rayHasPlayer = true;
 
-                vertex = raycastHit.point;
+                if (showMesh) vertex = raycastHit.point;
             }
-            vertices[vertexIndex] = transform.InverseTransformPoint(vertex);
+            if (showMesh) vertices[vertexIndex] = transform.InverseTransformPoint(vertex);
 
-            if (i > 0) {
+            if (i > 0 && showMesh) {
                 triangles[triangleIndex + 0] = 0;
                 triangles[triangleIndex + 1] = vertexIndex - 1;
                 triangles[triangleIndex + 2] = vertexIndex;

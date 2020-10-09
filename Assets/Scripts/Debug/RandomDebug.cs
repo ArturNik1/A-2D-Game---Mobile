@@ -12,11 +12,14 @@ public class RandomDebug : MonoBehaviour
 
     private void Awake()
     {
+        if (Application.platform == RuntimePlatform.Android) return;
         QualitySettings.vSyncCount = 0;  // VSync must be disabled
     }
 
     private void Update()
     {
+        if (Application.platform == RuntimePlatform.Android) return;
+
         Application.targetFrameRate = fpsTarget;
 
         if (Time.unscaledTime > _timer)
