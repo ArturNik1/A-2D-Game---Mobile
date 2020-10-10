@@ -21,7 +21,7 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         pController = GameObject.Find("Player").GetComponent<PlayerController>();
-        healthBar = GameObject.Find("Canvas").transform.Find("Boss Health Slider").gameObject;
+        healthBar = GameObject.Find("Canvas").transform.Find("Group").transform.Find("Boss Health Slider").gameObject;
         enemyParent = GetComponent<EnemyManager>().enemyParent;
         enemyPrefabs = GetComponent<EnemyManager>().enemyPrefabs;
     }

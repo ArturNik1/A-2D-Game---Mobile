@@ -27,7 +27,7 @@ public class DoorLogic : MonoBehaviour
         if (nextWorld) {
             // head to next world. 
             print("NEXT WORLD");
-            LoadNextWorld();
+            StartCoroutine(LoadNextWorld());
         } else {
             Camera.main.GetComponent<CameraLogic>().flashingScreen.color = new Color(0, 0, 0, 1f);
             Camera.main.GetComponent<CameraLogic>().CallFlashMethod();
@@ -73,7 +73,13 @@ public class DoorLogic : MonoBehaviour
         }
     }
 
-    void LoadNextWorld() {
+    IEnumerator LoadNextWorld() {
+        MenuLogic menuLogic = GameObject.Find("Canvas").GetComponentInChildren<MenuLogic>();
+        menuLogic.worldTransitionAnim.gameObject.SetActive(true);
+        menuLogic.worldTransitionAnim.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1.0f);
+
         LevelManager.currentWorld++;
         LevelManager.currentRoomGenerated = 0;
 
@@ -85,6 +91,8 @@ public class DoorLogic : MonoBehaviour
         var player = GameObject.Find("Player");
         player.GetComponent<LevelManager>().CreateRooms();
         player.transform.position = new Vector3(0, 0, player.transform.position.z);
+
+        menuLogic.worldTransitionAnim.SetTrigger("End");
     }
 
     void ResetGroundItems() {

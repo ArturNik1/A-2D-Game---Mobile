@@ -9,7 +9,6 @@ using System;
 public class PlayerController : MonoBehaviour
 {
 
-    PlayerInputActions playerInputActions;
     Rigidbody rb;
     AnimatorManager playerAnim;
     PlayerInfo pInfo;
@@ -73,21 +72,6 @@ public class PlayerController : MonoBehaviour
         healthText = healthBar.transform.Find("Health Text").GetComponent<Text>();
 
         isOnMobile = Application.isMobilePlatform;
-
-        playerInputActions = new PlayerInputActions();
-        if (isOnMobile) {
-            playerInputActions.Disable();
-        }
-    }
-
-    private void OnEnable() {
-        if (isOnMobile) return;
-        playerInputActions.Enable();
-    }
-
-    private void OnDisable() {
-        if (isOnMobile) return;
-        playerInputActions.Disable();
     }
 
     // Start is called before the first frame update
@@ -142,7 +126,7 @@ public class PlayerController : MonoBehaviour
     private void PollInput() {
         if (!canMove) return;
 
-        if (isOnMobile) {
+        if (isOnMobile || !isOnMobile) {
             movementInputVector = joystick.Direction;
             // Any time movementInputVector is not zero, rotate the player's transform.
             if (movementInputVector != Vector2.zero) {
@@ -153,14 +137,14 @@ public class PlayerController : MonoBehaviour
             }
         }
         else {
-            movementInputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+            // keyboard movement should be here...
             // Any time movementInputVector is not zero, rotate the player's transform.
-            if (movementInputVector != Vector2.zero) {
+            /*if (movementInputVector != Vector2.zero) {
                 value = (Mathf.Atan2(movementInputVector.x, movementInputVector.y) / Mathf.PI) * 180f;
                 if (value < 0) value += 360f;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, 0, -value)), Time.deltaTime * 1000f);
                 lastMovedJoystickDirection = movementInputVector;
-            }
+            }*/
         }
         Move(movementInputVector);
 

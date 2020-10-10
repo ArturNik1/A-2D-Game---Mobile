@@ -57,7 +57,7 @@ public class ChestController : MonoBehaviour
         pController.playerDeath += OnPlayerDeath;
 
         maxHealth = health;
-        healthBar = GameObject.Find("Canvas").transform.Find("Boss Health Slider").gameObject;
+        healthBar = GameObject.Find("Canvas").transform.Find("Group").transform.Find("Boss Health Slider").gameObject;
 
         GameObject particleHolder = transform.Find("Particles").gameObject;
         for (int i = 0; i < particleHolder.transform.childCount; i++) {

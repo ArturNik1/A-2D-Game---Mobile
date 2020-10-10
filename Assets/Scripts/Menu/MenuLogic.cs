@@ -7,8 +7,14 @@ using UnityEngine.UI;
 
 public class MenuLogic : MonoBehaviour
 {
-    public Animator anim;
     public float transitionTime = 1f;
+
+    static bool startupPlayed = false;
+
+    [Header("Transitions")]
+    public Animator gameStartupAnim;
+    public Animator bothStartEndRunTransitionAnim;
+    public Animator worldTransitionAnim;
 
     public Toggle joyFloating;
     public Toggle joyFixed;
@@ -25,13 +31,21 @@ public class MenuLogic : MonoBehaviour
     public GameObject debug;
 
     public void LoadScene() {
-        if (SceneManager.GetActiveScene().buildIndex == 0) StartCoroutine(LoadLevel(1));
-        else StartCoroutine(LoadLevel(0));
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
+            startupPlayed = true;
+            bothStartEndRunTransitionAnim.gameObject.SetActive(true);
+            bothStartEndRunTransitionAnim.SetTrigger("Start");
+            StartCoroutine(LoadLevel(1));
+        }
+        else {
+            infoReturnButton.transform.root.gameObject.SetActive(false);
+            bothStartEndRunTransitionAnim.gameObject.SetActive(true);
+            bothStartEndRunTransitionAnim.SetTrigger("Start");
+            StartCoroutine(LoadLevel(0));
+        }
     }
 
     IEnumerator LoadLevel(int levelIndex) {
-        anim.SetTrigger("Start");
-
         yield return new WaitForSeconds(transitionTime);
 
         if (AudioManager.instance.IsPlaying("TypeWriter01")) AudioManager.instance.StopPlaying("TypeWriter01");
@@ -95,6 +109,17 @@ public class MenuLogic : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 0) {
             musicSlider.onValueChanged.AddListener(delegate { AudioManager.instance.ChangeMusicVolume(musicSlider); });
             soundSlider.onValueChanged.AddListener(delegate { AudioManager.instance.ChangeSoundVolume(soundSlider); });
+
+            if (startupPlayed) {
+                gameStartupAnim.gameObject.SetActive(false);
+                bothStartEndRunTransitionAnim.gameObject.SetActive(true);
+                bothStartEndRunTransitionAnim.SetTrigger("End");
+            }
+
+        }
+
+        else if (SceneManager.GetActiveScene().buildIndex == 1) {
+            bothStartEndRunTransitionAnim.SetTrigger("End");
         }
         
         LoadPrefs();
@@ -106,11 +131,6 @@ public class MenuLogic : MonoBehaviour
 
     private void Update()
     {
-
-        //var StandaloneInputModule = (StandaloneExtension)EventSystem.current.currentInputModule;
-        //StandaloneInputModule.GetPointerData();
-
-
         // Handle Back Button.
         if (Input.GetKeyDown(KeyCode.Escape)) { 
             if (SceneManager.GetActiveScene().buildIndex == 0) { 
@@ -125,7 +145,7 @@ public class MenuLogic : MonoBehaviour
                 } 
                 else {
                     infoReturnButton.transform.root.gameObject.SetActive(true);
-                    mainCanvas.SetActive(false);
+                    mainCanvas.transform.Find("Group").gameObject.SetActive(false);
 
                     Text leftText = infoReturnButton.transform.parent.transform.Find("Left Text").GetComponent<Text>();
                     SetGamePauseText(leftText);
@@ -184,7 +204,7 @@ public class MenuLogic : MonoBehaviour
     public void ReturnToMenu() {
         Time.timeScale = 1;
         if (AudioManager.instance.IsPlaying("TypeWriter01")) AudioManager.instance.StopPlaying("TypeWriter01");
-        StartCoroutine(LoadLevel(0));
+        LoadScene();
     }
 
     #endregion

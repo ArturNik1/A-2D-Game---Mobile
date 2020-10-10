@@ -28,7 +28,7 @@ public class BossManager : MonoBehaviour
 
         enemyParent = gameObject;
         pController = playerGameObject.GetComponent<PlayerController>();
-        textCountdown = GameObject.Find("Canvas").transform.Find("CinematicPanel").GetComponent<TextCountdown>();
+        textCountdown = GameObject.Find("Canvas").transform.Find("Group").transform.Find("CinematicPanel").GetComponent<TextCountdown>();
     }
 
     public void SpawnBoss(GameObject room) {
