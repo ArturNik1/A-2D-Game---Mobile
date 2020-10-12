@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MenuLogic : MonoBehaviour
 {
     public float transitionTime = 1f;
+    public static bool doTransition = false;
 
     static bool startupPlayed = false;
 
@@ -46,9 +47,12 @@ public class MenuLogic : MonoBehaviour
     }
 
     IEnumerator LoadLevel(int levelIndex) {
-        yield return new WaitForSeconds(transitionTime);
-
         if (AudioManager.instance.IsPlaying("TypeWriter01")) AudioManager.instance.StopPlaying("TypeWriter01");
+
+        while (!doTransition) {
+            yield return new WaitForEndOfFrame();
+        }
+        doTransition = false;
 
         SceneManager.LoadScene(levelIndex);
     }
