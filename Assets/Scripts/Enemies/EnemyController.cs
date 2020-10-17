@@ -33,6 +33,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
     protected Vector2 directionRotate;
     protected GameObject player;
     protected PlayerController pController;
+    protected StatsTracker stats;
     protected bool skipMove = false;
 
     public float startDelay;
@@ -49,6 +50,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
+        stats = player.GetComponent<StatsTracker>();
         ChangeDirectionOnStart();
 
         GameObject particleHolder = transform.Find("Particles").gameObject;
@@ -214,7 +216,7 @@ public abstract class EnemyController : MonoBehaviour, IEnemyController
         isMoving = false;
         ChangeDirectionOnHitToPlayerNoRandom();
     }
-    public void PlayDeathAnimation() {
+    public virtual void PlayDeathAnimation() {
         anim.CrossFade("Die", 0.1f);
         isHit = true;
         isMoving = false;

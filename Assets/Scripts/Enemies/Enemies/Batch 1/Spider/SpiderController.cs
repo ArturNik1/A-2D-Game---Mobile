@@ -104,4 +104,11 @@ public class SpiderController : EnemyController
         return false;
     }
 
+    public override void PlayDeathAnimation()
+    {
+        base.PlayDeathAnimation();
+        stats.KillSpiders++;
+        stats.KillTotalEnemies++;
+    }
+
 }

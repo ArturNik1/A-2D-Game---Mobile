@@ -24,6 +24,7 @@ public abstract class BossController : MonoBehaviour
     protected Rigidbody rb;
     protected GameObject player;
     protected PlayerController pController;
+    protected StatsTracker stats;
     protected float _speed;
     protected bool isHit = false;
     public bool isAttacking = false;
@@ -38,6 +39,7 @@ public abstract class BossController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
+        stats = player.GetComponent<StatsTracker>();
         _speed = speed;
         maxHealth = health;
 

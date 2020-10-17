@@ -640,6 +640,25 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 132379448}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &132379451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1444327435427304, guid: db0a5ecf1e81c2a44bc0cd76b3ed32df,
+    type: 3}
+  m_PrefabInstance: {fileID: 132379448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &132379452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132379451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d166b788107b547832a226df8ce725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &148609219
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +900,7 @@ GameObject:
   - component: {fileID: 187244956}
   - component: {fileID: 187244951}
   - component: {fileID: 187244955}
+  - component: {fileID: 187244957}
   - component: {fileID: 187244950}
   m_Layer: 9
   m_Name: Player
@@ -1088,6 +1108,36 @@ MonoBehaviour:
   attackSpeed: 0
   movementSpeed: 0.6
   maxHealth: 0
+--- !u!114 &187244957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187244949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcdbcb64e3835b946bd655a4db36793a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killedSlime: 0
+  killedTurtles: 0
+  killedBats: 0
+  killedSpiders: 0
+  killedSkeletons: 0
+  killedDragons: 0
+  killedChests: 0
+  openChests: 0
+  killedGolems: 0
+  killedOrcs: 0
+  killedEvilMages: 0
+  FinishedWorld0: 0
+  FinishedWorld1: 0
+  FinishedWorld2: 0
+  FinishedWorld3: 0
+  FinishedWorld4: 0
+  FinishedWorld5: 0
+  killedTotalEnemies: 0
 --- !u!1 &200838194
 GameObject:
   m_ObjectHideFlags: 0

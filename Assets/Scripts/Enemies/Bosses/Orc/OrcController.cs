@@ -330,4 +330,11 @@ public class OrcController : BossController
         pController.playerDeath -= OnPlayerDeath;
     }
 
+    public override void PlayDeathAnimation()
+    {
+        base.PlayDeathAnimation();
+        stats.KillOrcs++;
+        stats.KillTotalBosses++;
+    }
+
 }

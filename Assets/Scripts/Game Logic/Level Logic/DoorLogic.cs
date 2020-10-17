@@ -80,6 +80,29 @@ public class DoorLogic : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
+        var player = GameObject.Find("Player");
+        StatsTracker stats = player.GetComponent<StatsTracker>();
+        switch (LevelManager.currentWorld) {
+            case 0:
+                stats.FinishedWorld0++;
+                break;
+            case 1:
+                stats.FinishedWorld1++;
+                break;
+            case 2:
+                stats.FinishedWorld2++;
+                break;
+            case 3:
+                stats.FinishedWorld3++;
+                break;
+            case 4:
+                stats.FinishedWorld4++;
+                break;
+            case 5:
+                stats.FinishedWorld5++;
+                break;
+        }
+
         LevelManager.currentWorld++;
         LevelManager.currentRoomGenerated = 0;
 
@@ -88,7 +111,6 @@ public class DoorLogic : MonoBehaviour
             Destroy(rooms.transform.GetChild(i).gameObject);
         }
         
-        var player = GameObject.Find("Player");
         player.GetComponent<LevelManager>().CreateRooms();
         player.transform.position = new Vector3(0, 0, player.transform.position.z);
 

@@ -43,4 +43,11 @@ public class BatController : EnemyController
         }
     }
 
+    public override void PlayDeathAnimation()
+    {
+        base.PlayDeathAnimation();
+        stats.KillBats++;
+        stats.KillTotalEnemies++;
+    }
+
 }

@@ -393,4 +393,12 @@ public class GolemController : BossController
         pController.playerDeath -= OnPlayerDeath;
     }
 
+    public override void PlayDeathAnimation()
+    {
+        base.PlayDeathAnimation();
+        stats.KillGolems++;
+        stats.KillTotalBosses++;
+    }
+
+
 }

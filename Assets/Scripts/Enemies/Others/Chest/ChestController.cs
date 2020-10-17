@@ -37,6 +37,7 @@ public class ChestController : MonoBehaviour
     Animator anim;
     Rigidbody rb;
     GameObject player;
+    StatsTracker stats;
     PlayerController pController;
     RotationHandler rotHandler;
     Vector3 enemyChestItemPos;
@@ -52,6 +53,7 @@ public class ChestController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         pController = player.GetComponent<PlayerController>();
+        stats = player.GetComponent<StatsTracker>();
         rotHandler = GetComponent<RotationHandler>();
 
         pController.playerDeath += OnPlayerDeath;
@@ -140,6 +142,7 @@ public class ChestController : MonoBehaviour
         }
         else {
             // Chest opens up, item pops out. 
+            stats.OpenChests++;
             anim.SetTrigger("OptionOpen");
             AudioManager.instance.Play("ChestLock01");
             StartCoroutine(PlayChestCreakSound());
@@ -266,6 +269,7 @@ public class ChestController : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         movement = 0.0f;
+        stats.KillChests++;
         StartCoroutine(Die());
     }
 

@@ -24,6 +24,7 @@ public class MenuLogic : MonoBehaviour
 
     [Header("GameObjects_Scene0")]
     public GameObject settingsPanel;
+    public GameObject achievementPanel;
 
     [Header("GameObjects_Scene1")]
     public GameObject mainCanvas;
@@ -42,6 +43,7 @@ public class MenuLogic : MonoBehaviour
             infoReturnButton.transform.root.gameObject.SetActive(false);
             bothStartEndRunTransitionAnim.gameObject.SetActive(true);
             bothStartEndRunTransitionAnim.SetTrigger("Start");
+            AchievementHandler.UpdateValuesInDictionary();
             StartCoroutine(LoadLevel(0));
         }
     }
@@ -141,6 +143,11 @@ public class MenuLogic : MonoBehaviour
                 if (settingsPanel.activeSelf) {
                     SavePrefs();
                     settingsPanel.SetActive(false);
+                }
+                else if (achievementPanel.activeSelf) {
+                    AchievementHandler.OrderDictionaryByProgressBar();
+                    AchievementHandler.OrderGameObjectByProgressBar();
+                    achievementPanel.SetActive(false);
                 }
             }
             else if (SceneManager.GetActiveScene().buildIndex == 1 && player.isAlive) {

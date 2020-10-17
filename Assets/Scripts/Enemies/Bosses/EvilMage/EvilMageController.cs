@@ -453,4 +453,11 @@ public class EvilMageController : BossController
         if (obj != null) Destroy(obj, 1f);
     }
 
+    public override void PlayDeathAnimation()
+    {
+        base.PlayDeathAnimation();
+        stats.KillEvilMages++;
+        stats.KillTotalBosses++;
+    }
+
 }

@@ -7,6 +7,7 @@ public abstract class Item : MonoBehaviour
     protected GameObject player;
     AnimatorManager animManager;
     PlayerController pController;
+    StatsTracker stats;
 
     [HideInInspector]
     public ItemInformation.ItemType itemType;
@@ -29,6 +30,7 @@ public abstract class Item : MonoBehaviour
         player = GameObject.Find("Player");
         animManager = player.GetComponent<AnimatorManager>();
         pController = player.GetComponent<PlayerController>();
+        stats = player.GetComponent<StatsTracker>();
 
         originalY = transform.position.y;
     }
@@ -47,6 +49,7 @@ public abstract class Item : MonoBehaviour
     public virtual void PickUPItem() {
         if (pickedUp) return;
 
+        stats.CollectItems++;
         animManager.anim.SetTrigger("PickUp");
         animManager.vertical = 0;
         animManager.horizontal = 0;

@@ -67,4 +67,10 @@ public class SlimeController : EnemyController
         }
     }
 
+    public override void PlayDeathAnimation() {
+        base.PlayDeathAnimation();
+        stats.KillSlimes++;
+        stats.KillTotalEnemies++;
+    }
+
 }

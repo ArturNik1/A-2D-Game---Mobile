@@ -69,4 +69,11 @@ public class DragonController : EnemyController
         return Mathf.Abs(Vector2.Angle(transform.forward, player.transform.position - transform.position)) <= 5f;
     }
 
+    public override void PlayDeathAnimation()
+    {
+        base.PlayDeathAnimation();
+        stats.KillDragons++;
+        stats.KillTotalEnemies++;
+    }
+
 }

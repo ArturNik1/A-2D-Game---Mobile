@@ -174,4 +174,10 @@ public class SkeletonController : EnemyController
         }
     }
 
+    public override void PlayDeathAnimation()
+    {
+        base.PlayDeathAnimation();
+        stats.KillSkeletons++;
+        stats.KillTotalEnemies++;
+    }
 }
