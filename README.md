@@ -7,4 +7,5 @@ This is a small Unity project of mine, the goal was to dive into mobile developm
 - A lot of powerups and a system item drops and progression.
 - Achievement and mission progression system.
 - Audio system.
+- Saving and Loading.
 - And much more!
