@@ -11,3 +11,4 @@ This is a small Unity project of mine, the goal was to dive into mobile developm
 - And much more!
 
 # APK:
+[Download APK](https://drive.google.com/file/d/1Fp7T2G7cw_FxUPgHHNlHA6swrdSQCoPx/view?usp=sharing)
